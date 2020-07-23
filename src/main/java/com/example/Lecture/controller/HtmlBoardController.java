@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HtmlBoardController {
@@ -18,6 +19,13 @@ public class HtmlBoardController {
         return "htmlRegister";
     }
 
+    @PostMapping("/html/register")
+    public String register() {
+        logger.info("register(POST)");
+
+        return "htmlRegister";
+    }
+
     @GetMapping("/html/modify")
     public String modifyForm() {
         logger.info("modifyForm()");
@@ -25,9 +33,23 @@ public class HtmlBoardController {
         return "htmlModifyForm";
     }
 
+    @PostMapping("/html/modify")
+    public String modify() {
+        logger.info("modify(POST)");
+
+        return "htmlModifyForm";
+    }
+
     @GetMapping("/html/delete")
     public String deleteForm() {
         logger.info("deleteForm()");
+
+        return "htmlDeleteForm";
+    }
+
+    @PostMapping("/html/delete")
+    public String delete() {
+        logger.info("delete(POST)");
 
         return "htmlDeleteForm";
     }

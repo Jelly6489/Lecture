@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Music Page</h1>
+    <form th:action="@{/music/play}" >
+        <input type = "submit" value="Musicplayer">
+    </form>
+
+    <form th:action="@{/music/menu}" >
+        <input type = "submit" value="Menu">
+    </form>
+
+    <form th:action="@{/music/record}" >
+        <input type = "submit" value="Record">
+    </form>
+
+    <form th:action="@{/musics/test}">
+        <input type="submit" value="테스트">
+    </form>
+
+</body>
+</html>

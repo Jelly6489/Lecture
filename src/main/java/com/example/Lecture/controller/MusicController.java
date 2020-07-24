@@ -166,7 +166,7 @@ public class MusicController {
 
         try {
             HttpHeaders headers = new HttpHeaders();
-            in = new FileInputStream("");
+            in = new FileInputStream("/home/bitai/Downloads/test_image_2.jpg");
             headers.setContentType(MediaType.IMAGE_JPEG);
 
             entity = new ResponseEntity<byte[]>(
@@ -184,7 +184,7 @@ public class MusicController {
         }
 
         return entity;
-
     }
+
 
 }

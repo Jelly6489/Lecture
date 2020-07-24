@@ -119,3 +119,15 @@ public class HtmlBoardController {
     }
 
 }
+
+// DB 접속하기
+// mysql -u bitai -p
+
+// 만약 안된다면
+// sudo mysql -u root -p
+// 계정 비밀번호 입력함
+// create user bitai@localhost identified by '456123';
+// grant all privileges on bitai *.* to bitai@localhost identified by '456123';
+
+
+

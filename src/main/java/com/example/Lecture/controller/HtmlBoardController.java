@@ -1,11 +1,17 @@
 package com.example.Lecture.controller;
 
+// 공부 순서
+// 자바 -> 스프링
+// JPA ,카프카
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Date;
 
 @Controller
 public class HtmlBoardController {
@@ -103,9 +109,13 @@ public class HtmlBoardController {
         return "form/success";
     }
 
-}
+    @GetMapping("/getRegTest")
+    public String getRegTest (String userId, Date date) {
+        logger.info("getRegTest()");
+        logger.info("userId = " + userId);
+        logger.info("date = " + date);
 
-// MusicController를 하나 만든다.
-// Controller 기능으로는 음악 재생, 메뉴 보기, 녹음
-// 이와 관련된 HTML 및 Controller 구성을 직접 해보자!
-// (음악이 재생, 녹음 등등이 될 필요는 없다.)
+        return "form/success";
+    }
+
+}

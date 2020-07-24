@@ -1,5 +1,6 @@
 package com.example.Lecture.controller;
 
+
 import com.example.Lecture.entity.Board;
 import com.example.Lecture.service.BoardService;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ public class BoardController {
 
     @PostMapping("/postRegister")
     public String postRegister(Board board, Model model)
-    throws Exception{
+            throws Exception {
         log.info("postRegister()");
 
         service.register(board);
@@ -39,12 +40,13 @@ public class BoardController {
     }
 
     @GetMapping("/list")
-    public void list(Model model)
-            throws Exception{
+    public String list(Model model) throws Exception {
         log.info("list()");
 
         model.addAttribute(
                 "list",
                 service.list());
+
+        return "board/list";
     }
 }

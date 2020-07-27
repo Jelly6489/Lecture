@@ -10,6 +10,7 @@
 </script>
 <script>
      $(document).ready(function() {
+     <!--id 값을 찾을 때 #을 붙여야함-->
             var formObj = $("#board");
 
             console.log(formObj);
@@ -36,11 +37,12 @@
     <form id="board" th:object="${board}" method="POST">
         <input type="hidden" name="boardNo"
                th:field="*{boardNo}">
+
         <table>
             <tr>
                 <td>Title</td>
                 <td><input type="text" name="title"
-                    th:field="*{writer}"
+                    th:field="*{title}"
                     readonly="readonly"></td>
             </tr>
             <tr>

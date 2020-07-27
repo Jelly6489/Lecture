@@ -105,3 +105,8 @@ public class BoardController {
         return "board/success";
     }
 }
+
+
+
+
+

@@ -7,11 +7,20 @@ import java.util.Date;
 //     id, pw, nickname, item, price)
 public class ItemMania {
         private int idNo;
-        private int pw;
+        private String id;
+        private String pw;
         private String nickname;
         private String item;
-        private int price;
+        private String price;
         private Date regDate;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public int getIdNo() {
         return idNo;
@@ -21,11 +30,11 @@ public class ItemMania {
         this.idNo = idNo;
     }
 
-    public int getPw() {
+    public String getPw() {
         return pw;
     }
 
-    public void setPw(int pw) {
+    public void setPw(String pw) {
         this.pw = pw;
     }
 
@@ -45,11 +54,11 @@ public class ItemMania {
         this.item = item;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

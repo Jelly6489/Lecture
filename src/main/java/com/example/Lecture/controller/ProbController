@@ -1,5 +1,6 @@
 // 여태까지 MySQL과 Spring을 연동하는 방식을 파악하였다.
 // 그러므로 현재 예제를 토대로 유사한 연습문제를 작성해보자!
+// ************************************************************************************************
 // 1. MySQL에 Table을 작성한다.
 //    (Entity: ItemMania
 //     id, pw, nickname, item, price)
@@ -13,7 +14,7 @@
 //    content text null,
 //    writer varchar(50) not null,
 //    reg_date timestamp not null default now(),
-//    primary key(board_no) );
+//    primary key(board_no));
 
 // 6-1 실제) create table ItemMania( id_no int not null auto_increment,
 //    pw varchar(50) not null,
@@ -30,10 +31,15 @@
 // private int price;
 // private Date regDate;
 
-// 7) describe board;
-// 8) select * from board;
+// 7) describe itemMania;
+// 8) select * from itemMania;
+
+// ************************************************************************************************
 
 // 2. entity package에 실제 사용할 Entity class를 작성한다.
+
+// ************************************************************************************************
+
 // 3. Controller package에 URL을 처리할 ItemManiaController를 만든다.
 // 4. @Service에 대한 인터페이스와 구현체를 작성한다.
 // 5. @Repository에 대한 DB 처리를 실제로 수행한다.

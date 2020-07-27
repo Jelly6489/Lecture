@@ -16,5 +16,8 @@ public interface BoardService {
     public void register(Board board) throws Exception;
     public List<Board> list() throws Exception;
     public Board read(Integer boardNo) throws Exception;
+    // 반환할 정보가 없기 때문에 void
+    public void remove(Integer boardNo) throws Exception;
+    public void modify(Board board) throws Exception;
 }
 

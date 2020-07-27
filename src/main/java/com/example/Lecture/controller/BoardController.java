@@ -68,4 +68,40 @@ public class BoardController {
         return "board/read";
     }
 
+    @PostMapping("/remove")
+    public String remove(int boardNo, Model model)
+                                    throws Exception {
+        log.info("remove()");
+
+        service.remove(boardNo);
+
+        model.addAttribute("msg",
+               "Success Delete!");
+
+        return "board/success";
+    }
+
+    @GetMapping("/getModify")
+    public String modify(int boardNo, Model model) throws Exception {
+        log.info("getModify()");
+
+        // 값을 수정을 하려면 수정을 하려는 정보를 얻어야 한다.
+        // (수정을 하려면 한 번 읽어야 함)
+        model.addAttribute(service.read(boardNo));
+
+        return "board/modify";
+    }
+
+    @PostMapping("/postModify")
+    public String modify(Board board, Model model) throws Exception {
+        log.info("postModify()");
+
+        service.modify(board);
+
+        model.addAttribute("msg",
+                "Modify Success"
+        );
+
+        return "board/success";
+    }
 }

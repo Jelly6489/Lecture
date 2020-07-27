@@ -15,6 +15,6 @@ public interface BoardService {
     // 예외 처리 루틴에게 해당 부분의 처리를 위
     public void register(Board board) throws Exception;
     public List<Board> list() throws Exception;
-
+    public Board read(Integer boardNo) throws Exception;
 }
 

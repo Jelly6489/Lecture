@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -71,5 +72,28 @@ public class BoardRepository {
                 });
 
         return results;
+    }
+
+    public Board read(Integer boardNo) throws Exception {
+        List<Board> results = jdbcTemplate.query(
+                "select board_no, title, content, writer, " +
+                        "reg_date from board where board_no = ?",
+                new RowMapper<Board>() {
+                    @Override
+                    public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Board board = new Board();
+
+                        board.setBoardNo(rs.getInt("board_no"));
+                        board.setTitle(rs.getString("title"));
+                        board.setWriter(rs.getString("writer"));
+                        board.setContent(rs.getString("content"));
+                        board.setRegDate(rs.getDate("reg_date"));
+
+                        return board;
+                    }
+                }, boardNo
+        );
+
+        return results.isEmpty() ? null : results.get(0);
     }
 }

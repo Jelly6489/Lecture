@@ -20,14 +20,16 @@ public class BoardController {
     private BoardService service;
 
     @GetMapping("/getRegister")
-    public void getRegister(Board board, Model model)
-            throws Exception {
+    public String getRegister(Board board, Model model)
+                                    throws Exception {
         log.info("getRegister()");
+
+        return "board/register";
     }
 
     @PostMapping("/postRegister")
     public String postRegister(Board board, Model model)
-            throws Exception {
+                                    throws Exception {
         log.info("postRegister()");
 
         service.register(board);

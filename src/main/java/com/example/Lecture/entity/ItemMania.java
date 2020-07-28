@@ -14,13 +14,6 @@ public class ItemMania {
         private String price;
         private Date regDate;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public int getIdNo() {
         return idNo;
@@ -28,6 +21,14 @@ public class ItemMania {
 
     public void setIdNo(int idNo) {
         this.idNo = idNo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPw() {

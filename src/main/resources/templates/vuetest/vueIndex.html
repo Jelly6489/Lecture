@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Index Page</title>
+    <link href="css/vueMain.css" rel="stylesheet">
+</head>
+<body>
+    <h2>Vue Index Page</h2>
+    <div id="app">
+        <h1>{{message}}</h1>
+        <!-- Vue 객체에 있는 message의 길이를 산출 -->
+        <p>{{ message.length }}</p>
+        <p> {{ list[2] }}</p>
+        <p> {{list[num]}} </p>
+        <ol>
+            <!-- Vue 객체가 가지고 있는 list에서 정보를 뽑아와서
+                item에 설정하고 각각의 item을 출력한다.-->
+            <li v-for="item in list"> {{ item }}</li>
+        </ol>
+        <button v-on:click="handleClick">Click</button>
+        <input v-model="initMsg">
+        <p>{{ initMsg }}</p>
+        <button v-on:click="show=!show">Change</button>
+        <transition>
+            <p v-if="show">Show Time!</p>
+        </transition>
+        <p>{{ count }}번 클릭했다!</p>
+        <button v-on:click="increment">Count</button>
+        <button v-on:click="isActive=!isActive">Change Mode</button>
+        <p v-bind:class="{ child: isChild, 'is-active': isActive}"
+           class="item">
+           Dynamic Class
+        </p>
+        <p v-bind:style="{ color: textColor, backgroundColor : bgColor}"
+           class="item">
+            Dynamic Style
+        </p>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <circle v-bind:r="radius" fill="lightblue" cx="100" cy="75"></circle>
+        </svg>
+        <input type="range" min="0" maxl="100" v-model="radius">
+
+    </div>
+    <script src="http://cdn.jsdelivr.net/npm/vue@2.6.10"></script>
+    <script>
+        // 새로운 Vue 객체를 생성한다.
+        // HTML, CSS도 재활용성을 극대화 시키자!
+        var app = new Vue({
+            // id가 app임을 나타낸다.
+            el: '#app',
+            // 그리고 Vue 객체가 가지고 있는 데이터
+            data: {
+                // 변수(message): 내용
+                message: 'Hello Vue.js',
+                initMsg: 'Initial Message',
+                list: ['apple', 'banana', 'cherry'],
+                show: true,
+                num: 1,
+                count: 0,
+                isChild: true,
+                isActive: true,
+                textColor: 'red',
+                bgColor: 'lightgray',
+                radius: 50
+            },
+            methods: {
+                handleClick: function(event) {
+                    alert(event.target)
+                },
+                increment: function() {
+                    this.count += 1
+                }
+            }
+        })
+    </script>
+</body>
+</html>

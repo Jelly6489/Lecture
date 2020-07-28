@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>game List</title>
+    <title>Game List</title>
 </head>
 <body>
-<h2>game List</h2>
+<h2>Game List</h2>
 <a href="game/gregister.html" th:href="@{getGRegister}">
     Write New list
 </a>
 <!--HTML 주석-->
-<table game="1">
+<table game="1" border="1">
     <tr>
         <th align="center" width="80">No</th>
         <th align="center" width="80">Id</th>
@@ -18,10 +18,11 @@
         <th align="center" width="80">Nickname</th>
         <th align="center" width="80">Item</th>
         <th align="center" width="80">Price</th>
+        <th align="center" width="80">Regdate</th>
 
     </tr>
     <tr th:if="${#lists.isEmpty(glist)}">
-        <td colspan="4">
+        <td colspan="7">
             List is Empty
         </td>
     </tr>
@@ -30,30 +31,30 @@
         <td align="center" th:text="${game.idNo}">
             ${game.idNo}
         </td>
-        <td align="left">
-            <a href="game/read.html"
-               th:href="@{|read?boardNo=${game.idNo}|}"
-               th:text="${game.id}">
-                ${game.id}</a>
-        </td>
-        <td align="right" th:text="${game.id}">
+
+        <td align="left" th:text="${game.id}">
             ${game.id}
         </td>
+
         <td align="right" th:text="${game.pw}">
             ${game.pw}
         </td>
-        <td align="center" th:text="${game.nickname}">
+
+        <td align="left" th:text="${game.nickname}">
             ${game.nickname}
         </td>
-        <td align="center" th:text="${game.item}">
+
+        <td align="right" th:text="${game.item}">
             ${game.item}
         </td>
+
         <td align="center" th:text="${game.price}">
             ${game.price}
         </td>
 
         <td align="center"
-            th:text="${#dates.format(game.regDate, 'yyyy-MM-dd HH:mm:ss')}">
+            th:text="${#dates.format(game.regDate,
+            'yyyy-MM-dd HH:mm:ss')}">
             ${game.regDate}
         </td>
     </tr>

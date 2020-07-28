@@ -26,7 +26,7 @@ public class ItemManiaRepository {
         String query = "insert into itemMania(" +
                 "id, pw, nickname, item, price) values(?, ?, ?, ?, ?)";
 
-        jdbcTemplate.update(query, itemMania.getPw(),
+        jdbcTemplate.update(query, itemMania.getId(),itemMania.getPw(),
                 itemMania.getNickname(), itemMania.getItem(), itemMania.getPrice());
     }
 

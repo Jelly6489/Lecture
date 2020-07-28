@@ -23,12 +23,9 @@
     });
 </script>
 <body>
-<h2>Register</h2>
+<h2>Game Register</h2>
 
-<!--th:action="@" URL 링킹
-    th:object="$" 객체 링킹
-    th:field="*" 객체에 있는 냐뷰 멤버 링킹-->
-<form id="id" action="game/success.html"
+<form id="game" action="game/success.html"
       th:action="@{gregister}"
       th:object="${itemMania}" method="post">
     <table>
@@ -38,8 +35,8 @@
             <td><input type="text" name="id"
                        th:field="*{id}"/></td>
             <td><font color="red">
-                    <span th:if="${#fields.hasErrors('id')}"
-                          th:errors="*{id}">
+                <span th:if="${#fields.hasErrors('id')}"
+                      th:errors="*{id}">
                         id Error Message
                     </span>
             </font></td>

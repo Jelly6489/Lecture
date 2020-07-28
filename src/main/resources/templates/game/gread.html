@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js">
+</script>
+<script>
+     $(document).ready(function() {
+        var formObj = $("#game");
+
+        console.log(formObj);
+
+        $("#btnModify").on("click", function() {
+            var idNo = $("#idNo");
+            var idNoVal = idNo.val();
+
+            self.location = "getGModify?idNo=" + idNoVal;
+        });
+
+        $("#btnRemove").on("click", function() {
+            formObj.attr("action", "gremove");
+            formObj.submit();
+        });
+
+        $("#btnList").on("click", function() {
+            self.location = "glist";
+        });
+    });
+</script>
+<body>
+    <h1>Game Read</h1>
+
+    <form id="game" th:object="${itemMania}" method="POST">
+        <input type="hidden" name="idNo"
+               th:field="*{idNo}">
+
+        <table>
+
+            <tr>
+                <td>Id</td>
+                <td><input type="text" name="id"
+                           th:field="*{id}"
+                           readonly="readonly"></td>
+            </tr>
+
+            <tr>
+                <td>Pw</td>
+                <td><input type="text" name="pw"
+                           th:field="*{pw}"
+                           readonly="readonly"></td>
+            </tr>
+
+            <tr>
+                <td>Nickname</td>
+                <td><input type="text" name="nickname"
+                           th:field="*{nickname}"
+                           readonly="readonly"></td>
+            </tr>
+
+            <tr>
+                <td>Item</td>
+                <td><input type="text" name="item"
+                           th:field="*{item}"
+                           readonly="readonly"></td>
+            </tr>
+
+            <tr>
+                <td>Price</td>
+                <td><input type="text" name="price"
+                           th:field="*{price}"
+                           readonly="readonly"></td>
+            </tr>
+
+        </table>
+    </form>
+
+    <div>
+        <button type="submit" id="btnModify">Modify</button>
+        <button type="submit" id="btnRemove">Remove</button>
+        <button type="submit" id="btnList">List</button>
+    </div>
+</body>
+</html>

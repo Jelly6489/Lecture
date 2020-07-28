@@ -10,7 +10,7 @@
     Write New list
 </a>
 <!--HTML 주석-->
-<table game="1" border="1">
+<table border="1">
     <tr>
         <th align="center" width="80">No</th>
         <th align="center" width="80">Id</th>
@@ -32,19 +32,24 @@
             ${game.idNo}
         </td>
 
-        <td align="left" th:text="${game.id}">
-            ${game.id}
+        <td align="center">
+            <a href="game/gread.html"
+               th:href="@{|gread?idNo=${game.idNo}|}"
+               th:text="${game.id}">
+                ${game.id}
+            </a>
         </td>
 
-        <td align="right" th:text="${game.pw}">
+
+        <td align="center" th:text="${game.pw}">
             ${game.pw}
         </td>
 
-        <td align="left" th:text="${game.nickname}">
+        <td align="center" th:text="${game.nickname}">
             ${game.nickname}
         </td>
 
-        <td align="right" th:text="${game.item}">
+        <td align="center" th:text="${game.item}">
             ${game.item}
         </td>
 
@@ -54,7 +59,7 @@
 
         <td align="center"
             th:text="${#dates.format(game.regDate,
-            'yyyy-MM-dd HH:mm:ss')}">
+            'yyyy-MM-dd hh:mm:ss')}">
             ${game.regDate}
         </td>
     </tr>

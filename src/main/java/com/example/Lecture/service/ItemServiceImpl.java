@@ -23,4 +23,19 @@ public class ItemServiceImpl implements ItemService{
     public List<ItemMania> glist() throws Exception {
         return itemManiaRepository.glist();
     }
+
+    @Override
+    public ItemMania gread(Integer idNo) throws Exception {
+        return itemManiaRepository.gread(idNo);
+    }
+
+    @Override
+    public void gremove(Integer idNo) throws Exception {
+        itemManiaRepository.gremove(idNo);
+    }
+
+    @Override
+    public void gmodify(ItemMania itemMania) throws Exception {
+        itemManiaRepository.gmodify(itemMania);
+    }
 }

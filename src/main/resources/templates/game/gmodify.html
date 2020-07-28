@@ -8,11 +8,12 @@
         src="http://code.jquery.com/jquery-2.1.4.min.js">
 </script>
 <script>
-    $(document).ready(function() {
-        var formObj = $("#game");
+     $(document).ready(function() {
+            var formObj = $("#game");
 
-        $("#btnRegister").on("click", function() {
-            formObj.attr("action", "postGRegister");
+
+        $("#btnModify").on("click", function() {
+            formObj.attr("action", "postGModify");
             formObj.attr("method", "post");
             formObj.submit();
         });
@@ -20,14 +21,15 @@
         $("#btnList").on("click", function() {
             self.location = "glist";
         });
-    });
-</script>
+     });
+    </script>
 <body>
-<h2>Game Register</h2>
+<h2>Modify</h2>
 
 <form id="game" action="game/success.html"
-      th:action="@{gregister}"
+      th:action="@{gmodify}"
       th:object="${itemMania}" method="post">
+    <input type="hidden" name="idNo" th:field="*{idNo}"/>
     <table>
 
         <tr>
@@ -44,11 +46,11 @@
 
         <tr>
             <td>Pw</td>
-            <td><input name="pw"
+            <td><input type="text" name="pw"
                        th:field="*{pw}"/></td>
             <td><font color="red">
-                    <span th:if="${#fields.hasErrors('pw')}"
-                          th:errors="*{pw}">
+                <span th:if="${#fields.hasErrors('pw')}"
+                      th:errors="*{pw}">
                         pw Error Message
                     </span>
             </font></td>
@@ -56,11 +58,11 @@
 
         <tr>
             <td>Nickname</td>
-            <td><textarea name="nickname"
-                          th:field="*{nickname}"/></td>
+            <td><input type="text" name="nickname"
+                       th:field="*{nickname}"/></td>
             <td><font color="red">
-                    <span th:if="${#fields.hasErrors('nickname')}"
-                          th:errors="*{nickname}">
+                <span th:if="${#fields.hasErrors('nickname')}"
+                      th:errors="*{nickname}">
                         nickname Error Message
                     </span>
             </font></td>
@@ -68,11 +70,11 @@
 
         <tr>
             <td>Item</td>
-            <td><textarea name="item"
-                          th:field="*{item}"/></td>
+            <td><input type="text" name="item"
+                       th:field="*{item}"/></td>
             <td><font color="red">
-                    <span th:if="${#fields.hasErrors('item')}"
-                          th:errors="*{item}">
+                <span th:if="${#fields.hasErrors('item')}"
+                      th:errors="*{item}">
                         item Error Message
                     </span>
             </font></td>
@@ -80,21 +82,20 @@
 
         <tr>
             <td>Price</td>
-            <td><textarea name="price"
-                          th:field="*{price}"/></td>
+            <td><input type="text" name="price"
+                       th:field="*{price}"/></td>
             <td><font color="red">
-                    <span th:if="${#fields.hasErrors('price')}"
-                          th:errors="*{price}">
+                <span th:if="${#fields.hasErrors('price')}"
+                      th:errors="*{price}">
                         price Error Message
                     </span>
             </font></td>
         </tr>
-
     </table>
 </form>
 
 <div>
-    <button type="submit" id="btnRegister">Register</button>
+    <button type="submit" id="btnModify">Modify</button>
     <button type="submit" id="btnList">List</button>
 </div>
 

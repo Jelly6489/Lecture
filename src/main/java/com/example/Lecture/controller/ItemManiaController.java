@@ -40,18 +40,57 @@ public class ItemManiaController {
     }
 
     @GetMapping("/glist")
-    public String list(Model model) throws Exception {
+    public String glist(Model model) throws Exception {
         log.info("glist()");
 
-        // 속성 추가(이름: list)
-        // Controller -> Service -> Repository 방식으로
-        // 동작하게 설계되어 있다.
         model.addAttribute(
-                // DB에서 읽어온 정보가 list에 있음
                 "glist",
                 service.glist());
 
-        // HTML 파일
         return "game/glist";
     }
+
+    @GetMapping("/gread")
+    public String gread(int idNo, Model model) throws Exception {
+        log.info("gread()");
+
+        model.addAttribute(service.gread(idNo));
+
+        return "game/gread";
+    }
+
+    @PostMapping("gremove")
+    public String gremove(int idNo, Model model) throws Exception {
+        log.info("gremove()");
+
+        service.gremove(idNo);
+
+        model.addAttribute("msg",
+                "Success Delete!");
+
+        return "game/success";
+    }
+
+    @GetMapping("/getGModify")
+    public String gmodify(int idNo, Model model) throws Exception {
+        log.info("getGModify()");
+
+        model.addAttribute(service.gread(idNo));
+
+        return "game/gmodify";
+    }
+
+    @PostMapping("/postGModify")
+    public String gmodify(ItemMania itemMania, Model model) throws Exception {
+        log.info("postGModify()");
+
+        service.gmodify(itemMania);
+
+        model.addAttribute("msg",
+                "Modify Success"
+        );
+
+        return "game/success";
+    }
+
 }

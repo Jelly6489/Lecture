@@ -41,5 +41,6 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public void modify(Board board) throws Exception {
         boardRepository.modify(board);
+
     }
 }

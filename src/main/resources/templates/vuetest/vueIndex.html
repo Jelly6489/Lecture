@@ -140,6 +140,7 @@
     <p>{{ itemBook[0].price }}</p>
     <p>{{ itemBook[0].effect.desc }}</p>
     <p>{{ itemBook[0].effect.amount }}</p>
+    <p>{{ shopListValue }}</p>
     <!-- 상점 기능 구현에서 제일 중요한 것들을 추려보자!
          1. 게임내에 소지금에 대한 정보가 필요하다.
          2. 몹을 잡을때마다 일정 부분 획득할 수 있게 만들어줘야 한다.
@@ -153,6 +154,7 @@
     </label>
     <transition>
         <p v-if="myInven">내 인벤토리 리스트들을 보여줘야 한다.</p>
+
     </transition>
     <label>
         <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">Shop List
@@ -176,7 +178,7 @@
                     <label>
                         <input type="checkbox"
                                v-model="shopListValue"
-                                v-bind:value="idx">
+                               v-bind:value="idx">
                     </label>
                 </th>
             </tr>
@@ -261,7 +263,8 @@
                 shopView: false,
                 myInven: false,
                 shopList: [],
-                shopListValue: []
+                shopListValue: [],
+                listValue: []
 
             },
             methods: {
@@ -335,11 +338,18 @@
                     alert('check')
                 },
                 shuffleShopList: function() {
+                    // !는 not 연산이므로 어떤 결과든 부정함
+                    if(!this.shopView) {
+                    //if(this.shopView == false) {
+                        this.shopListValue = []
+                    }
+
                     // 상점에 새로운 아이템을 갱신하도록 만드는 위치
                     for(var i = 0; i < 10; i++) {
                         var randIdx = Math.floor(Math.random() * this.itemBook.length)
                         this.shopList[i] = this.itemBook[randIdx]
                     }
+
                 }
             },
             beforeCreate: function () {

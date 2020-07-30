@@ -152,14 +152,30 @@
     <label>
         <input type="checkbox" v-model="myInven" v-on:click="test()">My Inventory
     </label>
+    <table border="1">
+        <tr v-if="myInven">
+            <th align="center" width="20">No</th>
+            <th align="center" width="80">Name</th>
+            <th align="center" width="320">Effect</th>
+        </tr>
+        <tr v-if="myInven" v-for="(list, idx) in myInventory"
+            v-bind:key="list.itemName">
+            <th align="center" width="20">{{ idx + 1}}</th>
+            <th align="center" width="80">{{ list.itemName }}</th>
+            <th align="center" width="320">{{ list.effect.desc }}</th>
+        </tr>
+    </table>
     <transition>
-        <p v-if="myInven">내 인벤토리 리스트들을 보여줘야 한다.</p>
+<!--        <p v-if="myInven">내 인벤토리 리스트들을 보여줘야 한다.</p>-->
 
     </transition>
     <label>
         <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">Shop List
+
     </label>
-    <transition>
+    <p>{{ money }}
+        <button v-on:click="calcBuy()">Buy</button>
+    </p>
         <table border="1">
             <tr v-if="shopView">
                 <th align="center" width="20">No</th>
@@ -181,10 +197,11 @@
                                v-bind:value="idx">
                     </label>
                 </th>
+
             </tr>
         </table>
         <!-- <p v-if="shopView">상점의 물건들을 보여줘야 한다.</p> -->
-    </transition>
+
 </div>
 <script src="https://unpkg.com/vuex@2.0.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
@@ -264,7 +281,8 @@
                 myInven: false,
                 shopList: [],
                 shopListValue: [],
-                listValue: []
+                listValue: [],
+                myInventory: []
 
             },
             methods: {
@@ -335,7 +353,7 @@
                     this.monster[index].hp = parseInt(this.monster[index].hp - this.characterAtk * 20)
                 },
                 test: function() {
-                    alert('check')
+                    // alert('check')
                 },
                 shuffleShopList: function() {
                     // !는 not 연산이므로 어떤 결과든 부정함
@@ -349,7 +367,43 @@
                         var randIdx = Math.floor(Math.random() * this.itemBook.length)
                         this.shopList[i] = this.itemBook[randIdx]
                     }
+                },
+                calcBuy: function() {
+                    //alert('산다 물건')
+                    var tmpSum = 0
+                    // 구매하려고 하는 물건의 인덱스 번호를 가지고 있음
+                    // 가장 외부의 for Loop는 구매하려는 물건의 개수
+                    //alert('calcBuy()')
+                    for(var i = 0; i < this.shopListValue.length; i++){
+                        console.log(this.shopListValue[i])
+                        // 가장 내부의 for Loop은 상점에 있는 물건의 개수
+                        for(var j = 0; j < this.shopList.length; j++){
+                            console.log('inner loop')
+                            if(this.shopListValue[i] == j) {
+                            console.log('match!')
+                            tmpSum += this.shopList[j].price
+                            break
+                           }
+                        }
+                    }
 
+                    // 돈 계산하는 위치
+                    if(this.money - tmpSum >= 0) {
+                        this.money -= tmpSum
+
+                        // 돈 계산이 끝난 이후에 내용을 추가해주도록 한다.
+                        // 필요한 데이터들은 this.shopList에 있으며
+                        // 또한 각각의 인덱스들은 shopListValue에서 얻는다.
+                        for(var i = 0; i < this.shopListValue.length; i++) {
+                            // 계속 누적할 목적으로 push를 사용해서 값을 누적하도록 했음
+                            this.myInventory.push({
+                                itemName: this.shopList[this.shopListValue[i]].itemName,
+                                effect: this.shopList[this.shopListValue[i]].effect
+                            })
+                        }
+                    } else {
+                        alert('돈 부족')
+                    }
                 }
             },
             beforeCreate: function () {

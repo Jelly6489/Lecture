@@ -214,7 +214,10 @@
         </table>
         <!-- <p v-if="shopView">상점의 물건들을 보여줘야 한다.</p> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
+</div>
+<script src="https://unpkg.com/vuex@2.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
+</script>
 <script>
         // 새로운 Vue 객체를 생성한다.
         // HTML, CSS도 재활용성을 극대화시키자!
@@ -430,11 +433,12 @@
                     for(var i = 0; i < this.myInvenValue.length; i++){
                         for(var j = 0; j < this.myInventory.length; j++){
                             if(this.myInvenValue[i] == j) {
+
                                 if(this.myInventory[j].effect.desc == 'weapon'){
+                                //console.log('weapon ok!')
 
                                 wpStatus = this.myInventory[j].effect.atk
 
-                                //console.log('weapon ok!')
                                 console.log(wpStatus)
 
                                 ivASum = wpStatus + ivASum
@@ -448,11 +452,14 @@
                                 //console.log('armor ok!')
                                 ivDSum = amStatus + ivDSum
                                 this.characterDef = this.characterDef + ivDSum
+
                                 }
 
                             }
+
                         }
                     }
+
                 },
             },
             // =========================================================================================================
@@ -541,9 +548,6 @@
             }
         })
     </script>
-</div>
-<script src="https://unpkg.com/vuex@2.0.0"></script>
-</script>
 </body>
 </html>
 

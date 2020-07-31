@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -141,6 +141,7 @@
     <p>{{ itemBook[0].effect.desc }}</p>
     <p>{{ itemBook[0].effect.amount }}</p>
     <p>{{ shopListValue }}</p>
+    <p> {{ myInvenValue }}</p>
     <!-- 상점 기능 구현에서 제일 중요한 것들을 추려보자!
          1. 게임내에 소지금에 대한 정보가 필요하다.
          2. 몹을 잡을때마다 일정 부분 획득할 수 있게 만들어줘야 한다.
@@ -152,17 +153,28 @@
     <label>
         <input type="checkbox" v-model="myInven" v-on:click="test()">My Inventory
     </label>
+    <label>
+    <button v-on:click="useItem()">Use</button>
+    </label>
     <table border="1">
         <tr v-if="myInven">
             <th align="center" width="20">No</th>
             <th align="center" width="80">Name</th>
             <th align="center" width="320">Effect</th>
+            <th align="center" width="40">Use</th>
         </tr>
         <tr v-if="myInven" v-for="(list, idx) in myInventory"
             v-bind:key="list.itemName">
             <th align="center" width="20">{{ idx + 1}}</th>
             <th align="center" width="80">{{ list.itemName }}</th>
             <th align="center" width="320">{{ list.effect.desc }}</th>
+            <th align="center" width="40">
+                <label>
+                    <input type="checkbox"
+                           v-model="myInvenValue"
+                           v-bind:value="idx">
+                </label>
+            </th>
         </tr>
     </table>
     <transition>
@@ -202,10 +214,7 @@
         </table>
         <!-- <p v-if="shopView">상점의 물건들을 보여줘야 한다.</p> -->
 
-</div>
-<script src="https://unpkg.com/vuex@2.0.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
 <script>
         // 새로운 Vue 객체를 생성한다.
         // HTML, CSS도 재활용성을 극대화시키자!
@@ -244,9 +253,9 @@
                     { monsterName: 'King Behemoth', exp: 200000, hp: 200000, sprMoney: 500000 }
                 ],
                 itemBook: [
-                    {itemName: 'HP Potion I', price: 50,
+                    {itemName: 'HP Potion I', price: 20,
                     effect: {desc: "hp recover", amount: 200} },
-                    {itemName: 'HP Potion II', price: 20,
+                    {itemName: 'HP Potion II', price: 50,
                     effect: {desc: "hp recover", amount: 500} },
                     {itemName: 'HP Potion III', price: 1000,
                     effect: {desc: "hp recover", amount: 2000} },
@@ -258,6 +267,10 @@
                     effect: {desc: "weapon", atk: 100} },
                     {itemName: 'Iron Sword', price: 100000,
                     effect: {desc: "weapon", atk: 200} },
+                    {itemName: 'chain mail', price: 50000,
+                    effect: {desc: "armor", def: 100} },
+                    {itemName: 'plate armor', price: 100000,
+                    effect: {desc: "armor", def: 200} }
                 ],
 
                 monsterName: 'Chimera',
@@ -276,13 +289,14 @@
                 radValue: '',
                 optValue: '',
                 optArrValue: [],
-                money: 500,
+                money: 500000000,
                 shopView: false,
                 myInven: false,
                 shopList: [],
                 shopListValue: [],
                 listValue: [],
-                myInventory: []
+                myInventory: [],
+                myInvenValue: []
 
             },
             methods: {
@@ -403,9 +417,46 @@
                         }
                     } else {
                         alert('돈 부족')
+
                     }
-                }
+                },
+
+                useItem: function() {
+                    //alert('사용했어!')
+                    var ivASum = 0      // Total Atk
+                    var ivDSum = 0      // Total Def
+                    var amStatus = 0    // armor def
+                    var wpStatus = 0    // weapon atk
+                    for(var i = 0; i < this.myInvenValue.length; i++){
+                        for(var j = 0; j < this.myInventory.length; j++){
+                            if(this.myInvenValue[i] == j) {
+                                if(this.myInventory[j].effect.desc == 'weapon'){
+
+                                wpStatus = this.myInventory[j].effect.atk
+
+                                //console.log('weapon ok!')
+                                console.log(wpStatus)
+
+                                ivASum = wpStatus + ivASum
+                                console.log(ivASum)
+                                this.characterAtk = this.characterAtk + ivASum
+
+                                } else if(this.myInventory[j].effect.desc == 'armor') {
+
+                                amStatus = this.myInventory[j].effect.def
+                                console.log(amStatus)
+                                //console.log('armor ok!')
+                                ivDSum = amStatus + ivDSum
+                                this.characterDef = this.characterDef + ivDSum
+                                }
+
+                            }
+                        }
+                    }
+                },
             },
+            // =========================================================================================================
+
             beforeCreate: function () {
                 // alert('Before Create: ' + this.monster)
             },
@@ -490,6 +541,9 @@
             }
         })
     </script>
+</div>
+<script src="https://unpkg.com/vuex@2.0.0"></script>
+</script>
 </body>
 </html>
 

@@ -17,6 +17,7 @@
 //    primary key(board_no));
 
 // 6-1 실제) create table ItemMania( id_no int not null auto_increment,
+//    id varchar(30) not null,
 //    pw varchar(50) not null,
 //    nickname varchar(100) not null,
 //    item varchar(200) not null,

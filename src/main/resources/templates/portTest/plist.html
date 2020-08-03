@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+    <h1>PortTest List</h1>
+    <a href="portTest/pjoin.html" th:href="@{getJoin}">
+        Join
+    </a>
+<table border = "1">
+    <tr>
+        <th align="center" width="80">No</th>
+        <th align="center" width="80">Id</th>
+        <th align="center" width="80">Pw</th>
+        <th align="center" width="80">Nickname</th>
+        <th align="center" width="100">Name</th>
+        <th align="center" width="80">Age</th>
+        <th align="center" width="100">Phone</th>
+        <th align="center" width="80">Gender</th>
+    </tr>
+    <tr th:if="${#lists.isEmpty(plist)}">
+        <td colspan="8">
+            List is Empty
+        </td>
+    </tr>
+    <tr th:each="portTest: ${plist}">
+        <td align="center" th:text="${portTest.idNo}">
+            ${portTest.idNo}
+        </td>
+
+        <td align="center" th:text="${portTest.id}">
+            ${portTest.id}
+        </td>
+
+        <td align="center" th:text="${portTest.pw}">
+            ${portTest.pw}
+        </td>
+
+        <td align="center" th:text="${portTest.nickname}">
+            ${portTest.nickname}
+        </td>
+
+        <td align="center" th:text="${portTest.name}">
+            ${portTest.name}
+        </td>
+
+        <td align="center" th:text="${portTest.age}">
+            ${portTest.age}
+        </td>
+
+        <td align="center" th:text="${portTest.phone}">
+            ${portTest.phone}
+        </td>
+
+        <td align="center" th:text="${portTest.gender}">
+            ${portTest.gender}
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

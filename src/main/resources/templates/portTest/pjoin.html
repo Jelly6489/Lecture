@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Join</title>
+</head>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+        var formObj = $("#port");
+
+        $("#btnJoin").on("click", function() {
+            formObj.attr("action", "postJoin");
+            formObj.attr("method", "post");
+            formObj.submit();
+        });
+
+        $("#btnList").on("click", function() {
+            self.location = "plist";
+        });
+    });
+</script>
+<body>
+    <h1>Join</h1>
+
+    <form id="port" action="portTest/success.html"
+          th:action="@{pjoin}"
+          th:object="${portTest}" method="post">
+        <table>
+
+            <tr>
+                <td>ID</td>
+                <td><input type="text" name="id"
+                           th:field="*{id}"/></td>
+                <td><font color="red">
+                    <span th:if="${#fields.hasErrors('id')}"
+                          th:errors="*{id}">
+                            id Error Message
+                    </span>
+                </font></td>
+            </tr>
+
+        <tr>
+            <td>PW</td>
+            <td><input type="text" name="pw"
+                       th:field="*{pw}"/></td>
+            <td><font color="red">
+                    <span th:if="${#fields.hasErrors('pw')}"
+                          th:errors="*{pw}">
+                            pw Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>Nickname</td>
+            <td><input type="text" name="nickname"
+                       th:field="*{nickname}"/></td>
+            <td><font color="red">
+                    <span th:if="${#fields.hasErrors('nickname')}"
+                          th:errors="*{nickname}">
+                            nickname Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name"
+                       th:field="*{name}"/></td>
+            <td><font color="red">
+                    <span th:if="${#fields.hasErrors('name')}"
+                          th:errors="*{name}">
+                            name Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+            <tr>
+                <td>Age</td>
+                <td><input type="text" name="age"
+                           th:field="*{age}"/></td>
+                <td><font color="red">
+                    <span th:if="${#fields.hasErrors('age')}"
+                          th:errors="*{age}">
+                            age Error Message
+                    </span>
+                </font></td>
+            </tr>
+
+            <tr>
+                <td>Phone</td>
+                <td><input type="text" name="phone"
+                           th:field="*{phone}"/></td>
+                <td><font color="red">
+                    <span th:if="${#fields.hasErrors('phone')}"
+                          th:errors="*{phone}">
+                            phone Error Message
+                    </span>
+                </font></td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td><input type="text" name="gender"
+                           th:field="*{gender}"/></td>
+                <td><font color="red">
+                    <span th:if="${#fields.hasErrors('gender')}"
+                          th:errors="*{gender}">
+                            name Error Message
+                    </span>
+                </font></td>
+            </tr>
+
+        </table>
+    </form>
+
+<div>
+    <button type="submit" id="btnJoin">Join</button>
+    <button type="submit" id="btnList">List</button>
+</div>
+</body>
+</html>

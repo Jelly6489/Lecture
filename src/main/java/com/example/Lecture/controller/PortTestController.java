@@ -1,6 +1,5 @@
 package com.example.Lecture.controller;
 
-import com.example.Lecture.entity.ItemMania;
 import com.example.Lecture.entity.PortTest;
 import com.example.Lecture.service.PortTestService;
 import org.slf4j.Logger;
@@ -50,6 +49,14 @@ public class PortTestController {
 
         return "portTest/plist";
     }
+
+    @GetMapping("/getplogin")
+    public String getpLogin(PortTest portTest, Model model) throws Exception {
+        log.info("getpLogin()");
+
+        return "portTest/plogin";
+    }
+
 }
 
 

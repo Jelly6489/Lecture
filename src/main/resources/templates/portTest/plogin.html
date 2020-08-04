@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>Login</title>
+    <style>
+    #btnLogin{
+        margin-left: 150px;
+        background-color: blue;
+        color: white;
+        font-size: 20px;
+        }
+    </style>
 
+</head>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+        var formObj = $("#id");
+
+        console.log(formObj);
+
+        $("#btnLogin").on("click", function() {
+            var id = $("#id");
+            var idVal = id.val();
+        if(id == idVal){
+            formObj.attr("action", "getJoin");
+            formObj.attr("method", "get");
+            alert('success');
+        } else {
+            alert('try');
+        }
+        });
+    });
+</script>
+<body>
+    <h1>로그인</h1>
+    <form id="id" th:object="${portTest}" method="GET">
+        <input type="hidden" name="id"
+               th:field="*{id}">
+    <table>
+        <tr>
+            <td>ID</td>
+            <td><input type="text" name="id"
+                       th:field="*{id}"/></td>
+            <td><font color="red">
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>PW</td>
+            <td><input type="text" name="pw"
+                       th:field="*{pw}"/></td>
+            <td><font color="red">
+
+            </font></td>
+        </tr>
+
+    </table>
+<div>
+    <br><button type="submit" id="btnLogin">Login</button>
+</div>
 </body>
 </html>

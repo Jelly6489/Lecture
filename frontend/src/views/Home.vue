@@ -20,7 +20,7 @@
       <router-link :to="{ name: 'Join' }"
           class="nav-link"
           active-class="active">
-        Sign
+        Join
       </router-link>
      </div>
      <h2>This is an Home Page</h2>

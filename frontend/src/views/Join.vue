@@ -6,10 +6,10 @@
          active-class="active">
         Home
       </router-link>
-      <router-link :to="{ name: 'Join' }"
+      <router-link :to="{ name: 'Test' }"
           class="nav-link"
           active-class="active">
-        Sign
+        Test
       </router-link>
      </div>
      <h1>회원가입</h1>

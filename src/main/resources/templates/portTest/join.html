@@ -17,8 +17,8 @@
             formObj.submit();
         });
 
-        $("#btnList").on("click", function() {
-            self.location = "plist";
+        $("#btnLogin").on("click", function() {
+            self.location = "login";
         });
     });
 </script>
@@ -26,7 +26,7 @@
     <h1>Join</h1>
 
     <form id="port" action="portTest/success.html"
-          th:action="@{pjoin}"
+          th:action="@{join}"
           th:object="${portTest}" method="post">
         <table>
 
@@ -119,7 +119,7 @@
 
 <div>
     <button type="submit" id="btnJoin">Join</button>
-    <button type="submit" id="btnList">List</button>
+    <button type="submit" id="btnLogin">처음으로</button>
 </div>
 </body>
 </html>

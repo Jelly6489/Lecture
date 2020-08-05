@@ -1,6 +1,5 @@
 package com.example.Lecture.repository;
 
-import com.example.Lecture.entity.ItemMania;
 import com.example.Lecture.entity.PortTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,7 @@ public class PortTestRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void pjoin(PortTest portTest) throws Exception {
+    public void join(PortTest portTest) throws Exception {
         log.info("Repository join()");
 
         String query = "insert into portTest(" +
@@ -60,9 +59,22 @@ public class PortTestRepository {
         return results;
     }
 
-    public boolean plogin(PortTest portTest) throws Exception {
+    public boolean login(PortTest portTest) throws Exception {
                 log.info("Repository plogin()");
 
-                return plogin(portTest);
+        List<PortTest> results = jdbcTemplate.query(
+                "select id, pw from where id = ?, pw = ?",
+
+                new RowMapper<PortTest>() {
+                @Override
+                public PortTest mapRow(ResultSet rs, int rowNum)
+                        throws SQLException {
+                    PortTest portTest = new PortTest();
+                    portTest.setId(rs.getString("id"));
+                    portTest.setPw(rs.getString("pw"));
+                    return portTest;
+                }
+            });
+        return results;
     }
 }

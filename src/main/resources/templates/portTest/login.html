@@ -5,11 +5,30 @@
     <title>Login</title>
     <style>
     #btnLogin{
-        margin-left: 150px;
-        background-color: blue;
-        color: white;
-        font-size: 20px;
+        padding: 15px 80px;
         }
+    #btnJoin{
+        padding: 15px 68px;
+    }
+    #btnList{
+        padding: 15px 78px;
+    }
+    #btnGroup button{
+        margin-left: 5px;
+        font-size: 20px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: 1px solid skyblue;
+        background-color: rgba(0,0,0,0);
+        color: skyblue;
+    }
+
+    #btnGroup button:hover{
+        color:white;
+        background-color: skyblue;
+    }
     </style>
 
 </head>
@@ -25,14 +44,26 @@
         $("#btnLogin").on("click", function() {
             var id = $("#id");
             var idVal = id.val();
-        if(id == idVal){
-            formObj.attr("action", "getJoin");
-            formObj.attr("method", "get");
+            formObj.attr("action", "login");
+            formObj.attr("method", "post");
             alert('success');
-        } else {
-            alert('try');
-        }
+
         });
+
+        $("#btnJoin").on("click", function() {
+            self.location = "getJoin";
+            alert("회원가입")
+
+        });
+
+        $("#btnList").on("click", function() {
+            self.location = "plist";
+            alert('게시판')
+        });
+
+
+
+
     });
 </script>
 <body>
@@ -54,13 +85,16 @@
             <td><input type="text" name="pw"
                        th:field="*{pw}"/></td>
             <td><font color="red">
-
             </font></td>
         </tr>
 
     </table>
-<div>
-    <br><button type="submit" id="btnLogin">Login</button>
-</div>
+    </form>
+
+    <div id="btnGroup">
+        <br><button type="submit" id="btnLogin">Login</button>
+        <br><button type="submit" id="btnJoin">회원가입</button>
+        <br><button type="submit" id="btnList">게시판</button>
+    </div>
 </body>
 </html>

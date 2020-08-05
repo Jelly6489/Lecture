@@ -22,14 +22,14 @@ public class PortTestController {
     public String getJoin(PortTest portTest, Model model) throws Exception {
         log.info("getJoin()");
 
-        return "portTest/pjoin";
+        return "portTest/join";
     }
 
     @PostMapping("/postJoin")
     public String postJoin(PortTest portTest, Model model) throws Exception {
         log.info("postJoin()");
 
-        service.pjoin(portTest);
+        service.join(portTest);
 
         model.addAttribute(
                 "msg," +
@@ -50,11 +50,13 @@ public class PortTestController {
         return "portTest/plist";
     }
 
-    @GetMapping("/getplogin")
-    public String getpLogin(PortTest portTest, Model model) throws Exception {
-        log.info("getpLogin()");
+    @GetMapping("/login")
+    public boolean Login(PortTest portTest, Model model) throws Exception {
+        log.info("Login()");
 
-        return "portTest/plogin";
+        model.addAttribute(service.login(portTest));
+
+        return true;
     }
 
 }

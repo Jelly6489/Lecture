@@ -67,6 +67,12 @@
         <input type="button" @click="decrement()" value="dec"/><br>
         <b>random: {{ this.$store.getters.random }}</b><br>
         <input type="button" @click="randomNumber()" value="random"/><br>
+
+        <global-component v-bind:initial-test="counter">
+        </global-component><br>
+
+        <local-component v-bind:num="value"></local-component>
+        <button v-on:click="plus">Click</button><br>
      </div>
   </div>
 </template>
@@ -76,12 +82,21 @@ import Vue from 'vue'
 /* eslint-disable no-unused-vars */
 import store from '../store'
 import cookies from 'vue-cookies'
+import GlobalComponent from '../components/GlobalComponent.vue'
+import LocalComponent from '../components/LocalComponent.vue'
+
+Vue.component(GlobalComponent.name, GlobalComponent)
 
 Vue.use(cookies)
 
 export default {
+  components: {
+    'local-component': LocalComponent
+  },
   data: function () {
     return {
+      counter: 3,
+      value: 1,
       msg: 'Test',
       count: 7,
       list: function () {
@@ -127,6 +142,9 @@ export default {
       // dispatch는 무조건 action으로 간다.
       // commit은 비동기 처리가 가능하다. -> 비동기: 작업이 오래 걸리는건 바로 적용이 안됨.
       this.$store.dispatch('generateRandomNumber')
+    },
+    plus: function () {
+      this.value++
     }
   },
   created: function () {

@@ -50,14 +50,14 @@ public class PortTestController {
         return "portTest/plist";
     }
 
-    @GetMapping("/login")
-    public boolean Login(PortTest portTest, Model model) throws Exception {
-        log.info("Login()");
-
-        model.addAttribute(service.login(portTest));
-
-        return true;
-    }
+//    @GetMapping("/login")
+//    public boolean Login(PortTest portTest, Model model) throws Exception {
+//        log.info("Login()");
+//
+//        model.addAttribute(service.login(portTest));
+//
+//        return true;
+//    }
 
 }
 

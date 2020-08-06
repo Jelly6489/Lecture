@@ -59,23 +59,23 @@ public class PortTestRepository {
         return results;
     }
 
-    public boolean login(PortTest portTest) throws Exception {
-                log.info("Repository plogin()");
-
-        List<PortTest> results = jdbcTemplate.query(
-                "select id, pw from where id = ?, pw = ?",
-
-                new RowMapper<PortTest>() {
-                @Override
-                public PortTest mapRow(ResultSet rs, int rowNum)
-                        throws SQLException {
-                    PortTest portTest = new PortTest();
-                    portTest.setId(rs.getString("id"));
-                    portTest.setPw(rs.getString("pw"));
-                    return portTest;
-                }
-            });
-        return results;
-    }
+//    public boolean login(PortTest portTest) throws Exception {
+//                log.info("Repository plogin()");
+//
+//        List<PortTest> results = jdbcTemplate.query(
+//                "select id, pw from where id = ?, pw = ?",
+//
+//                new RowMapper<PortTest>() {
+//                @Override
+//                public PortTest mapRow(ResultSet rs, int rowNum)
+//                        throws SQLException {
+//                    PortTest portTest = new PortTest();
+//                    portTest.setId(rs.getString("id"));
+//                    portTest.setPw(rs.getString("pw"));
+//                    return portTest;
+//                }
+//            });
+//        return results;
+//    }
 }
 

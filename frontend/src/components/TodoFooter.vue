@@ -11,6 +11,7 @@ export default {
   methods: {
     clearTodo () {
       console.log('clearTodo')
+      this.$emit('removeAll')
     }
   }
 }

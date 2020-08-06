@@ -25,9 +25,9 @@ public class PortTestServiceImpl implements PortTestService {
         return portTestRepository.plist();
     }
 
-    @Override
-    public PortTest login(PortTest portTest) throws Exception {
-        return portTestRepository.login(portTest);
-    }
+//    @Override
+//    public PortTest login(PortTest portTest) throws Exception {
+//        return portTestRepository.login(portTest);
+//    }
 
 }

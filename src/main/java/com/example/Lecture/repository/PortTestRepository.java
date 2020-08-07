@@ -59,7 +59,7 @@ public class PortTestRepository {
         return results;
     }
 
-    public boolean login(PortTest portTest) throws Exception {
+    public PortTest login(PortTest portTest) throws Exception {
                 log.info("Repository login()");
 
         List<PortTest> results = jdbcTemplate.query(
@@ -76,7 +76,7 @@ public class PortTestRepository {
                 }
             }, portTest.getId(), portTest.getPw()
         );
-        return (results == null) ? false : true;
+        return portTest;
     }
 }
 

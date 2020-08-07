@@ -51,26 +51,18 @@ public class PortTestController {
         return "portTest/plist";
     }
 
-    @GetMapping("/login")
-    public boolean Login(PortTest portTest, Model model) throws Exception {
+    @PostMapping("/login")
+    public String Login(PortTest portTest, Model model)
+            throws Exception {
         log.info("Login()");
-        boolean result = service.login(portTest);
-        PortTest pt = new PortTest();
 
-        if(result == true) {
-            pt.setId("/portTest/login");
-            model.addAttribute(
-                    "msg," + "login Success"
-            );
-        } else {
-            pt.setId("/portTest/login");
-            model.addAttribute(
-                    "msg," + "login Failure"
-            );
-        }
-        //model.addAttribute(service.login(portTest));
+        service.login(portTest);
 
-        return result;
+        model.addAttribute(
+                "msg",
+                "회원가입이 완료 되었습니다.");
+
+        return "portTest/psuccess";
     }
 }
 

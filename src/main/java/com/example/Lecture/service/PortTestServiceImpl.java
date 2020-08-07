@@ -5,7 +5,6 @@ import com.example.Lecture.repository.PortTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.sound.sampled.Port;
 import java.util.List;
 
 
@@ -25,9 +24,8 @@ public class PortTestServiceImpl implements PortTestService {
         return portTestRepository.plist();
     }
 
-     @Override
-        public boolean login(PortTest portTest) throws Exception {
-            return portTestRepository.login(portTest);
-        }
-
+    @Override
+    public PortTest login(PortTest portTest) throws Exception {
+        return portTestRepository.login(portTest);
+    }
 }

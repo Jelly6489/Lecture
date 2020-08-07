@@ -51,3 +51,709 @@
 // 7-3. remove(게시글을 삭제할 수 있도록 만들어본다.)
 // 7-4. read(게시글을 실제로 읽을 수 있도록 만들어본다.)
 // 7-5. modify(게시글을 수정할 수 있도록 만들어본다.)
+
+
+
+
+
+
+
+
+
+
+package com.example.demo.controller;
+
+
+import com.example.demo.entity.Login;
+import com.example.demo.service.LoginInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
+
+@Controller
+public class LoginController {
+
+    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+
+    @Autowired
+    private LoginInterface loginInterface;
+
+    @GetMapping("/login")
+    public String login(Login login,Model model) throws Exception {
+
+        log.info("Login()");
+
+        return "Login/login";
+
+    }
+    @GetMapping("/loginRegister")
+    public String loginRegister(Login login,Model model) throws Exception {
+
+        log.info("Login()");
+
+        return "Login/loginRegister";
+
+    }
+    @GetMapping("/idFind")
+    public String idFind(Login login,Model model) throws Exception {
+
+        log.info("idFind()");
+
+        return "Login/idFind";
+
+    }
+    @GetMapping("/pwFind")
+    public String pwFind(Login login,Model model) throws Exception {
+
+        log.info("pwFind()");
+
+        return "Login/pwFind";
+
+    }
+    @PostMapping("/postLogin")
+    public String postLogin(Login login, Model model)
+            throws Exception {
+        log.info("postLogin()");
+
+        loginInterface.register(login);
+
+        model.addAttribute(
+                "msg",
+                "회원가입이 완료 되었습니다.");
+
+        return "board/success";
+    }
+    @PostMapping("/postOverlap")
+    public String postOverlap(Login login, Model model)
+            throws Exception {
+        log.info("postOverlap()");
+
+        boolean result = loginInterface.Overlap(login);
+        String res;
+        if (!result) {
+            model.addAttribute(
+                    "msg",
+                    "사용가능한 아이디 입니다");
+
+            res = "Login/overlapsuccess";
+        } else{
+            res = "Login/overLapFail";
+        }
+        return res;
+    }
+    @PostMapping("/postAccess")
+    public String postAccess(Login login, Model model)
+            throws Exception {
+        log.info("postAccess()");
+
+        boolean result = loginInterface.Access(login);
+        String res;
+        if (!result) {
+            model.addAttribute(
+                    "msg",
+                    "로그인에 성공 하였습니다 ");
+
+            res = "Login/loginSuccess";
+        } else{
+            res = "Login/fail";
+        }
+
+        return res;
+    }
+    @PostMapping("/postIdFind")
+    public String IdFind(Login login, Model model) throws Exception {
+        log.info("postIdFind()");
+
+        model.addAttribute(
+                "idFindList",
+                loginInterface.IdFind(login));
+
+        return "Login/idFindSuccess";
+    }
+    @PostMapping("/postPwFind")
+    public String PwFind(Login login, Model model) throws Exception {
+        log.info("postPwFind()");
+
+        model.addAttribute(
+                "pwFindList",
+                loginInterface.PwFind(login));
+        return "Login/pwFindSuccess";
+    }
+    @GetMapping("/idList")
+    public String list2(Model model) throws Exception {
+        log.info("idList()");
+
+
+        model.addAttribute(
+                "idList",
+                loginInterface.list());
+
+        return "Login/idList";
+    }
+
+}
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+package com.example.demo.entity;
+
+public class Login {
+    private String id;
+    private String pw;
+    private String email;
+    private int phoneNum;
+
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
+
+    public String getPw() { return pw; }
+
+    public void setPw(String pw) { this.pw = pw; }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public int getPhoneNum() { return phoneNum; }
+
+    public void setPhoneNum(int phoneNum) { this.phoneNum = phoneNum; }
+}
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+package com.example.demo.repository;
+
+
+
+import com.example.demo.entity.Login;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+
+@Repository
+public class LoginRepository {
+    static final Logger log =
+            LoggerFactory.getLogger(LoginRepository.class);
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+
+    public void create(Login login) throws Exception {
+        log.info("Repository create()");
+
+
+        String query = "insert into login(" +
+                "id, pw, email, phoneNum) values(?, ?, ?, ?)";
+
+        jdbcTemplate.update(query, login.getId(), login.getPw(), login.getEmail(), login.getPhoneNum());
+    }
+    public List<Login> list() throws Exception {
+        log.info("Repository list()");
+
+
+        List<Login> results = jdbcTemplate.query(
+                "select id,pw,email,phoneNum from login;",
+                new RowMapper<Login>() {
+                    @Override
+                    public Login mapRow(ResultSet rs, int rowNum)
+                            throws SQLException {
+                        Login login = new Login();
+                        login.setId(rs.getString("id"));
+                        login.setPw(rs.getString("pw"));
+                        login.setEmail(rs.getString("email"));
+                        login.setPhoneNum(rs.getInt("phoneNum"));
+                        return login;
+                    }
+                });
+
+        return results;
+    }
+
+    public boolean Access(Login login) {
+
+        String query = "select id, pw from login where id=? and pw=?";
+
+        List<Login> list = jdbcTemplate.query(query, new RowMapper<Login>() {
+            @Override
+            public Login mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Login obj = new Login();
+                obj.setId(rs.getString("id"));
+                obj.setPw(rs.getString("pw"));
+
+                return obj;
+            }
+        }, login.getId(), login.getPw());
+
+        boolean result = list.isEmpty() ? true : false;
+        return result;
+    }
+    public boolean Overlap(Login login) {
+
+        String query = "select id from login where id=?";
+
+        List<Login> list = jdbcTemplate.query(query, new RowMapper<Login>() {
+            @Override
+            public Login mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Login obj = new Login();
+                obj.setId(rs.getString("id"));
+                return obj;
+            }
+        }, login.getId());
+
+        boolean result = list.isEmpty() ? false : true;
+        return result;
+    }
+    public List<Login> IdFind(Login login) {
+
+        String query = "select id from login where (phoneNum=?) and (email=?)";
+
+        List<Login> list = jdbcTemplate.query(query, new RowMapper<Login>() {
+            @Override
+            public Login mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Login obj = new Login();
+                obj.setId(rs.getString("id"));
+                return obj;
+            }
+        }, login.getPhoneNum(), login.getEmail());
+        return list;
+    }
+    public List<Login> PwFind(Login login) {
+
+        String query = "select pw from login where (id=?) and (email=?) and (phoneNum=?)";
+
+        List<Login> list = jdbcTemplate.query(query, new RowMapper<Login>() {
+            @Override
+            public Login mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Login obj = new Login();
+                obj.setPw(rs.getString("pw"));
+                return obj;
+            }
+        }, login.getId(), login.getEmail(), login.getPhoneNum());
+
+        return list;
+    }
+}
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+package com.example.demo.service;
+
+
+import com.example.demo.entity.Login;
+import com.example.demo.repository.LoginRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class LoginImplement implements LoginInterface{
+
+    @Autowired
+    private LoginRepository loginRepository;
+
+    @Override
+    public void register(Login login) throws Exception {
+        loginRepository.create(login);
+    }
+
+    @Override
+    public List<Login> list() throws Exception {
+        return loginRepository.list();
+    }
+
+    @Override
+    public boolean Access(Login login) throws Exception {
+        return loginRepository.Access(login);
+
+    }
+
+    @Override
+    public boolean Overlap(Login login) throws Exception {
+        return loginRepository.Overlap(login);
+    }
+
+    @Override
+    public List<Login> IdFind(Login login) throws Exception {
+        return loginRepository.IdFind(login);
+    }
+
+    @Override
+    public List<Login> PwFind(Login login) throws Exception {
+        return loginRepository.PwFind(login);
+    }
+
+}
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+package com.example.demo.service;
+
+import com.example.demo.entity.Login;
+
+import java.util.List;
+
+public interface LoginInterface {
+    public void register(Login login) throws Exception;
+    public List<Login> list() throws Exception;
+    public boolean Access(Login login) throws Exception;
+    public boolean Overlap(Login login) throws Exception;
+    public List<Login> IdFind(Login login) throws Exception;
+    public List<Login> PwFind(Login login) throws Exception;
+
+}
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<font color="red" size="7">아이디 혹은 비밀번호가 맞지 않습니다 ! !</font><br>
+<a href="Login/login.html" th:href="@{login}">
+    돌아가기
+</a>
+
+</body>
+</html>
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>idFind</title>
+</head>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+        var formObj = $("#login");
+
+        $("#btnIdFind").on("click", function() {
+            formObj.attr("action", "postIdFind");
+
+            formObj.attr("method", "post");
+            formObj.submit();
+        });
+    });
+</script>
+<body>
+
+<font color="green" size="10">ID 찾기 ! </font>
+
+
+<form id="login" action="board/success.html"
+      th:action="@{login}"
+      th:object="${login}" method="post">
+    <table>
+        <tr>
+            <td>phoneNum</td>
+            <td><input type="text" name="phoneNum"
+                       th:field="*{phoneNum}"/></td>
+            <td><font color="red">
+                <!-- 앞서 얻은 field에 title에 에러가 있다면 -->
+                <span th:if="${#fields.hasErrors('phoneNum')}"
+                      th:errors="*{phoneNum}">
+                        phoneNum Error Message
+                    </span>
+            </font></td>
+        </tr>
+        <tr>
+            <td>E-mail</td>
+            <td><input type="text" name="email"
+                       th:field="*{email}"/></td>
+            <td><font color="red">
+                <!-- 앞서 얻은 field에 title에 에러가 있다면 -->
+                <span th:if="${#fields.hasErrors('email')}"
+                      th:errors="*{email}">
+                        email Error Message
+                    </span>
+            </font></td>
+        </tr>
+    </table>
+</form>
+
+<div>
+    <button type="submit" id="btnIdFind">ID 조회</button>
+    <!--   <a href="URL" onclick="window.open(this.href, '_blank', 'width=가로사이즈px,height=세로사이즈px,toolbars=no,scrollbars=no'); return false;">완전 간단하게 팝업 띄우기!!</a>-->
+</div>
+</body>
+</html>
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login List</title>
+</head>
+<body>
+<h2>ID 조회결과 </h2>
+<a href="Login/login.html" th:href="@{login}">
+    돌아가기
+</a>
+<!-- HTML 주석 -->
+<table border="1">
+    <tr>
+        <th align="center" width="80">ID</th>
+    </tr>
+    <tr th:if="${#lists.isEmpty(idFindList)}">
+        <td colspan="1">
+           맞는 정보가 없습니다.
+        </td>
+    </tr>
+    <!-- foreach for(A : B) -->
+    <tr th:each="login: ${idFindList}">
+        <td align="center" th:text="${login.id}">
+            ${login.id}
+        </td>
+    </tr>
+</table>
+</body>
+</html>
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+        var formObj = $("#login");
+        $("#btnList").on("click", function() {
+            self.location = "idList";
+        });
+
+        $("#btnAccess").on("click", function() {
+            formObj.attr("action", "postAccess");
+
+            formObj.attr("method", "post");
+            formObj.submit();
+        });
+    });
+</script>
+<body>
+
+<font color="green" size="10">Naver</font>
+
+
+<form id="login" action="board/success.html"
+      th:action="@{login}"
+      th:object="${login}" method="post">
+    <table>
+        <tr>
+            <td>ID</td>
+            <td><input type="text" name="id"
+                       th:field="*{id}"/></td>
+            <td><font color="red">
+                <!-- 앞서 얻은 field에 title에 에러가 있다면 -->
+                <span th:if="${#fields.hasErrors('id')}"
+                      th:errors="*{id}">
+                        id Error Message
+                    </span>
+            </font></td>
+        </tr>
+        <tr>
+            <td>PW</td>
+            <td><input type="text" name="pw"
+                       th:field="*{pw}"/></td>
+            <td><font color="red">
+                    <span th:if="${#fields.hasErrors('pw')}"
+                          th:errors="*{pw}">
+                        pw Error Message
+                    </span>
+            </font></td>
+        </tr>
+    </table>
+</form>
+
+<div>
+
+    <button type="submit" id="btnAccess">로그인</button>
+    <form action="http://localhost:7777/loginRegister"><input type="submit" value="회원가입"></form>
+    <br>
+    <form action="http://localhost:7777/idFind">
+        <input type="submit" value="ID 찾기">
+    </form>
+    <form action="http://localhost:7777/pwFind">
+        <input type="submit" value="PW 찾기">
+    </form>
+    <br>
+    <button type="submit" id="btnList">ID List</button>
+ <!--   <a href="URL" onclick="window.open(this.href, '_blank', 'width=가로사이즈px,height=세로사이즈px,toolbars=no,scrollbars=no'); return false;">완전 간단하게 팝업 띄우기!!</a>-->
+</div>
+</body>
+</html>
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+        var formObj = $("#login");
+
+        $("#btnLogin").on("click", function() {
+            formObj.attr("action", "postLogin");
+
+            formObj.attr("method", "post");
+            formObj.submit();
+        });
+        $("#btnOverlap").on("click", function() {
+            formObj.attr("action", "postOverlap");
+
+            formObj.attr("method", "post");
+            formObj.submit();
+        });
+    });
+</script>
+<body>
+
+<font color="green" size="10">Naver</font>
+
+
+<form id="login" action="board/success.html"
+      th:action="@{login}"
+      th:object="${login}" method="post">
+    <table>
+        <tr>
+            <td>ID</td>
+            <td><input type="text" name="id"
+                       th:field="*{id}"/><button type="submit" id="btnOverlap">ID 중복검사</button></td>
+            <td><font color="red">
+                <!-- 앞서 얻은 field에 title에 에러가 있다면 -->
+                <span th:if="${#fields.hasErrors('id')}"
+                      th:errors="*{id}">
+                        id Error Message
+                    </span>
+            </font></td>
+        </tr>
+        <tr>
+            <td>PW</td>
+            <td><input type="text" name="pw"
+                       th:field="*{pw}"/></td>
+            <td><font color="red">
+                    <span th:if="${#fields.hasErrors('pw')}"
+                          th:errors="*{pw}">
+                        pw Error Message
+                    </span>
+            </font></td>
+        </tr>
+        <tr>
+            <td>E-mail</td>
+            <td><input type="text" name="email"
+                       th:field="*{email}"/></td>
+            <td><font color="red">
+                <!-- 앞서 얻은 field에 title에 에러가 있다면 -->
+                <span th:if="${#fields.hasErrors('email')}"
+                      th:errors="*{email}">
+                        email Error Message
+                    </span>
+            </font></td>
+        </tr>
+        <tr>
+            <td>phoneNum</td>
+            <td><input type="text" name="phoneNum"
+                       th:field="*{phoneNum}"/></td>
+            <td><font color="red">
+                <!-- 앞서 얻은 field에 title에 에러가 있다면 -->
+                <span th:if="${#fields.hasErrors('phoneNum')}"
+                      th:errors="*{phoneNum}">
+                        phoneNum Error Message
+                    </span>
+            </font></td>
+        </tr>
+    </table>
+</form>
+
+<div>
+    <button type="submit" id="btnLogin">회원가입완료</button>
+    <a href="Login/login.html" th:href="@{login}">
+        돌아가기
+    </a>
+    <!--   <a href="URL" onclick="window.open(this.href, '_blank', 'width=가로사이즈px,height=세로사이즈px,toolbars=no,scrollbars=no'); return false;">완전 간단하게 팝업 띄우기!!</a>-->
+</div>
+</body>
+</html>
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h2 th:text="${msg}">${msg}</h2>
+    <a href="Login/login.html"
+       th:href="@{login}">초기화면</a><br>
+    <form action="http://localhost:7777/vuetest">
+        <input type="submit" value="게임하러가기">
+    </form>
+</div>
+</body>
+</html>
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<font color="red" size="7">아이디가 중복됩니다.</font><br>
+<a href="Login/loginRegister.html" th:href="@{loginRegister}">
+    회원가입화면으로 돌아가기
+</a>
+
+</body>
+</html>
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h2 th:text="${msg}">${msg}</h2>
+    <a href="Login/loginRegister.html"
+       th:href="@{loginRegister}">회원가입화면으로 돌아가기 </a>
+</div>
+</body>
+</html>

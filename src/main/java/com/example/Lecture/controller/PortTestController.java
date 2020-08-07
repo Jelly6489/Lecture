@@ -33,11 +33,12 @@ public class PortTestController {
 
         model.addAttribute(
                 "msg," +
-                        "Register Success"
+                        "Join Success"
         );
 
         return "portTest/psuccess";
     }
+
 
     @GetMapping("/plist")
     public String plist(Model model) throws Exception {
@@ -50,15 +51,27 @@ public class PortTestController {
         return "portTest/plist";
     }
 
-//    @GetMapping("/login")
-//    public boolean Login(PortTest portTest, Model model) throws Exception {
-//        log.info("Login()");
-//
-//        model.addAttribute(service.login(portTest));
-//
-//        return true;
-//    }
+    @GetMapping("/login")
+    public boolean Login(PortTest portTest, Model model) throws Exception {
+        log.info("Login()");
+        boolean result = service.login(portTest);
+        PortTest pt = new PortTest();
 
+        if(result == true) {
+            pt.setId("/portTest/login");
+            model.addAttribute(
+                    "msg," + "login Success"
+            );
+        } else {
+            pt.setId("/portTest/login");
+            model.addAttribute(
+                    "msg," + "login Failure"
+            );
+        }
+        //model.addAttribute(service.login(portTest));
+
+        return result;
+    }
 }
 
 

@@ -1,12 +1,11 @@
 <template>
   <div>
-    <h1>Todo Footer</h1>
+    <h3>Todo Footer</h3>
     <button v-on:click="clearTodo">Delete All</button>
   </div>
 </template>
 
 <script>
-
 export default {
   methods: {
     clearTodo () {
@@ -15,11 +14,10 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
   div {
-    background-color: #cc5bf9
+    background-color: #7789c3
   }
 </style>

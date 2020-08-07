@@ -25,7 +25,12 @@ public class PortTestServiceImpl implements PortTestService {
     }
 
     @Override
-    public PortTest login(PortTest portTest) throws Exception {
+    public boolean login(PortTest portTest) throws Exception {
         return portTestRepository.login(portTest);
+    }
+
+    @Override
+    public boolean idcheck(PortTest portTest) throws Exception {
+        return portTestRepository.idcheck(portTest);
     }
 }

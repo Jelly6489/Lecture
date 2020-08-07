@@ -59,24 +59,41 @@ public class PortTestRepository {
         return results;
     }
 
-    public PortTest login(PortTest portTest) throws Exception {
-                log.info("Repository login()");
+    public boolean login(PortTest portTest) {
 
-        List<PortTest> results = jdbcTemplate.query(
-                "select id, pw from portTest where id = ? AND pw = ?",
+        String query = "select id, pw from portTest where id=? and pw=?";
 
-                new RowMapper<PortTest>() {
-                @Override
-                public PortTest mapRow(ResultSet rs, int rowNum)
-                        throws SQLException {
-                    PortTest portTest = new PortTest();
-                    portTest.setId(rs.getString("id"));
-                    portTest.setPw(rs.getString("pw"));
-                    return portTest;
-                }
-            }, portTest.getId(), portTest.getPw()
-        );
-        return portTest;
+        List<PortTest> list = jdbcTemplate.query(query, new RowMapper<PortTest>() {
+            @Override
+            public PortTest mapRow(ResultSet rs, int rowNum) throws SQLException {
+                PortTest pt = new PortTest();
+                pt.setId(rs.getString("id"));
+                pt.setPw(rs.getString("pw"));
+
+                return pt;
+            }
+        }, portTest.getId(), portTest.getPw());
+
+        boolean result = list.isEmpty() ? true : false;
+        return result;
+    }
+
+    public boolean idcheck(PortTest portTest) {
+
+        String query = "select id from portTest where id=?";
+
+        List<PortTest> list = jdbcTemplate.query(query, new RowMapper<PortTest>() {
+            @Override
+            public PortTest mapRow(ResultSet rs, int rowNum) throws SQLException {
+                PortTest pt = new PortTest();
+                pt.setId(rs.getString("id"));
+                return pt;
+            }
+        }, portTest.getId());
+
+        boolean result = list.isEmpty() ? false : true;
+        return result;
     }
 }
+
 

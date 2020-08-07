@@ -51,22 +51,62 @@ public class PortTestController {
         return "portTest/plist";
     }
 
-    @PostMapping("/login")
-    public String Login(PortTest portTest, Model model)
-            throws Exception {
+    @GetMapping("/login")
+    public String Login(PortTest portTest,Model model) throws Exception {
+
         log.info("Login()");
 
-        service.login(portTest);
+        return "portTest/login";
+    }
 
-        model.addAttribute(
-                "msg",
-                "회원가입이 완료 되었습니다.");
+    @PostMapping("/postLogin")
+    public String PostLogin(PortTest portTest, Model model)
+            throws Exception {
+        log.info("PostLogin()");
 
-        return "portTest/psuccess";
+        boolean result = service.login(portTest);
+        String res;
+        if (!result) {
+            model.addAttribute(
+                    "msg",
+                    "로그인 성공!!");
+
+            res = "portTest/psuccess";
+        } else{
+
+            model.addAttribute(
+                    "msg",
+                    "로그인 실패!!");
+
+
+            res = "portTest/psuccess";
+        }
+        return res;
+    }
+
+    @PostMapping("/idcheck")
+    public String Idcheck(PortTest portTest, Model model)
+            throws Exception {
+        log.info("Idcheck()");
+
+        boolean result = service.idcheck(portTest);
+        String res;
+        if (!result) {
+            model.addAttribute(
+                    "msg",
+                    "사용 가능!!");
+
+            res = "portTest/psuccess";
+        } else{
+            model.addAttribute(
+                    "msg",
+                    "사용 불가!!");
+
+            res = "portTest/psuccess";
+        }
+        return res;
     }
 }
-
-
 
 //    create table ItemMania( id_no int not null auto_increment,
 //    id varchar(30) not null,

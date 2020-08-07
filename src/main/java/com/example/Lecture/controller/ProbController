@@ -378,12 +378,11 @@ public class LoginImplement implements LoginInterface{
     @Override
     public boolean Access(Login login) throws Exception {
         return loginRepository.Access(login);
-
     }
 
     @Override
-    public boolean Overlap(Login login) throws Exception {
-        return loginRepository.Overlap(login);
+    public boolean idcheck(PortTest portTest) throws Exception {
+        return portTestRepository.idcheck(portTest);
     }
 
     @Override

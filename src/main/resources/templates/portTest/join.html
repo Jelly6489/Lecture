@@ -4,12 +4,49 @@
     <meta charset="UTF-8">
     <title>Join</title>
 </head>
+<style>
+    #btnLogin{
+        padding: 15px 20px;
+        }
+    #btnJoin{
+        padding: 15px 20px;
+    }
+    #btnSearch{
+        margin: 5px
+        padding: 5px 10px;
+        color:white;
+        background-color: skyblue;
+    }
+    #btnGroup button{
+        margin-left: 10px;
+        font-size: 20px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: 1px solid skyblue;
+        background-color: rgba(0,0,0,0);
+        color: skyblue;
+    }
+
+    #btnGroup button:hover{
+        color:white;
+        background-color: skyblue;
+    }
+    </style>
+
 <script type="text/javascript"
         src="http://code.jquery.com/jquery-2.1.4.min.js">
 </script>
 <script>
     $(document).ready(function() {
         var formObj = $("#port");
+
+        $("#btnSearch").on("click", function() {
+            formObj.attr("action", "idcheck");
+            formObj.attr("method", "post");
+            formObj.submit();
+        });
 
         $("#btnJoin").on("click", function() {
             formObj.attr("action", "postJoin");
@@ -33,7 +70,8 @@
             <tr>
                 <td>ID</td>
                 <td><input type="text" name="id"
-                           th:field="*{id}"/></td>
+                           th:field="*{id}"/>
+                    <button type="submit" id="btnSearch">중복확인</button></td></td>
                 <td><font color="red">
                     <span th:if="${#fields.hasErrors('id')}"
                           th:errors="*{id}">
@@ -117,8 +155,8 @@
         </table>
     </form>
 
-<div>
-    <button type="submit" id="btnJoin">Join</button>
+<div id="btnGroup">
+    <br><button type="submit" id="btnJoin">회원가입</button>
     <button type="submit" id="btnLogin">처음으로</button>
 </div>
 </body>

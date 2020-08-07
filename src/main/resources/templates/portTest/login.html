@@ -39,15 +39,11 @@
     $(document).ready(function() {
         var formObj = $("#id");
 
-        console.log(formObj);
-
         $("#btnLogin").on("click", function() {
-            var id = $("#id");
-            var idVal = id.val();
-            formObj.attr("action", "login");
+            formObj.attr("action", "postLogin");
             formObj.attr("method", "post");
-            alert('success');
-
+            formObj.submit();
+            //alert('success');
         });
 
         $("#btnJoin").on("click", function() {
@@ -60,14 +56,13 @@
             self.location = "plist";
             alert('게시판')
         });
-
     });
 </script>
 <body>
     <h1>로그인</h1>
-    <form id="id" th:object="${portTest}" method="get">
-        <input type="hidden" name="id"
-               th:field="*{id}">
+    <form id="id" action="portTest/psuccess.html"
+          th:action="@{login}"
+          th:object="${portTest}" method="post">
     <table>
         <tr>
             <td>ID</td>
@@ -84,7 +79,6 @@
             <td><font color="red">
             </font></td>
         </tr>
-
     </table>
     </form>
 

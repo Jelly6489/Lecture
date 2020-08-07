@@ -22,7 +22,9 @@ export default {
     const targetIndex = state.todoItems.findIndex(v => v.id === id)
     state.todoItems.splice(targetIndex, 1)
     // splice(start, count, 대체내용들)
-    // 시작위치부터 count
+    // 시작위치부터 count 개수만큼 추출해낼건데
+    // 세번째 인자인 대체내용들로 해당 위치를 채워넣을 수 있다.
+    // splice(1, 3, 'a', 'b', 'c')
   },
   [CLEAR_ALL] (state) {
     console.log('CLEAR_ALL')

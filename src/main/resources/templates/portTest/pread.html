@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js">
+</script>
+<style>
+    #btnModify{
+        padding: 15px 40px;
+        }
+    #btnRemove{
+        padding: 15px 40px;
+    }
+    #btnList{
+        padding: 15px 35px;
+    }
+    #btnGroup button{
+        margin-left: 20px;
+        font-size: 20px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: 1px solid skyblue;
+        background-color: rgba(0,0,0,0);
+        color: skyblue;
+    }
+
+    #btnGroup button:hover{
+        color:white;
+        background-color: skyblue;
+    }
+
+    #title {
+        padding: 5px 100px;
+        color: black;
+    }
+
+    #text {
+        padding: 60px 100px;
+        color: black;
+    }
+</style>
+<script>
+     $(document).ready(function() {
+            var formObj = $("#port");
+
+            console.log(formObj);
+
+        $("#btnModify").on("click", function() {
+            var idNo = $("#idNo");
+            var idNoVal = idNo.val();
+
+            self.location = "getPModify?idNo=" + idNoVal;
+        });
+
+        $("#btnRemove").on("click", function() {
+            formObj.attr("action", "premove");
+            formObj.submit();
+        });
+
+        $("#btnList").on("click", function() {
+            self.location = "plist";
+        });
+     });
+</script>
+<body>
+<h1>수정</h1>
+
+<form id="port" th:object="${portTest}" method="POST">
+    <input type="hidden" name="idNo"
+           th:field="*{idNo}">
+
+    <table>
+        <tr>
+            <td>Id</td>
+            <td><input type="text" name="id"
+                       th:field="*{id}"
+                       readonly="readonly"></td>
+        </tr>
+
+        <tr>
+            <td>Pw</td>
+            <td><input type="text" name="pw"
+                       th:field="*{pw}"
+                       readonly="readonly"></td>
+        </tr>
+
+        <tr>
+            <td>Nickname</td>
+            <td><input type="text" name="nickname"
+                       th:field="*{nickname}"
+                       readonly="readonly"></td>
+        </tr>
+
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name"
+                       th:field="*{name}"
+                       readonly="readonly"></td>
+        </tr>
+
+        <tr>
+            <td>Age</td>
+            <td><input type="text" name="age"
+                       th:field="*{age}"
+                       readonly="readonly"></td>
+        </tr>
+
+        <tr>
+            <td>Phone</td>
+            <td><input type="text" name="phone"
+                       th:field="*{phone}"
+                       readonly="readonly"></td>
+        </tr>
+
+        <tr>
+            <td>Gender</td>
+            <td><input type="text" name="gender"
+                       th:field="*{gender}"
+                       readonly="readonly"></td>
+        </tr>
+
+        <tr>
+            <td>Title</td>
+            <td><input type="text" name="title" id="title"
+                       th:field="*{title}"
+                       readonly="readonly"></td>
+        </tr>
+
+        <tr>
+            <td>Text</td>
+            <td><input type="text" name="text" id="text"
+                       th:field="*{text}"
+                       readonly="readonly"></td>
+        </tr>
+    </table>
+</form>
+
+<div id="btnGroup">
+    <br><button type="submit" id="btnModify">수정</button>
+    <button type="submit" id="btnRemove">삭제</button>
+    <button type="submit" id="btnList">게시판</button>
+</div>
+</body>
+</html>

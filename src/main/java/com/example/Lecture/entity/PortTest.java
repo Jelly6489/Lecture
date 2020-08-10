@@ -1,5 +1,7 @@
 package com.example.Lecture.entity;
 
+import java.util.Date;
+
 public class PortTest {
     private int idNo;
     private String id;
@@ -9,6 +11,9 @@ public class PortTest {
     private int age;
     private int phone;
     private String gender;
+    private Date regDate;
+    private String title;
+    private String text;
 
     public int getIdNo() {
         return idNo;
@@ -72,6 +77,30 @@ public class PortTest {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public Date getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
 

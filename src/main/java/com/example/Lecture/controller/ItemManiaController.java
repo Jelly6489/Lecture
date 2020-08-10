@@ -59,7 +59,7 @@ public class ItemManiaController {
         return "game/gread";
     }
 
-    @PostMapping("gremove")
+    @PostMapping("/gremove")
     public String gremove(int idNo, Model model) throws Exception {
         log.info("gremove()");
 

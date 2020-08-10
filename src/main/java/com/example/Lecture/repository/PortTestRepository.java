@@ -1,5 +1,6 @@
 package com.example.Lecture.repository;
 
+import com.example.Lecture.entity.ItemMania;
 import com.example.Lecture.entity.PortTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,19 +25,20 @@ public class PortTestRepository {
         log.info("Repository join()");
 
         String query = "insert into portTest(" +
-                "id, pw, nickname, name, age, phone, gender) " +
-                "values(?, ?, ?, ?, ?, ?, ?)";
+                "id, pw, nickname, name, age, phone, gender, title, text) " +
+                "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(query, portTest.getId(), portTest.getPw(),
                 portTest.getNickname(), portTest.getName(), portTest.getAge(),
-                portTest.getPhone(), portTest.getGender());
+                portTest.getPhone(), portTest.getGender(),
+                portTest.getTitle(), portTest.getText());
     }
 
     public List<PortTest> plist() throws Exception {
         log.info("Repository plist()");
 
         List<PortTest> results = jdbcTemplate.query(
-                "select id_no, id, pw, nickname, name, age, " +
+                "select id_no, id, pw, title, nickname, reg_date ,name, age, " +
                         "phone, gender from portTest where id_no > 0 order by " +
                         "id_no desc",
 
@@ -48,7 +50,9 @@ public class PortTestRepository {
                         portTest.setIdNo(rs.getInt("id_no"));
                         portTest.setId(rs.getString("id"));
                         portTest.setPw(rs.getString("pw"));
+                        portTest.setTitle(rs.getString("title"));
                         portTest.setNickname(rs.getString("nickname"));
+                        portTest.setRegDate(rs.getDate("reg_date"));
                         portTest.setName(rs.getString("name"));
                         portTest.setAge(rs.getInt("age"));
                         portTest.setPhone(rs.getInt("phone"));
@@ -93,6 +97,54 @@ public class PortTestRepository {
 
         boolean result = list.isEmpty() ? false : true;
         return result;
+    }
+
+    public PortTest pread(Integer idNo) throws Exception {
+        List<PortTest> results = jdbcTemplate.query(
+                "select id_no, id, pw, nickname, name, age, " +
+                        "phone, gender, title, reg_date, text " +
+                        "from portTest where id_no = ?",
+                new RowMapper<PortTest>() {
+                    @Override
+                    public PortTest mapRow(ResultSet rs, int rowNum)
+                                        throws SQLException {
+                        PortTest portTest = new PortTest();
+
+                        portTest.setIdNo(rs.getInt("id_no"));
+                        portTest.setId(rs.getString("id"));
+                        portTest.setPw(rs.getString("pw"));
+                        portTest.setNickname(rs.getString("nickname"));
+                        portTest.setName(rs.getString("name"));
+                        portTest.setAge(rs.getInt("age"));
+                        portTest.setPhone(rs.getInt("phone"));
+                        portTest.setTitle(rs.getString("title"));
+                        portTest.setRegDate(rs.getDate("reg_date"));
+                        portTest.setText(rs.getString("text"));
+
+                        return portTest;
+                    }
+                }, idNo
+        );
+
+        return results.isEmpty() ? null : results.get(0);
+    }
+
+    public void premove(Integer idNo) throws Exception {
+        String query = "delete from portTest where id_no = ?";
+        jdbcTemplate.update(query, idNo);
+    }
+
+    public void pmodify(PortTest portTest) throws Exception {
+        String query = "update portTest set id = ?, pw = ?, " +
+                "nickname = ?, name = ?, age = ?, phone = ?, gender = ? " +
+                "title = ?, reg_date = ?, text = ? where id_no = ?";
+        jdbcTemplate.update(
+                query, portTest.getId(), portTest.getPw(),
+                portTest.getNickname(), portTest.getName(),
+                portTest.getAge(), portTest.getPhone(), portTest.getGender(),
+                portTest.getTitle(), portTest.getRegDate(),
+                portTest.getText(), portTest.getIdNo()
+        );
     }
 }
 

@@ -6,22 +6,20 @@
 </head>
 <body>
     <h1>Project</h1>
-    <a href="portTest/pjoin.html" th:href="@{getJoin}">
-        회원가입
-    </a><br>
-    <a href="portTest/plogin.html" th:href="@{login}">
+    <a href="portTest/login.html" th:href="@{login}">
         Login
-    </a>
+    </a><br>
+    <a href="portTest/join.html" th:href="@{getJoin}">
+        게시글 작성
+    </a><br>
+
 <table border = "1">
     <tr>
-        <th align="center" width="80">No</th>
+        <th align="center" width="40">No</th>
         <th align="center" width="80">Id</th>
-        <th align="center" width="80">Pw</th>
-        <th align="center" width="80">Nickname</th>
-        <th align="center" width="100">Name</th>
-        <th align="center" width="80">Age</th>
-        <th align="center" width="100">Phone</th>
-        <th align="center" width="80">Gender</th>
+        <th align="center" width="200">Title</th>
+        <th align="center" width="120">Nickname</th>
+        <th align="center" width="80">Date</th>
     </tr>
     <tr th:if="${#lists.isEmpty(plist)}">
         <td colspan="8">
@@ -33,32 +31,25 @@
             ${portTest.idNo}
         </td>
 
-        <td align="center" th:text="${portTest.id}">
-            ${portTest.id}
+        <td align="center">
+            <a href="portTest/pread.html"
+               th:href="@{|pread?idNo=${portTest.idNo}|}"
+               th:text="${portTest.id}">
+                ${portTest.id}</a>
         </td>
 
-        <td align="center" th:text="${portTest.pw}">
-            ${portTest.pw}
+        <td align="center" th:text="${portTest.title}">
+            ${portTest.title}
         </td>
 
         <td align="center" th:text="${portTest.nickname}">
             ${portTest.nickname}
         </td>
 
-        <td align="center" th:text="${portTest.name}">
-            ${portTest.name}
-        </td>
-
-        <td align="center" th:text="${portTest.age}">
-            ${portTest.age}
-        </td>
-
-        <td align="center" th:text="${portTest.phone}">
-            ${portTest.phone}
-        </td>
-
-        <td align="center" th:text="${portTest.gender}">
-            ${portTest.gender}
+        <td align="center"
+            th:text="${#dates.format(portTest.regDate,
+            'yyyy-MM-dd HH:mm:ss')}">
+            ${portTest.regDate}
         </td>
     </tr>
 </table>

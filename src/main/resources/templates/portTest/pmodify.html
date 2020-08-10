@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript"
+        src="http://code.jquery.com/jquery-2.1.4.min.js">
+</script>
+<script>
+     $(document).ready(function() {
+            var formObj = $("#port");
+
+        $("#btnModify").on("click", function() {
+            formObj.attr("action", "postPModify");
+            formObj.attr("method", "post");
+            formObj.submit();
+        });
+
+        $("#btnList").on("click", function() {
+            self.location = "plist";
+        });
+     });
+    </script>
+<body>
+<h2>수정</h2>
+
+<form id="port" action="portTest/psuccess.html"
+      th:action="@{pmodify}"
+      th:object="${portTest}" method="post">
+    <input type="hidden" name="idNo" th:field="*{idNo}"/>
+    <table>
+
+        <tr>
+            <td>Id</td>
+            <td><input type="text" name="id"
+                       th:field="*{id}"/></td>
+            <td><font color="red">
+                <span th:if="${#fields.hasErrors('id')}"
+                      th:errors="*{id}">
+                        id Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>Pw</td>
+            <td><input type="text" name="pw"
+                       th:field="*{pw}"/></td>
+            <td><font color="red">
+                <span th:if="${#fields.hasErrors('pw')}"
+                      th:errors="*{pw}">
+                        pw Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>Nickname</td>
+            <td><input type="text" name="nickname"
+                       th:field="*{nickname}"/></td>
+            <td><font color="red">
+                <span th:if="${#fields.hasErrors('nickname')}"
+                      th:errors="*{nickname}">
+                        nickname Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name"
+                       th:field="*{name}"/></td>
+            <td><font color="red">
+                <span th:if="${#fields.hasErrors('name')}"
+                      th:errors="*{name}">
+                        name Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>Age</td>
+            <td><input type="text" name="age"
+                       th:field="*{age}"/></td>
+            <td><font color="red">
+                <span th:if="${#fields.hasErrors('age')}"
+                      th:errors="*{age}">
+                        age Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>Phone</td>
+            <td><input type="text" name="phone"
+                       th:field="*{phone}"/></td>
+            <td><font color="red">
+                <span th:if="${#fields.hasErrors('phone')}"
+                      th:errors="*{phone}">
+                        phone Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>Gender</td>
+            <td><input type="text" name="gender"
+                       th:field="*{gender}"/></td>
+            <td><font color="red">
+                <span th:if="${#fields.hasErrors('gender')}"
+                      th:errors="*{gender}">
+                        gender Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>Title</td>
+            <td><input type="text" name="title"
+                       th:field="*{title}"/></td>
+            <td><font color="red">
+                <span th:if="${#fields.hasErrors('title')}"
+                      th:errors="*{title}">
+                        title Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+        <tr>
+            <td>Text</td>
+            <td><input type="text" name="text"
+                       th:field="*{text}"/></td>
+            <td><font color="red">
+                <span th:if="${#fields.hasErrors('text')}"
+                      th:errors="*{text}">
+                        text Error Message
+                    </span>
+            </font></td>
+        </tr>
+
+    </table>
+</form>
+
+<div>
+    <button type="submit" id="btnModify">수정</button>
+    <button type="submit" id="btnList">게시판</button>
+</div>
+
+</body>
+</html>

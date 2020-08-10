@@ -9,7 +9,7 @@
         padding: 15px 20px;
         }
     #btnJoin{
-        padding: 15px 20px;
+        padding: 15px 40px;
     }
     #btnSearch{
         margin: 5px
@@ -18,7 +18,7 @@
         background-color: skyblue;
     }
     #btnGroup button{
-        margin-left: 10px;
+        margin-left: 90px;
         font-size: 20px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
@@ -32,6 +32,16 @@
     #btnGroup button:hover{
         color:white;
         background-color: skyblue;
+    }
+
+    #title {
+        padding: 5px 100px;
+        color: black;
+    }
+
+    #text {
+        padding: 60px 100px;
+        color: black;
     }
     </style>
 
@@ -152,11 +162,35 @@
                 </font></td>
             </tr>
 
+            <tr>
+                <td>Title</td>
+                <td><input type="text" name="title" id="title"
+                           th:field="*{title}"/></td>
+                <td><font color="red">
+                <span th:if="${#fields.hasErrors('title')}"
+                      th:errors="*{title}">
+                        title Error Message
+                </span>
+                </font></td>
+            </tr>
+
+            <tr>
+                <td>Text</td>
+                <td><input type="text" name="text" id="text"
+                           th:field="*{text}"/></td>
+                <td><font color="red">
+                <span th:if="${#fields.hasErrors('text')}"
+                      th:errors="*{text}">
+                        text Error Message
+                </span>
+                </font></td>
+            </tr>
+
         </table>
     </form>
 
 <div id="btnGroup">
-    <br><button type="submit" id="btnJoin">회원가입</button>
+    <br><button type="submit" id="btnJoin">작성</button>
     <button type="submit" id="btnLogin">처음으로</button>
 </div>
 </body>

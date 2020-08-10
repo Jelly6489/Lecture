@@ -1,5 +1,6 @@
 package com.example.Lecture.controller;
 
+import com.example.Lecture.entity.ItemMania;
 import com.example.Lecture.entity.PortTest;
 import com.example.Lecture.service.PortTestService;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public class PortTestController {
 
         model.addAttribute(
                 "msg," +
-                        "Join Success"
+                        "작성 완료 Success"
         );
 
         return "portTest/psuccess";
@@ -52,7 +53,7 @@ public class PortTestController {
     }
 
     @GetMapping("/login")
-    public String Login(PortTest portTest,Model model) throws Exception {
+    public String Login(PortTest portTest, Model model) throws Exception {
 
         log.info("Login()");
 
@@ -72,7 +73,7 @@ public class PortTestController {
                     "로그인 성공!!");
 
             res = "portTest/psuccess";
-        } else{
+        } else {
 
             model.addAttribute(
                     "msg",
@@ -97,7 +98,7 @@ public class PortTestController {
                     "사용 가능!!");
 
             res = "portTest/psuccess";
-        } else{
+        } else {
             model.addAttribute(
                     "msg",
                     "사용 불가!!");
@@ -106,7 +107,71 @@ public class PortTestController {
         }
         return res;
     }
+
+    @GetMapping("/pread")
+    public String pread(int idNo, Model model) throws Exception {
+        log.info("pread()");
+
+        model.addAttribute(service.pread(idNo));
+
+        return "portTest/pread";
+    }
+
+    @PostMapping("/premove")
+    public String premove(int idNo, Model model) throws Exception {
+        log.info("premove()");
+
+        service.premove(idNo);
+
+        model.addAttribute("msg",
+                "삭제 완료");
+
+        return "portTest/psuccess";
+    }
+
+    @GetMapping("/getPModify")
+    public String getPModify(int idNo, Model model) throws Exception {
+        log.info("getPModify()");
+
+        model.addAttribute(service.pread(idNo));
+
+        return "portTest/pmodify";
+    }
+
+    @PostMapping("/postPModify")
+    public String postPModify(PortTest portTest, Model model) throws Exception {
+        log.info("postPModify()");
+
+        service.pmodify(portTest);
+
+        model.addAttribute("msg",
+                "수정 완료"
+        );
+
+        return "portTest/psuccess";
+    }
 }
+
+//    @GetMapping("/getWrite")
+//    public String getWrite(PortTest portTest, Model model) throws Exception {
+//        log.info("getWrite()");
+//
+//        return "portTest/write";
+//    }
+//
+//    @PostMapping("/postWrite")
+//    public String postWrite(PortTest portTest, Model model) throws Exception {
+//        log.info("postWrite()");
+//
+//        service.write(portTest);
+//
+//        model.addAttribute(
+//                "msg," + "Write Success"
+//        );
+//
+//        return "portTest/psuccess";
+//    }
+
 
 //    create table ItemMania( id_no int not null auto_increment,
 //    id varchar(30) not null,

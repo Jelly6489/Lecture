@@ -1,5 +1,10 @@
 <template>
   <div class="todo">
+    <router-link :to="{ name: 'Home' }"
+       class="nav-link"
+       active-class="active">
+      Home
+    </router-link>
     <todo-header></todo-header>
     <todo-input v-on:addTodo="onAddTodo"></todo-input>
     <todo-filter></todo-filter>

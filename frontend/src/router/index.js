@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Test from '../views/Test.vue'
-import Join from '../views/Join.vue'
 import Todo from '../views/Todo.vue'
+import Concave from '../views/Concave.vue'
 
 Vue.use(VueRouter)
 
@@ -34,9 +34,11 @@ const routes = [
     component: Todo
   },
   {
-    path: '/join',
-    name: 'Join',
-    component: Join
+    path: '/concave',
+    name: 'Concave',
+    components: {
+      default: Concave
+    }
   }
 ]
 

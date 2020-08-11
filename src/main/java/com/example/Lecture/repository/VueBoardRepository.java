@@ -21,8 +21,9 @@ public class VueBoardRepository {
     private JdbcTemplate jdbcTemplate;
 
     public void create(VueBoard board) throws Exception {
-        String query = "insert into board (title, content, writer) " +
+        String query = "insert into cafe_board (title, content, writer) " +
                 "value(?, ?, ?)";
+
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(
                 new PreparedStatementCreator() {

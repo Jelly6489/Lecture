@@ -100,6 +100,7 @@ public class BoardRepository {
         // 만약 결과가 나왔다면 처리한 결과의 첫 번째 행을 리턴한다.
         // 0은 첫 번째 행을 의미함
         return results.isEmpty() ? null : results.get(0);
+        // 비워있다면 null 아니라면 첫번째 값
     }
 
     public void remove(Integer boardNo) throws Exception {

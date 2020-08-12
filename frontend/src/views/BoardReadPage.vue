@@ -1,9 +1,10 @@
+
 <template>
   <div align="center">
     <h2>Detailed Board List</h2>
     <board-read v-if="board" :board="board"/>
     <p v-else>Loading ...</p>
-    <router-link :to="{ name: 'BoardModifyPage', params: { boardNo: 1 } }">
+    <router-link :to="{ name: 'BoardModifyPage', params: { boardNo } }">
       Edit
     </router-link>
     <button @click="onDelete">Delete</button>
@@ -17,7 +18,6 @@
 import BoardRead from '@/components/BoardRead'
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
-
 export default {
   name: 'BoardReadPage',
   props: {

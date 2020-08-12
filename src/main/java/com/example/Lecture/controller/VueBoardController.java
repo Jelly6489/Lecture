@@ -42,7 +42,7 @@ public class VueBoardController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> register(
+    public ResponseEntity<VueBoard> register(
             @Validated @RequestBody VueBoard board,
             UriComponentsBuilder uriBuilder) throws Exception {
         log.info("register()");
@@ -51,12 +51,14 @@ public class VueBoardController {
 
         log.info("register board.getBoardNo() = " + board.getBoardNo());
 
-        URI resourceURI = uriBuilder.path("boards/{boardNo}")
+       /* URI resourceURI = uriBuilder.path("boards/{boardNo}")
                 .buildAndExpand(board.getBoardNo())
                 .encode()
                 .toUri();
 
-        return ResponseEntity.created(resourceURI).build();
+        return ResponseEntity.created(resourceURI).build();*/
+
+        return new ResponseEntity<>(board, HttpStatus.OK);
     }
 
     @DeleteMapping("/{boardNo}")
@@ -70,14 +72,14 @@ public class VueBoardController {
     }
 
     @PutMapping("/{boardNo}")
-    public ResponseEntity<Void> modify(
+    public ResponseEntity<VueBoard> modify(
             @PathVariable("boardNo") Long boardNo,
             @Validated @RequestBody VueBoard board) throws Exception {
-        log.info("modify()");
+        log.info("Put - modify()");
 
         board.setBoardNo(boardNo);
         service.modify(board);
 
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(board, HttpStatus.OK);
     }
 }

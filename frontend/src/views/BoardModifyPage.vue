@@ -10,6 +10,7 @@
 import BoardModifyForm from '@/components/BoardModifyForm'
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
+
 export default {
   name: 'BoardModifyPage',
   components: {

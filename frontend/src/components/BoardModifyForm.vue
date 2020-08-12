@@ -2,7 +2,7 @@
   <div>
     <h3>Board Modified Form</h3>
     <button type="submit">Modification</button>
-    <router-link :to="{ name: 'BoardReadPage', params: { boardNp: 1 } }">
+    <router-link :to="{ name: 'BoardReadPage', params: { boardNo: 1 } }">
       Cancel
     </router-link>
   </div>

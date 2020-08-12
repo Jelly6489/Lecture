@@ -21,8 +21,7 @@ public class VueBoardRepository {
     private JdbcTemplate jdbcTemplate;
 
     public void create(VueBoard board) throws Exception {
-        String query = "insert into cafe_board (title, content, writer) " +
-                "value(?, ?, ?)";
+        String query = "insert into cafe_board (title, content, writer) values (?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(
@@ -32,11 +31,12 @@ public class VueBoardRepository {
                             throws SQLException {
                         PreparedStatement ps = con.prepareStatement(query, new String[] {"boardNo"});
                         ps.setString(1, board.getTitle());
-                        ps.setString(1, board.getContent());
-                        ps.setString(1, board.getWriter());
+                        ps.setString(2, board.getContent());
+                        ps.setString(3, board.getWriter());
                         return ps;
                     }
                 }, keyHolder);
+
         board.setBoardNo(keyHolder.getKey().longValue());
     }
 
@@ -58,8 +58,7 @@ public class VueBoardRepository {
                     }
                 }
         );
+
         return results;
     }
-
-
 }

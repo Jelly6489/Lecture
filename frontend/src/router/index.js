@@ -61,17 +61,24 @@ const routes = [
     }
   },
   {
-    path: 'board/boardNo',
+    path: 'board/:boardNo',
     name: 'BoardReadPage',
     components: {
       default: BoardReadPage
+    },
+    props: {
+      default: true
     }
   },
   {
-    path: '/board/boarNo/edit',
+    path: '/board/:boarNo/edit',
     name: 'BoardModifyPage',
     components: {
       default: BoardModifyPage
+    },
+    props: {
+      // 이 옵션을 설정하면 route.params가 컴포넌트의 props에 자동 설정
+      default: true
     }
   }
 ]

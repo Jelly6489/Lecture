@@ -3,8 +3,7 @@ package com.example.Lecture.controller;
 import com.example.Lecture.entity.VueBoard;
 import com.example.Lecture.service.VueBoardService;
 import lombok.extern.java.Log;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +17,10 @@ import java.util.List;
 @Log
 @RestController
 @RequestMapping("/boards")
-@CrossOrigin(origins = "http://localhost:6060", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class VueBoardController {
-    //static final Logger log = LoggerFactory.getLogger(VueBoardController.class)
+    //static final Logger log = LoggerFactory.getLogger(VueBoardController.class);
+
     @Autowired
     private VueBoardService service;
 
@@ -62,7 +62,7 @@ public class VueBoardController {
     @DeleteMapping("/{boardNo}")
     public ResponseEntity<Void> remove(
             @PathVariable("boardNo") Long boardNo) throws Exception {
-        log.info("remove()");
+        log.info("remove");
 
         service.remove(boardNo);
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class VueBoardServiceImpl implements VueBoardService{
+public class VueBoardServiceImpl implements  VueBoardService {
     @Autowired
     private VueBoardRepository repository;
 
@@ -16,23 +16,19 @@ public class VueBoardServiceImpl implements VueBoardService{
     public void register(VueBoard board) throws Exception {
         repository.create(board);
     }
-
     @Override
     public VueBoard read(Long boardNo) throws Exception {
         //return repository.read(boardNo);
         return null;
     }
-
     @Override
     public void modify(VueBoard board) throws Exception {
         //repository.update(board);
     }
-
     @Override
     public void remove(Long boardNo) throws Exception {
         //repository.delete(boardNo);
     }
-
     @Override
     public List<VueBoard> list() throws Exception {
         return repository.list();

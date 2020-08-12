@@ -61,4 +61,8 @@ public class VueBoardRepository {
 
         return results;
     }
+
+    public VueBoard read(Long boardNo) throws Exception {
+        return null;
+    }
 }

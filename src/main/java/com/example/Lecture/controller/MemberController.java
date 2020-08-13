@@ -1,5 +1,9 @@
 package com.example.Lecture.controller;
 
+import com.example.Lecture.entity.Member;
+import com.example.Lecture.entity.MemberAuth;
+import com.example.Lecture.security.AuthUtil;
+import com.example.Lecture.service.MemberService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -21,8 +25,8 @@ public class MemberController {
     @Autowired
     private MemberService service;
 
-    @Autowired
-    private MemberAuthService authService;
+//    @Autowired
+//    private MemberAuthService authService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -36,7 +40,7 @@ public class MemberController {
                                                                     throws Exception {
         log.info("member.gerUserName():"  + member.getUserName());
         String inputPassword = member.getUserPw();
-        member.serUserPw(passwordEncoder.encode(inputPassword));
+        member.setUserPw(passwordEncoder.encode(inputPassword));
 
         service.register(member);
 
@@ -79,16 +83,16 @@ public class MemberController {
         return new ResponseEntity<>(member, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/setup"
-                    method = RequestMethod.POST
-                    produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/setup",
+            method = RequestMethod.POST,
+            produces = "text/plain;charset=UTF-8")
     public ResponseEntity<String> setupAdmin(@Validated @RequestBody Member member)
-                                                                    throws Exception {
-        log.info("setupAdmin: member.getUserName(): " + mamber.getUserName());
+            throws Exception {
+        log.info("setupAdmin: member.getUserName(): " + member.getUserName());
         log.info("setupAdmin: service.countAll(): " + service.countAll());
 
-        if(service.countAll() == 0) {
-            String inputPassword = mamber.getUserPw();
+        if (service.countAll() == 0) {
+            String inputPassword = member.getUserPw();
             member.setUserPw(passwordEncoder.encode(inputPassword));
 
             member.setJob("Admin");
@@ -110,11 +114,10 @@ public class MemberController {
         Long userNo = AuthUtil.getUserNo(header);
         log.info("register userNo: " + userNo);
 
-        MemberAuth auth = authService.read(userNo);
-        log.info("auth: " + auth);
+//        MemberAuth auth = authService.read(userNo);
+//        log.info("auth: " + auth);
 
-        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+//        return new ResponseEntity<>(auth, HttpStatus.OK);
+        return null;
     }
-
-
 }

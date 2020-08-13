@@ -1,5 +1,11 @@
 package com.example.Lecture.config;
 
+
+
+import com.example.Lecture.security.CustomAccessDenieHandler;
+import com.example.Lecture.security.CustomUserDetailsService;
+import com.example.Lecture.security.JwtAuthenticationFilter;
+import com.example.Lecture.security.JwtAuthorizationFilter;
 import lombok.extern.java.Log;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -31,10 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .exceptionHandling()
                 .accessDeniedHandler(createAccessDenieHandler())
+                .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager()))
                 .sessionManagement()
-                .sessionCreateionPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Override
@@ -50,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService createUserDetailsService() {
-        return new CustomUserDatailsService();
+        return new CustomUserDetailsService();
     }
 
     @Bean

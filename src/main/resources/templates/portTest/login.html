@@ -58,12 +58,12 @@
         });
     });
 </script>
-<body>
+<body align="center">
     <h1>로그인</h1>
     <form id="id" action="portTest/psuccess.html"
           th:action="@{login}"
           th:object="${portTest}" method="post">
-    <table>
+    <table align="center">
         <tr>
             <td>ID</td>
             <td><input type="text" name="id"
@@ -81,7 +81,6 @@
         </tr>
     </table>
     </form>
-
     <div id="btnGroup">
         <br><button type="submit" id="btnLogin">Login</button>
         <br><button type="submit" id="btnJoin">회원가입</button>

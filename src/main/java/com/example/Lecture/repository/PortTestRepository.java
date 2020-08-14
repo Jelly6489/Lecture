@@ -1,6 +1,5 @@
 package com.example.Lecture.repository;
 
-import com.example.Lecture.entity.ItemMania;
 import com.example.Lecture.entity.PortTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +37,7 @@ public class PortTestRepository {
         log.info("Repository plist()");
 
         List<PortTest> results = jdbcTemplate.query(
-                "select id_no, id, pw, title, nickname, reg_date ,name, age, " +
+                "select id_no, id, pw, title, nickname, reg_date, name, age, " +
                         "phone, gender from portTest where id_no > 0 order by " +
                         "id_no desc",
 

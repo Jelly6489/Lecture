@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
     static final Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
 
     @Autowired
@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService{
         memEntity.setJob(member.getJob());
 
         MemberAuth memberAuth = new MemberAuth();
-        memberAuth.setAuth("ROLE_MEMBER");
+        memberAuth.setAuth("ROLE_ADMIN");
 
         memEntity.addAuth(memberAuth);
 
@@ -77,6 +77,7 @@ public class MemberServiceImpl implements MemberService{
                 memberAuth.setAuth(auth.getAuth());
             }
         }
+
         repository.save(memEntity);
     }
 
@@ -90,7 +91,7 @@ public class MemberServiceImpl implements MemberService{
         List<Object[]> valArrays = repository.listAllMember();
         List<Member> memberList = new ArrayList<Member>();
 
-        for(Object[] valArr: valArrays) {
+        for(Object[] valArr : valArrays) {
             Member mem = new Member();
 
             mem.setUserNo((Long) valArr[0]);
@@ -102,11 +103,12 @@ public class MemberServiceImpl implements MemberService{
 
             memberList.add(mem);
         }
+
         return memberList;
     }
 
     @Override
     public long countAll() throws Exception {
-        return 0;
+        return repository.count();
     }
 }

@@ -2,7 +2,7 @@
   <form @submit.prevent="submit">
     <table>
       <tr>
-        <td>Administrator Id</td>
+        <td>Admin Id</td>
         <td><input type="text" v-model="userId"></td>
       </tr>
       <tr>

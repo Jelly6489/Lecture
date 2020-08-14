@@ -1,6 +1,7 @@
 package com.example.Lecture.controller;
 
 
+
 import com.example.Lecture.entity.Member;
 import com.example.Lecture.entity.MemberAuth;
 import com.example.Lecture.security.AuthUtil;
@@ -36,11 +37,11 @@ public class MemberController {
     @Autowired
     private MessageSource messageSource;
 
-
     @PostMapping("")
     public ResponseEntity<Member> register(@Validated @RequestBody Member member)
-                                                                    throws Exception {
-        log.info("member.gerUserName():"  + member.getUserName());
+            throws Exception {
+        log.info("member.getUserName(): " + member.getUserName());
+
         String inputPassword = member.getUserPw();
         member.setUserPw(passwordEncoder.encode(inputPassword));
 
@@ -75,7 +76,7 @@ public class MemberController {
     @PutMapping("/{userNo}")
     public ResponseEntity<Member> modify(@PathVariable("userNo") Long userNo,
                                          @Validated @RequestBody Member member)
-                                                                throws Exception{
+            throws Exception {
         log.info("modify - member.getUserName(): " + member.getUserName());
         log.info("modify - userNo: " + userNo);
 

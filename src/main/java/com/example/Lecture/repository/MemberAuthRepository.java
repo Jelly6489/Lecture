@@ -30,6 +30,7 @@ public class MemberAuthRepository {
                     }
                 }, userNo
         );
+
         return results.isEmpty() ? null : results.get(0);
     }
 }

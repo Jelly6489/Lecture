@@ -3,18 +3,18 @@
     <table>
       <tr>
         <td>Id</td>
-  <td><input type="text" v-model="userid"></td>
-  </tr>
-  <tr>
-  <td>Password</td>
-  <td><input type="password" v-model="userPw"></td>
-  </tr>
-  <tr>
-  <td colspan="2" align="center">
-  <button type="submit">Login</button>
-  </td>
-  </tr>
-  </table>
+        <td><input type="text" v-model="userid"></td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td><input type="password" v-model="password"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <button type="submit">Login</button>
+        </td>
+      </tr>
+    </table>
   </form>
 </template>
 

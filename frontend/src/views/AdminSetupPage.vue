@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div align="center">
     <h2>Register First Adminstartor</h2>
     <admin-setup-form @submit="onSubmit"/>
   </div>
@@ -8,7 +8,6 @@
 <script>
 import axios from 'axios'
 import AdminSetupForm from '@/components/AdminSetupForm.vue'
-
 export default {
   name: 'AdminSetupPage',
   components: {
@@ -29,7 +28,7 @@ export default {
           })
         })
         .catch(err => {
-          alert(err.response.data.message)
+          alert(err.response.data)
         })
     }
   }

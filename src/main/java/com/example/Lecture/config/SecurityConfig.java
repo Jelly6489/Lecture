@@ -2,7 +2,8 @@ package com.example.Lecture.config;
 
 
 
-import com.example.Lecture.security.CustomAccessDenieHandler;
+
+import com.example.Lecture.security.CustomAccessDeniedHandler;
 import com.example.Lecture.security.CustomUserDetailsService;
 import com.example.Lecture.security.JwtAuthenticationFilter;
 import com.example.Lecture.security.JwtAuthorizationFilter;
@@ -84,7 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AccessDeniedHandler createAccessDenieHandler() {
-        return new CustomAccessDenieHandler();
+        return new CustomAccessDeniedHandler();
     }
 
 }

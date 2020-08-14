@@ -1,8 +1,10 @@
 package com.example.Lecture.controller;
 
+
 import com.example.Lecture.entity.Member;
 import com.example.Lecture.entity.MemberAuth;
 import com.example.Lecture.security.AuthUtil;
+import com.example.Lecture.service.MemberAuthService;
 import com.example.Lecture.service.MemberService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,8 @@ public class MemberController {
     @Autowired
     private MemberService service;
 
-//    @Autowired
-//    private MemberAuthService authService;
+    @Autowired
+    private MemberAuthService authService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -114,10 +116,9 @@ public class MemberController {
         Long userNo = AuthUtil.getUserNo(header);
         log.info("register userNo: " + userNo);
 
-//        MemberAuth auth = authService.read(userNo);
-//        log.info("auth: " + auth);
+        MemberAuth auth = authService.read(userNo);
+        log.info("auth: " + auth);
 
-//        return new ResponseEntity<>(auth, HttpStatus.OK);
-        return null;
+        return new ResponseEntity<>(auth, HttpStatus.OK);
     }
 }

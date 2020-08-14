@@ -34,10 +34,6 @@ repositories {
 }
 
 dependencies {
-/*	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'*/
-//	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-jdbc'
@@ -52,7 +48,7 @@ dependencies {
 	compile 'org.springframework:spring-orm'
 	compile 'com.h2database:h2'
 	compile 'org.hibernate.validator:hibernate-validator:6.0.7.Final'
-	//developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -72,7 +68,7 @@ test {
 }
 
 model {
-	platforms{
+	platforms {
 		x64 {
 			architecture "x64"
 		}
@@ -83,10 +79,10 @@ model {
 			binaries.all {
 				if (targetPlatform.operatingSystem.macOsX) {
 					cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include"
-					cComplier.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include/darwin"
+					cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include/darwin"
 					cCompiler.args '-mmacosx-version-min=10.4'
-					linker.args '-mmacosx-version-min = 10.'
-				} else if(targetPlatform.operatingSystem.linux){
+					linker.args '-mmacosx-version-min=10.'
+				} else if (targetPlatform.operatingSystem.linux) {
 					cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include"
 					cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include/linux"
 					cCompiler.args '-D_FILE_OFFSET_BITS=64'

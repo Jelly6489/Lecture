@@ -6,8 +6,9 @@
 </template>
 
 <script>
-import LoginForm from '../components/LoginForm.vue'
+import LoginForm from '@/components/LoginForm.vue'
 import { mapActions } from 'vuex'
+
 export default {
   name: 'LoginPage',
   components: {

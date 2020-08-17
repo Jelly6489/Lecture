@@ -8,6 +8,7 @@
 <script>
 import axios from 'axios'
 import AdminSetupForm from '@/components/AdminSetupForm.vue'
+
 export default {
   name: 'AdminSetupPage',
   components: {

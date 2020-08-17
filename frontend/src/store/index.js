@@ -14,8 +14,6 @@ export default new Vuex.Store({
   actions,
   mutations,
   getters
-})
-
 //  state: {
 //    count: 0,
 //    weight: 2,
@@ -33,7 +31,7 @@ export default new Vuex.Store({
 //      state.random = payload
 //    },
 //    failGenRandNum () {
-//      alert('실패')
+//      alert('망함')
 //    },
 //    ADD_TODO (state, todoItems) {
 //      state.todoItems.push(todoItems)
@@ -81,4 +79,4 @@ export default new Vuex.Store({
 //  },
 //  modules: {
 //  }
-// })
+})

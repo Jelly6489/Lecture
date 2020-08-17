@@ -1,7 +1,5 @@
 package com.example.Lecture.controller;
 
-
-
 import com.example.Lecture.entity.Member;
 import com.example.Lecture.entity.MemberAuth;
 import com.example.Lecture.security.AuthUtil;

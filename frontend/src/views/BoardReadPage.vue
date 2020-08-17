@@ -1,4 +1,3 @@
-
 <template>
   <div align="center">
     <h2>Detailed Board List</h2>
@@ -18,6 +17,7 @@
 import BoardRead from '@/components/BoardRead'
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
+
 export default {
   name: 'BoardReadPage',
   props: {

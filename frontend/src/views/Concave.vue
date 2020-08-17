@@ -1,10 +1,5 @@
 <template>
   <div class="tictactoe">
-    <router-link :to="{ name: 'Home' }"
-       class="nav-link"
-       active-class="active">
-      Home
-    </router-link>
     <div>{{ turn }}님의 턴입니다.</div>
     <table-component :table-data="tableData"
         :turn="turn"
@@ -19,6 +14,7 @@
 
 <script>
 import TableComponent from '../components/TableComponent.vue'
+
 export default {
   components: {
     TableComponent
@@ -56,4 +52,5 @@ export default {
     }
   }
 }
+
 </script>

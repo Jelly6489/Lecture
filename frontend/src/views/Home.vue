@@ -33,6 +33,16 @@
           active-class="active">
         Board
       </router-link>
+      <router-link :to="{ name: 'VuetifyBoard' }"
+          class="nav-link"
+          active-class="active">
+        VuetifyBoard
+      </router-link>
+      <router-link :to="{ name: 'VuetifyBoardListPage' }"
+          class="nav-link"
+          active-class="active">
+        VuetifyBoardListPage
+      </router-link>
       <h2>This is an Home Page</h2>
       <div id="app">
         {{ message }}<br>
@@ -69,8 +79,11 @@
 import store from '../store'
 import Vue from 'vue'
 // import cookies from 'vue-cookies'
+
 import { mapState, mapGetters, mapActions } from 'vuex'
+
 // Vue.use(cookies)
+
 export default {
   name: 'Home',
   data: function () {
@@ -99,11 +112,13 @@ export default {
 div {
   border: 1px solid #ccc;
 }
+
 #header {
   padding: 15px;
   margin-bottom: 15px;
   margin: 5px 5px;
 }
+
 img {
   width: auto;
   height: auto;
@@ -113,10 +128,12 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
 #login {
   background-color: #77aadd;
   color: #ffffff;
   font-weight: bold;
   float: right;
 }
+
 </style>

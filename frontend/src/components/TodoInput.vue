@@ -27,6 +27,7 @@ export default {
     }
   }
 }
+
 </script>
 
 // css를 보면 스타일링을 좀 더 할 수 있다.

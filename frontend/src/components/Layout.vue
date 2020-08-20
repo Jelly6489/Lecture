@@ -2,8 +2,7 @@
   <v-app id="inspire">
     <v-app-bar
       app
-      clipped-right
-      color="blue"
+      color="orange"
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -69,7 +68,7 @@
 
     <v-footer
       app
-      color="blue"
+      color="orange"
       class="white--text"
     >
       <v-spacer></v-spacer>

@@ -116,6 +116,7 @@ export default {
 <style scoped>
 div {
   border: 1px solid #ccc;
+  background-color: #99bbee;
 }
 
 #header {
@@ -135,8 +136,8 @@ img {
 }
 
 #login {
-  background-color: #77aadd;
-  color: #ffffff;
+  background-color: #1155dd;
+  color: #ffcfff;
   font-weight: bold;
   float: right;
 }

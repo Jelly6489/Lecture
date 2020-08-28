@@ -8,40 +8,10 @@
           active-class="active">
         Home
       </router-link>
-      <router-link :to="{ name: 'About' }"
-          class="nav-link"
-          active-class="active">
-        About Us
-      </router-link>
-      <router-link :to="{ name: 'Test' }"
-          class="nav-link"
-          active-class="active">
-        Test
-      </router-link>
-      <router-link :to="{ name: 'Todo' }"
-          class="nav-link"
-          active-class="active">
-        Todo
-      </router-link>
-      <router-link :to="{ name: 'Concave' }"
-          class="nav-link"
-          active-class="active">
-        Concave
-      </router-link>
-      <router-link :to="{ name: 'BoardListPage' }"
-          class="nav-link"
-          active-class="active">
-        Board
-      </router-link>
-      <router-link :to="{ name: 'VuetifyBoard' }"
-          class="nav-link"
-          active-class="active">
-        VuetifyBoard
-      </router-link>
       <router-link :to="{ name: 'VuetifyBoardListPage' }"
           class="nav-link"
           active-class="active">
-        VuetifyBoardListPage
+        게시판
       </router-link>
       <router-link :to="{ name: 'CrawlCategory' }"
           class="nav-link"

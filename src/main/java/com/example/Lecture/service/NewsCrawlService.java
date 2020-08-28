@@ -1,11 +1,7 @@
 package com.example.Lecture.service;
 
-import com.example.Lecture.entity.ClickedNews;
-import com.example.Lecture.entity.HomeNews;
-import com.example.Lecture.entity.News;
-import com.example.Lecture.repository.ClickedNewsRepository;
-import com.example.Lecture.repository.HomeNewsRepository;
-import com.example.Lecture.repository.NewsRepository;
+import com.example.Lecture.entity.*;
+import com.example.Lecture.repository.*;
 import lombok.extern.java.Log;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -68,9 +64,13 @@ public class NewsCrawlService {
 
         homeNewsRepository.deleteAll();
         document = connectUrl("https://news.daum.net/");
+//        document = connectUrl("https://sports.news.naver.com/index.nhn");
 
-        Elements total = document.select("strong.tit_thumb>a.link_txt");
-        Elements image = document.select("div.item_issue>a.link_thumb>img.thumb_g");
+//        Elements total = document.select("strong.tit_thumb>a.link_txt");
+//        Elements image = document.select("div.item_issue>a.link_thumb>img.thumb_g");
+
+        Elements total = document.select("div.text_area>strong.title");
+        Elements image = document.select("li.today_item>a.link_today>div.image.area");
 
         HomeNews homeNews = null;
 
@@ -87,13 +87,19 @@ public class NewsCrawlService {
     public void mainCrawler(String category) {
         log.info("mainCrawler(): " + category);
 
-        document = connectUrl("https://news.daum.net/" + category);
+//        document = connectUrl("https://news.daum.net/" + category);
+        document = connectUrl("https://sports.daum.net/" + category);
         newsRepository.deleteAll();
 
-        daumNews(document.select("div.item_mainnews>div.cont_thumb>strong.tit_thumb>a"), category);
-        daumNews(document.select("ul.item_mainnews>li>div.cont_thumb>strong.tit_thumb>a"), category);
-        daumNews(document.select("strong.tit_mainnews>a"), category);
-        daumNews(document.select("ul.list_issue>li>a.link_txt"), category);
+//        daumNews(document.select("div.item_mainnews>div.cont_thumb>strong.tit_thumb>a"), category);
+//        daumNews(document.select("ul.item_mainnews>li>div.cont_thumb>strong.tit_thumb>a"), category);
+//        daumNews(document.select("strong.tit_mainnews>a"), category);
+//        daumNews(document.select("ul.list_issue>li>a.link_txt"), category);
+
+        daumNews(document.select("div.top_mainnews>ul.list_thumbs.headline_type2>li>div.cont_thumb>strong.tit_thumb"), category);
+        daumNews(document.select("div.top_rank>ol.list_rank>li>strong.tit_rank>a.link_txt"), category);
+        daumNews(document.select("div#newsList.box_section>div.majornews_list>ul.list_txt>li>a.link_txt"), category);
+        daumNews(document.select("div.majornews_list>ul.list_txt>ul.list_txt>li>a.link_txt"), category);
     }
 
     public void daumNews(Elements elements, String category) {

@@ -25,6 +25,16 @@ import VuetifyBoardListPage from '../views/VuetifyBoardListPage.vue'
 // For Crawling
 import CrawlCategory from '../views/CrawlCategory.vue'
 
+// Sports Gall
+import SportsBoard from '../views/SportsBoard.vue'
+import VueRegister from '../views/VueRegister.vue'
+import VueLogin from '../views/VueLogin.vue'
+import VueGall from '../views/VueGall.vue'
+import VueListPage from '../views/VueListPage.vue'
+import VueReadPage from '../views/VueReadPage.vue'
+import VueModifyPage from '../views/VueModifyPage.vue'
+import SportsRank from '../views/SportsRank.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -67,14 +77,14 @@ const routes = [
     }
   },
   {
-    path: '/board/create',
+    path: '/board/created',
     name: 'BoardRegisterPage',
     components: {
       default: BoardRegisterPage
     }
   },
   {
-    path: '/board/:boardNo',
+    path: '/board/:boardNoo',
     name: 'BoardReadPage',
     components: {
       default: BoardReadPage
@@ -84,7 +94,7 @@ const routes = [
     }
   },
   {
-    path: '/board/:boardNo/edit',
+    path: '/board/:boardNo/editing',
     name: 'BoardModifyPage',
     components: {
       default: BoardModifyPage
@@ -127,6 +137,68 @@ const routes = [
     name: 'CrawlCategory',
     components: {
       default: CrawlCategory
+    }
+  },
+  {
+    path: '/VueLogin',
+    name: 'VueLogin',
+    components: {
+      default: VueLogin
+    }
+  },
+  {
+    path: '/VueRegister',
+    name: 'VueRegister',
+    components: {
+      default: VueRegister
+    }
+  },
+  {
+    path: '/VueGall',
+    name: 'VueGall',
+    components: {
+      default: VueGall
+    }
+  },
+  {
+    path: '/SportsBoard',
+    name: 'SportsBoard',
+    components: {
+      default: SportsBoard
+    }
+  },
+  {
+    path: '/VueGall/create',
+    name: 'VueListPage',
+    components: {
+      default: VueListPage
+    }
+  },
+  {
+    path: '/VueGall/:boardNo',
+    name: 'VueReadPage',
+    components: {
+      default: VueReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/VueGall/:boardNo/VueModifyPage',
+    name: 'VueModifyPage',
+    components: {
+      default: VueModifyPage
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/SportsRank',
+    name: 'SportsRank',
+    components: {
+      default: SportsRank
     }
   }
 ]

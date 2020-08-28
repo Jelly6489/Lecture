@@ -1,6 +1,11 @@
 <template>
   <div align="center">
     <h2>Vuetify Real Board List</h2>
+    <router-link :to="{ name: 'Home' }"
+        class="nav-link"
+        active-class="active">
+      Home
+    </router-link><br>
     <router-link :to="{ name: 'BoardRegisterPage' }">
       Create New Board
     </router-link>

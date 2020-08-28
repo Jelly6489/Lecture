@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
         memEntity.setJob(member.getJob());
 
         MemberAuth memberAuth = new MemberAuth();
-        memberAuth.setAuth("ROLE_MEMBER");
+        memberAuth.setAuth("MEMBER");
 
         memEntity.addAuth(memberAuth);
 
@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
         memEntity.setJob(member.getJob());
 
         MemberAuth memberAuth = new MemberAuth();
-        memberAuth.setAuth("ROLE_ADMIN");
+        memberAuth.setAuth("ADMIN");
 
         memEntity.addAuth(memberAuth);
 

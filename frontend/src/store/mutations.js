@@ -17,7 +17,9 @@ import {
   DESTROY_ACCESS_TOKEN,
   DESTROY_MY_INFO,
   CRAWLSTART,
-  FINDONE
+  FINDONE,
+  RANKSTART,
+  FINDRANK
 } from './mutation-types'
 
 import axios from 'axios'
@@ -29,6 +31,12 @@ export default {
   },
   [FINDONE] (state, payload) {
     state.news = payload
+  },
+  [RANKSTART] (state, payload) {
+    state.rlists = payload
+  },
+  [FINDRANK] (state, payload) {
+    state.rank = payload
   },
   [ADD_TODO] (state, payload) {
     const { content } = payload

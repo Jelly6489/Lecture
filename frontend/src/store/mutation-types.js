@@ -28,3 +28,9 @@ export const CRAWLSTART = 'CRAWLSTART'
 export const FINDONE = 'FINDONE'
 export const FINDHOME = 'FINDHOME'
 export const BOOLEAN = 'BOOLEAN'
+
+// For Rank
+export const RANK_LISTS = 'RANK_LISTS'
+export const RANKSTART = 'RANKSTART'
+export const FINDRANK = 'FINDRANK'
+export const FINDRANKHOME = 'FINDRANKHOME'

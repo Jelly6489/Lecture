@@ -17,19 +17,40 @@ import {
   /* Crawl */
   FINDONE,
   FINDHOME,
-  CRAWLSTART
+  CRAWLSTART,
+  /* Rank */
+  FINDRANK,
+  FINDRANKHOME,
+  RANKSTART
 } from './mutation-types'
 
 import axios from 'axios'
 import router from '../router'
 
 export default {
+  async rankFind ({ commit }, value) {
+    axios.get('http://localhost:7777/' + `${value}`)
+      .then(({ data }) => {
+        commit('RANKSTART', data)
+        if (window.location.pathname !== '/SportsRank') {
+          router.push('/SportsRank')
+        }
+      })
+  },
+  async rankFindOne ({ commit }, rankNo) {
+    axios.get('http://localhost:7777/rank/' + `${rankNo}`)
+      .then(({ data }) => {
+        console.log('/rank/rankNo res: ' + data)
+        commit('FINDRANK', data)
+        router.push('/SportsRank/rank')
+      })
+  },
   async crawlFind ({ commit }, category) {
     axios.get('http://localhost:7777/' + `${category}`)
       .then(({ data }) => {
         commit('CRAWLSTART', data)
-        if (window.location.pathname !== '/CrawlCategory') {
-          router.push('/CrawlCategory')
+        if (window.location.pathname !== '/SportsBoard') {
+          router.push('/SportsBoard')
         }
       })
   },
@@ -38,7 +59,7 @@ export default {
       .then(({ data }) => {
         console.log('/news/newsNo res: ' + data)
         commit('FINDONE', data)
-        router.push('/CrawlCategory/news')
+        router.push('/SportsBoard/news')
       })
   },
   fetchBoardList ({ commit }) {

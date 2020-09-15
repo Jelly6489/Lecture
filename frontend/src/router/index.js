@@ -185,7 +185,7 @@ const routes = [
     }
   },
   {
-    path: '/VueGall/:boardNo/VueModifyPage',
+    path: '/VueGall/:boardNo/editing',
     name: 'VueModifyPage',
     components: {
       default: VueModifyPage

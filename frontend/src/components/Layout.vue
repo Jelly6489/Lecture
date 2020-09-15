@@ -83,7 +83,6 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-
     </div>
 
       <div id="header" v-else>
@@ -132,7 +131,7 @@
 
     <v-footer
       app
-      color="orange"
+      color="lime lighten-2"
       class="white--text"
       padless
     >

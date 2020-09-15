@@ -38,13 +38,16 @@
             required>
           </v-text-field><br>
 
-          <v-text-field
-            input type="text"
+        <v-container>
+          <v-textarea
+            background-color="amber lighten-4"
             v-model="board.content"
+            color="orange orange-darken-4"
             label="Content"
             readonly
-            required>
-          </v-text-field>
+            required
+          ></v-textarea>
+        </v-container>
         </v-col>
       </form>
     </v-app>

@@ -1,6 +1,5 @@
 package com.example.Lecture;
 
-import com.example.Lecture.nativeinterface.test.HelloSpring;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -15,9 +14,9 @@ public class LectureApplication {
 	// SpringApplication.run 하면
 	// 웹 서버가 구동된다 - 서비스 번호: 8080
 	public static void main(String[] args) {
-		HelloSpring hs = new HelloSpring();
-		log.info(hs.print());
-
+//		HelloSpring hs = new HelloSpring();
+//		log.info(hs.print());
+//
 		SpringApplication.run(LectureApplication.class, args);
 	}
 }

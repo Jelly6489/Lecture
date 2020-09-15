@@ -37,14 +37,13 @@
             >
           </v-text-field><br>
 
-        <v-container>
-          <v-textarea
-            background-color="amber lighten-4"
+          <v-text-field
+            input type="text"
             v-model="content"
-            color="orange orange-darken-4"
             label="Content"
-          ></v-textarea>
-        </v-container>
+            rows="5"
+            >
+          </v-text-field><br>
 
         </v-col>
         <div>
@@ -82,4 +81,6 @@ export default {
     this.content = this.board.content
   }
 }
-</script>
+-----------------------------------------------------------
+// <th align="center" width="200" class="numeric">조회수</th>
+// <td class="numeric">조회</td>

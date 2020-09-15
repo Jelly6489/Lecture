@@ -16,6 +16,8 @@
 //    reg_date timestamp not null default now(),
 //    primary key(board_no));
 
+// create table cafe_board( board_no int not null auto_increment, title varchar(200) not null, content text null, writer varchar(50) not null, reg_date timestamp not null, primary key(board_no));
+
 // 6-1 실제) create table ItemMania( id_no int not null auto_increment,
 //    id varchar(30) not null,
 //    pw varchar(50) not null,
@@ -52,7 +54,8 @@
 // 7-4. read(게시글을 실제로 읽을 수 있도록 만들어본다.)
 // 7-5. modify(게시글을 수정할 수 있도록 만들어본다.)
 
-
+// mysql 게시판 채우기
+// insert into cafe_board (title, content, writer) (select title, content, writer from cafe_board);
 
 
 

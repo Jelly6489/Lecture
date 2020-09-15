@@ -17,8 +17,15 @@
             dense
             floating>
 
+            <select class="form-control"  style="font-size:12pt; background-color: white;">
+              <option disabled value="">검색 조건</option>
+              <option value="page.title == null? selected: ''">제목</option>
+              <option value="page.writer == null? selected: ''">작성자</option>
+            </select>
+            <span>{{ selected }}</span>
+
             <input
-            style="font-size:20pt; color:black; font-weight-bold; border: red 1px solid; background-color: white;"
+            style="font-size:15pt; color:black; font-weight-bold; border: red 1px solid; background-color: white;"
             class="stage-search"
             type="text"
             placeholder="검색"
@@ -35,10 +42,10 @@
           </v-toolbar><br><br>
             <table border="1">
               <tr height="50">
-                <th align="center" width="80" height="50">No</th>
-                <th align="center" width="500">Title</th>
-                <th align="center" width="200">Writer</th>
-                <th align="center" width="200">Registration Date</th>
+                <th align="center" width="80" height="50">번호</th>
+                <th align="center" width="500">제목</th>
+                <th align="center" width="200">작성자</th>
+                <th align="center" width="200">작성일</th>
               </tr>
               <tr v-if="!paginatedData || (Array.isArray(paginatedData) && paginatedData.length === 0)">
                 <td colspan="4">
@@ -54,7 +61,7 @@
                   </router-link>
                 </td>
                 <td>{{ page.writer }}</td>
-                <td>{{ page.regDate }}</td>
+                <td>{{ page.regDate | moment('YYYY-MM-DD HH:mm:ss') }}</td>
               </tr>
             </table>
             <div class="btn-cover">
@@ -78,6 +85,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import vueMoment from 'vue-moment'
+Vue.use(vueMoment)
+
 export default {
   name: 'SportBoardListForm',
   data () {

@@ -34,7 +34,7 @@ import VueListPage from '../views/VueListPage.vue'
 import VueReadPage from '../views/VueReadPage.vue'
 import VueModifyPage from '../views/VueModifyPage.vue'
 import SportsRank from '../views/SportsRank.vue'
-import button from '../views/button.vue'
+import SportsGalleryForm from '../components/SportsGalleryForm.vue'
 
 Vue.use(VueRouter)
 
@@ -203,10 +203,10 @@ const routes = [
     }
   },
   {
-    path: '/button',
-    name: 'button',
+    path: '/SportsGalleryForm',
+    name: 'SportsGalleryForm',
     components: {
-      default: button
+      default: SportsGalleryForm
     }
   }
 ]

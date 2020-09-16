@@ -29,8 +29,10 @@
                 required>
               </v-text-field><br>
             </v-col>
-            <v-btn color="light-blue" class="mr-4" type="submit">Login</v-btn>
-            <v-btn :to="{ name: 'SportsBoard' }">Back</v-btn>
+            <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1"
+            class="mr-4" type="submit">Login</v-btn>
+            <v-btn v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
+            :to="{ name: 'SportsBoard' }">Back</v-btn>
           </form>
         </v-app>
       </v-responsive>
@@ -44,10 +46,28 @@ export default {
   data () {
     return {
       userid: '',
-      password: ''
+      password: '',
+      mystyle1: {
+        backgroundColor: 'white'
+      },
+      mystyle2: {
+        backgroundColor: 'white'
+      }
     }
   },
   methods: {
+    changebgcolor1: function () {
+      this.mystyle1.backgroundColor = '#81D4FA'
+    },
+    originalcolor1: function () {
+      this.mystyle1.backgroundColor = 'white'
+    },
+    changebgcolor2: function () {
+      this.mystyle2.backgroundColor = '#81D4FA'
+    },
+    originalcolor2: function () {
+      this.mystyle2.backgroundColor = 'white'
+    },
     submit () {
       console.log('AdminLoginForm submit()')
       const { userid, password } = this

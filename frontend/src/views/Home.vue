@@ -13,10 +13,10 @@
           active-class="active">
         게시판
       </router-link>
-      <router-link :to="{ name: 'CrawlCategory' }"
+      <router-link :to="{ name: 'VuetifyBoard' }"
           class="nav-link"
           active-class="active">
-        CrawlCategory
+        VuetifyBoard
       </router-link>
       <h2>This is an Home Page</h2>
       <div id="app">

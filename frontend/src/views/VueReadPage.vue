@@ -2,11 +2,14 @@
   <div align="center" >
     <v-app id="inspire"><br>
       <form>
-        <vue-list-read-form v-if="board" :board="board" @submit="onSubmit"/>
+        <vue-list-read-form v-if="board" :board="board"/>
         <p v-else>Loading ...</p>
-        <v-btn class="mr-4" type="submit" :to="{ name: 'VueModifyPage', params: { boardNo } }">수정</v-btn>
-        <v-btn class="mr-4" @click="onDelete">삭제</v-btn>
-        <v-btn :to="{ name: 'VueGall' }">Back</v-btn>
+        <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1"
+        class="mr-4" type="submit" :to="{ name: 'VueModifyPage', params: { boardNo } }">수정</v-btn>
+        <v-btn v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
+        class="mr-4" @click="onDelete">삭제</v-btn>
+        <v-btn v-bind:style = "mystyle3" v-on:mouseover = "changebgcolor3" v-on:mouseout = "originalcolor3"
+        :to="{ name: 'VueGall' }">Back</v-btn>
       </form>
     </v-app>
   </div>
@@ -23,6 +26,19 @@ export default {
     boardNo: {
       type: String,
       required: true
+    }
+  },
+  data () {
+    return {
+      mystyle1: {
+        backgroundColor: 'white'
+      },
+      mystyle2: {
+        backgroundColor: 'white'
+      },
+      mystyle3: {
+        backgroundColor: 'white'
+      }
     }
   },
   components: {
@@ -42,6 +58,24 @@ export default {
       })
   },
   methods: {
+    changebgcolor1: function () {
+      this.mystyle1.backgroundColor = '#81D4FA'
+    },
+    originalcolor1: function () {
+      this.mystyle1.backgroundColor = 'white'
+    },
+    changebgcolor2: function () {
+      this.mystyle2.backgroundColor = '#81D4FA'
+    },
+    originalcolor2: function () {
+      this.mystyle2.backgroundColor = 'white'
+    },
+    changebgcolor3: function () {
+      this.mystyle3.backgroundColor = '#81D4FA'
+    },
+    originalcolor3: function () {
+      this.mystyle3.backgroundColor = 'white'
+    },
     ...mapActions([
       'fetchBoard'
     ]),

@@ -26,9 +26,9 @@
           ></v-textarea>
         </v-container>
 
-        <div>
-          <v-btn class="mr-4" type="submit">작성</v-btn>
-          <v-btn :to="{ name: 'VueGall' }">취소</v-btn>
+        <div id = "btnex">
+          <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1" class="mr-4" type="submit">작성</v-btn>
+          <v-btn v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2" :to="{ name: 'VueGall' }">취소</v-btn>
         </div>
       </form>
     </v-app>
@@ -42,10 +42,28 @@ export default {
     return {
       title: '',
       writer: '',
-      content: ''
+      content: '',
+      mystyle1: {
+        backgroundColor: 'white'
+      },
+      mystyle2: {
+        backgroundColor: 'white'
+      }
     }
   },
   methods: {
+    changebgcolor1: function () {
+      this.mystyle1.backgroundColor = '#81D4FA'
+    },
+    originalcolor1: function () {
+      this.mystyle1.backgroundColor = 'white'
+    },
+    changebgcolor2: function () {
+      this.mystyle2.backgroundColor = '#81D4FA'
+    },
+    originalcolor2: function () {
+      this.mystyle2.backgroundColor = 'white'
+    },
     onSubmit () {
       const { title, writer, content } = this
       this.$emit('submit', { title, writer, content })

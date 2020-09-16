@@ -22,7 +22,6 @@
               <option value="page.title == null? selected: ''">제목</option>
               <option value="page.writer == null? selected: ''">작성자</option>
             </select>
-            <span>{{ selected }}</span>
 
             <input
             style="font-size:15pt; color:black; font-weight-bold; border: red 1px solid; background-color: white;"
@@ -74,8 +73,10 @@
                 @click="nextPage" class="page-btn">
                 다음
               </button><br><br>
-              <v-btn class="mr-4" type="submit" :to="{ name: 'VueListPage' }">작성</v-btn>
-              <v-btn :to="{ name: 'SportsBoard' }">Back</v-btn>
+              <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1"
+              class="mr-4" type="submit" :to="{ name: 'VueListPage' }">작성</v-btn>
+              <v-btn v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
+              :to="{ name: 'SportsBoard' }">Back</v-btn>
             </div>
           </form>
         </v-app>
@@ -93,7 +94,13 @@ export default {
   name: 'SportBoardListForm',
   data () {
     return {
-      pageNum: 0
+      pageNum: 0,
+      mystyle1: {
+        backgroundColor: 'white'
+      },
+      mystyle2: {
+        backgroundColor: 'white'
+      }
     }
   },
   props: {
@@ -103,7 +110,6 @@ export default {
     },
     pageSize: {
       type: Number,
-      required: true,
       default: 5
     },
     boards: {
@@ -111,6 +117,18 @@ export default {
     }
   },
   methods: {
+    changebgcolor1: function () {
+      this.mystyle1.backgroundColor = '#81D4FA'
+    },
+    originalcolor1: function () {
+      this.mystyle1.backgroundColor = 'white'
+    },
+    changebgcolor2: function () {
+      this.mystyle2.backgroundColor = '#81D4FA'
+    },
+    originalcolor2: function () {
+      this.mystyle2.backgroundColor = 'white'
+    },
     nextPage () {
       this.pageNum += 1
     },

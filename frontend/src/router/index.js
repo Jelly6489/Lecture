@@ -34,6 +34,7 @@ import VueListPage from '../views/VueListPage.vue'
 import VueReadPage from '../views/VueReadPage.vue'
 import VueModifyPage from '../views/VueModifyPage.vue'
 import SportsRank from '../views/SportsRank.vue'
+import button from '../views/button.vue'
 
 Vue.use(VueRouter)
 
@@ -199,6 +200,13 @@ const routes = [
     name: 'SportsRank',
     components: {
       default: SportsRank
+    }
+  },
+  {
+    path: '/button',
+    name: 'button',
+    components: {
+      default: button
     }
   }
 ]

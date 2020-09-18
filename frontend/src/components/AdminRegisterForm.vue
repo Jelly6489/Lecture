@@ -38,10 +38,10 @@
 
               </v-col>
               <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1"
-              class="mr-4" type="submit">oK</v-btn>
+              class="mr-4" @click="submit">oK</v-btn>
               <v-btn v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
-              class="mr-4" type="@click">ID 중복체크</v-btn>
-              <v-btn v-bind:style = "mystyle3" v-on:mouseover = "changebgcolor3" v-on:mouseout = "originalcolor3"
+              class="mr-4" @click="idCheck">ID 중복체크</v-btn>
+              <v-btn dark v-bind:style = "mystyle3" v-on:mouseover = "changebgcolor3" v-on:mouseout = "originalcolor3"
               :to="{ name: 'SportsBoard' }">Back</v-btn>
             </form>
         </v-app>
@@ -65,7 +65,7 @@ export default {
         backgroundColor: 'white'
       },
       mystyle3: {
-        backgroundColor: 'white'
+        backgroundColor: 'black'
       }
     }
   },
@@ -86,7 +86,7 @@ export default {
       this.mystyle3.backgroundColor = '#81D4FA'
     },
     originalcolor3: function () {
-      this.mystyle3.backgroundColor = 'white'
+      this.mystyle3.backgroundColor = 'black'
     },
     submit () {
       console.log('this: ' + this.userId +
@@ -94,6 +94,11 @@ export default {
                   ', ' + this.userPw)
       const { userId, userName, userPw } = this
       this.$emit('submit', { userId, userName, userPw })
+    },
+    idCheck () {
+      console.log('AdminRegisterForm click()')
+      const { userid } = this
+      this.$emit('idCheck', { userid })
     }
   }
 }

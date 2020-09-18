@@ -35,22 +35,27 @@
         게시판</v-btn>
     </template>
       <template #content>
-        <v-simple-table>
-          <template v-slot:default>
-            <thead>
-              <tr>
-                <th class="text-left">No.</th>
-                <th class="text-left">제목</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="list of lists" :key="list.title">
-                <td style="color: gray">{{ list.newsNo }}</td>
-                <td><a href="${list.address}">{{ list.title }}</a></td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
+        <v-card>
+          <v-card-title>
+            News
+          </v-card-title>
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">No.</th>
+                  <th class="text-left">제목</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="list of lists" :key="list.title">
+                  <td style="color: gray">{{ list.newsNo }}</td>
+                  <td><a href="${list.address}">{{ list.title }}</a></td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-card>
       </template>
   </Layout>
 </template>

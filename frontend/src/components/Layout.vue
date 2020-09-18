@@ -131,7 +131,7 @@
 
     <v-footer
       app
-      color="lime lighten-2"
+      color="amber"
       class="white--text"
       padless
     >
@@ -165,10 +165,10 @@ export default {
       (window.location.pathname !== '/VueLogin') ? router.push('/VueLogin') : router.go(0)
     },
     home () {
-      (window.location.pathname !== '/SportsBoard') ? router.push('/SportsBoard') : router.go(0)
+      (window.location.pathname !== '/') ? router.push('/') : router.go(0)
     },
     category () {
-      (window.location.pathname !== '/SportsBoard') ? router.push('/SportsBoard') : router.go(0)
+      (window.location.pathname !== '/') ? router.push('/') : router.go(0)
     },
     rank () {
       (window.location.pathname !== '/SportsRank') ? router.push('/SportsRank') : router.go(0)
@@ -181,7 +181,7 @@ export default {
     },
     onClickLogout () {
       this.logout()
-      alert('Success Logout')
+      alert('Logout')
       this.$router.push({ name: 'SportsBoard' }).catch(err => {
         console.log('Logout Fail: ', err)
       })

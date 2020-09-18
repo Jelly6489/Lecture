@@ -49,8 +49,8 @@ export default {
     axios.get('http://localhost:7777/' + `${category}`)
       .then(({ data }) => {
         commit('CRAWLSTART', data)
-        if (window.location.pathname !== '/SportsBoard') {
-          router.push('/SportsBoard')
+        if (window.location.pathname !== '/') {
+          router.push('/')
         }
       })
   },
@@ -59,7 +59,7 @@ export default {
       .then(({ data }) => {
         console.log('/news/newsNo res: ' + data)
         commit('FINDONE', data)
-        router.push('/SportsBoard/news')
+        router.push('//news')
       })
   },
   fetchBoardList ({ commit }) {
@@ -122,6 +122,24 @@ export default {
     console.log('actions login')
     return axios.post(`http://localhost:7777/api/authenticate?username=${payload.userid}&password=${payload.password}`, {
       username: payload.userid,
+      password: payload.password
+    }).then(res => {
+      console.log('actions after post')
+      const { authorization } = res.headers
+      const accessToken = authorization.substring(7)
+
+      commit(SET_ACCESS_TOKEN, accessToken)
+
+      return axios.get('http://localhost:7777/users/myinfo')
+    }).then(res => {
+      console.log('After Get Auth Info')
+      commit(SET_MY_INFO, res.data)
+    })
+  },
+  checkId ({ commit }, payload) {
+    console.log('actions checkId')
+    return axios.post(`http://localhost:7777/api/authenticate?username=${payload.userId}`, {
+      username: payload.userId,
       password: payload.password
     }).then(res => {
       console.log('actions after post')

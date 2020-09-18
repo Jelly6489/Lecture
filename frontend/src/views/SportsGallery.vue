@@ -1,28 +1,32 @@
 <template>
-  <v-card>
-    <v-card-title>
-      Nutrition
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="desserts"
-      :search="search"
-    ></v-data-table>
-  </v-card>
+  <div align="center">
+    <sports-gallery-form :list-array="pageArray"/>
+  </div>
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        search: '',
-        headers: [
-          {
+import axios from 'axios'
+import SportsGalleryForm from '@/components/SportsGalleryForm.vue'
+
+export default {
+  name: 'SportsGallery',
+  components: {
+    SportsGalleryForm
+  },
+  data () {
+    return {
+      pageArray: []
+    }
+  },
+  created () {
+    axios.get('http://localhost:7777/boards')
+      .then(res => {
+        console.log(res)
+        this.pageArray = res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
+</script>

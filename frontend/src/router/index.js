@@ -34,13 +34,17 @@ import VueListPage from '../views/VueListPage.vue'
 import VueReadPage from '../views/VueReadPage.vue'
 import VueModifyPage from '../views/VueModifyPage.vue'
 import SportsRank from '../views/SportsRank.vue'
-import SportsGalleryForm from '../components/SportsGalleryForm.vue'
+import SportsGallery from '../views/SportsGallery.vue'
 
+//
+// import Index from '../components/IndexPage.vue'
+// import Show from '../components/ShopPage.vue'
+//
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home
   },
@@ -155,28 +159,28 @@ const routes = [
     }
   },
   {
-    path: '/VueGall',
+    path: '/SportsGall',
     name: 'VueGall',
     components: {
       default: VueGall
     }
   },
   {
-    path: '/SportsBoard',
+    path: '/',
     name: 'SportsBoard',
     components: {
       default: SportsBoard
     }
   },
   {
-    path: '/VueGall/create',
+    path: '/SportsGall/create',
     name: 'VueListPage',
     components: {
       default: VueListPage
     }
   },
   {
-    path: '/VueGall/:boardNo',
+    path: '/SportsGall/:boardNo',
     name: 'VueReadPage',
     components: {
       default: VueReadPage
@@ -186,7 +190,7 @@ const routes = [
     }
   },
   {
-    path: '/VueGall/:boardNo/editing',
+    path: '/SportsGall/:boardNo/editing',
     name: 'VueModifyPage',
     components: {
       default: VueModifyPage
@@ -203,10 +207,10 @@ const routes = [
     }
   },
   {
-    path: '/SportsGalleryForm',
-    name: 'SportsGalleryForm',
+    path: '/SportsGallery',
+    name: 'SportsGallery',
     components: {
-      default: SportsGalleryForm
+      default: SportsGallery
     }
   }
 ]

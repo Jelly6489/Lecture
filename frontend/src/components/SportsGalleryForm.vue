@@ -1,124 +1,83 @@
 <template>
-  <v-card>
-    <v-card-title>
-      Nutrition
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="desserts"
-      :search="search"
-    ></v-data-table>
-  </v-card>
+  <v-app id="inspire"><br>
+    <form @submit.prevent="submit">
+      <v-container grid-list-md>
+        <v-layout row wrap>
+
+          <!-- <v-flex xs12 sm6 md4 v-if="!paginatedData || (Array.isArray(paginatedData) && paginatedData.length === 0)">
+            List is empty
+          </v-flex> -->
+
+          <!-- <v-flex xs12 sm6 md4 v-else v-for="page in paginatedData" :key="page.boardNo">
+            {{ page }}
+          </v-flex> -->
+          <v-flex xs12>
+            <v-data-table
+              :headers="headers"
+              :items="paginatedData"
+              class="elevation-1">
+              <template slot="items" slot-scope="props">
+                <td>{{ props.item.boardNo }}</td>
+                <td>
+                  <router-link :to="{ name: 'VueReadPage',
+                          params: { boardNo: item.boardNo.toString() } }">
+                    {{ props.item.title }}
+                  </router-link>
+                </td>
+                <td>{{ props.item.writer }}</td>
+                <td>{{ props.item.regDate }}</td>
+              </template>
+            </v-data-table>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </form>
+  </v-app>
 </template>
 
 <script>
 export default {
+  name: 'SportsGalleryForm',
   data () {
     return {
-      search: '',
+      board: [],
       headers: [
-        {
-          text: 'Dessert (100g serving)',
-          align: 'start',
-          sortable: false,
-          value: 'name'
-        },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' }
-      ],
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: '1%'
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: '1%'
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: '7%'
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: '8%'
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: '16%'
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: '0%'
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: '2%'
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: '45%'
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: '22%'
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: '6%'
-        }
+        { text: '번호', value: 'boardNo', sortable: false, class: 'hidden-sm-and-down' },
+        { text: '제목', value: 'title', sortable: false },
+        { text: '글쓴이', value: 'writer', sortable: false },
+        { text: '작성일', value: 'regDate', sortable: false }
       ]
+    }
+  },
+  props: {
+    listArray: {
+      type: Array,
+      required: true
+    },
+    pageSize: {
+      type: Number,
+      default: 5
+    },
+    boards: {
+      type: Array
+    }
+  },
+  computed: {
+    pageCount () {
+      const listLen = this.listArray.length
+      const listSize = this.pageSize
+
+      let page = Math.floor(listLen / listSize)
+      if (listLen % listSize > 0) {
+        page += 1
+      }
+
+      return page
+    },
+    paginatedData () {
+      const start = this.pageNum * this.pageSize
+      const end = start + this.pageSize
+      return this.listArray.slice(start, end)
     }
   }
 }

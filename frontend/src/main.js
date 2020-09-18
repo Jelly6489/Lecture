@@ -5,6 +5,10 @@ import store from './store'
 import cookies from 'vue-cookies'
 import vuex from 'vuex'
 import vuetify from './plugins/vuetify'
+//
+import axios from 'axios'
+Vue.prototype.$http = axios
+//
 
 Vue.config.productionTip = false
 

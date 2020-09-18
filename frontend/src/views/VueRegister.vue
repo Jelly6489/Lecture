@@ -1,11 +1,12 @@
 <template>
   <div align="center">
-    <admin-register-form @submit="onSubmit"/>
+    <admin-register-form @submit="onSubmit" @idCheck="onClick"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import { mapActions } from 'vuex'
 import AdminRegisterForm from '@/components/AdminRegisterForm.vue'
 
 export default {
@@ -30,7 +31,16 @@ export default {
         .catch(err => {
           alert(err.response.data)
         })
-    }
+    },
+    onClick (payload) {
+      console.log('VueRegister onClick()')
+      this.checkId(payload).then(res => {
+        alert('사용 불가')
+      }).catch(err => { /* eslint handle-callback-err: "warn" */
+        alert('사용 가능')
+      })
+    },
+    ...mapActions(['checkId'])
   }
 }
 </script>

@@ -17,11 +17,11 @@ export default {
     onSubmit (payload) {
       console.log('VueLogin onSubmit()')
       this.login(payload).then(res => {
-        alert('Login Success')
+        alert('ok')
         this.$router.push({ name: 'SportsBoard' })
       }).catch(err => {
         // alert(err.response.data.message)
-        alert('Something Fail: ', err)
+        alert('Fail: ', err)
       })
     },
     ...mapActions(['login'])

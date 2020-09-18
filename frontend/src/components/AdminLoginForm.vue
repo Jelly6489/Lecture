@@ -31,7 +31,7 @@
             </v-col>
             <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1"
             class="mr-4" type="submit">Login</v-btn>
-            <v-btn v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
+            <v-btn dark v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
             :to="{ name: 'SportsBoard' }">Back</v-btn>
           </form>
         </v-app>
@@ -51,7 +51,7 @@ export default {
         backgroundColor: 'white'
       },
       mystyle2: {
-        backgroundColor: 'white'
+        backgroundColor: 'black'
       }
     }
   },
@@ -66,7 +66,7 @@ export default {
       this.mystyle2.backgroundColor = '#81D4FA'
     },
     originalcolor2: function () {
-      this.mystyle2.backgroundColor = 'white'
+      this.mystyle2.backgroundColor = 'black'
     },
     submit () {
       console.log('AdminLoginForm submit()')

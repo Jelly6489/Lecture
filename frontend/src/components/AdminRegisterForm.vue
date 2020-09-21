@@ -54,6 +54,7 @@
 
 <script>
 import $ from 'jquery'
+import mysql from 'mysql'
 export default {
   name: 'AdminRegisterForm',
   data () {
@@ -78,9 +79,10 @@ export default {
       host: 'localhost',
       port: 3306,
       user: 'bitai',
-      password: '456123',와
+      password: '456123',
       database: 'testdb'
-    })
+    });
+    connection.connect();
     var query = connection.query('select user_id from member')
     $('.btn_id2').click( function() {
       if($('.userid').val() == query) {

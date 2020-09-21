@@ -23,5 +23,6 @@ export default {
   rank: [],
   homeRank: [],
   savedRank: [],
-  savedRankContents: []
+  savedRankContents: [],
+  err: 0
 }

@@ -1,20 +1,17 @@
 module.exports = {
-  transpileDependencies: [
-    'vuetify'
-  ]
-}
-
-module.exports = {
-  devServer: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000/api',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
+  "devServer": {
+    "proxy": {
+      "/api": {
+        "target": "http://localhost:3000/api",
+        "changeOrigin": true,
+        "pathRewrite": {
+          "^/api": ""
         }
       }
     }
   },
-  outputDir: '../backend/public',
+  "outputDir": "../backend/public",
+  "transpileDependencies": [
+    "vuetify"
+  ]
 }

@@ -5,6 +5,9 @@ import store from './store'
 import cookies from 'vue-cookies'
 import vuex from 'vuex'
 import vuetify from './plugins/vuetify'
+//import $ from 'jquery'
+//import 'expose-loader?$!expose-loader?jQuery!jquery'
+
 //
 import axios from 'axios'
 Vue.prototype.$http = axios

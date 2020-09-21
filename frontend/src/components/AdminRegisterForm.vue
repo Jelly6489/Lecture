@@ -18,6 +18,7 @@
                 <v-text-field
                   input type="text"
                   v-model="userId"
+                  class="userid"
                   label="ID"
                   required>
                 </v-text-field><br>
@@ -40,9 +41,10 @@
               <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1"
               class="mr-4" @click="submit">oK</v-btn>
               <v-btn v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
-              class="mr-4" @click="idCheck">ID 중복체크</v-btn>
+              class="mr-4 btn_id1" @click="idCheck">ID 중복체크</v-btn>
               <v-btn dark v-bind:style = "mystyle3" v-on:mouseover = "changebgcolor3" v-on:mouseout = "originalcolor3"
               :to="{ name: 'SportsBoard' }">Back</v-btn>
+              <v-btn class="btn_id2">shit</v-btn>
             </form>
         </v-app>
       </v-responsive>
@@ -51,6 +53,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
   name: 'AdminRegisterForm',
   data () {
@@ -68,6 +71,23 @@ export default {
         backgroundColor: 'black'
       }
     }
+  },
+  mounted() {
+    var mysql = require('mysql');
+    var connection = mysql.createConnection({
+      host: 'localhost',
+      port: 3306,
+      user: 'bitai',
+      password: '456123',와
+      database: 'testdb'
+    })
+    var query = connection.query('select user_id from member')
+    $('.btn_id2').click( function() {
+      if($('.userid').val() == query) {
+          alert('사용 불가능')
+          console.log('userId:' + query)
+      }
+    });
   },
   methods: {
     changebgcolor1: function () {

@@ -139,8 +139,7 @@ export default {
   checkId ({ commit }, payload) {
     console.log('actions checkId')
     return axios.post(`http://localhost:7777/api/authenticate?username=${payload.userId}`, {
-      username: payload.userId,
-      password: payload.password
+      username: payload.userId
     }).then(res => {
       console.log('actions after post')
       const { authorization } = res.headers

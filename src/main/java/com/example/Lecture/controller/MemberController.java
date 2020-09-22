@@ -2,6 +2,7 @@ package com.example.Lecture.controller;
 
 import com.example.Lecture.entity.Member;
 import com.example.Lecture.entity.MemberAuth;
+import com.example.Lecture.entity.PortTest;
 import com.example.Lecture.security.AuthUtil;
 import com.example.Lecture.service.MemberAuthService;
 import com.example.Lecture.service.MemberService;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -120,4 +122,14 @@ public class MemberController {
 
         return new ResponseEntity<>(auth, HttpStatus.OK);
     }
+
+//    @PostMapping("/idcheck")
+//    public ResponseEntity<Member> Idcheck(@Validated @RequestBody Member member)
+//            throws Exception {
+//        log.info("member.getUserName(): " + member.getUserName());
+//
+//        service.idcheck(member);
+//
+//        return new ResponseEntity<>(member, HttpStatus.OK);
+//    }
 }

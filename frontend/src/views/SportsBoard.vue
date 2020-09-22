@@ -29,7 +29,7 @@
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="grey lighten-5">mdi-mouse</v-icon>
         e스포츠</v-btn>
-      <v-btn x-large rounded :to="{ name: 'VueGall' }" text color="amber lighten-2"
+      <v-btn x-large rounded :to="{ name: 'SportsGalleryView' }" text color="amber lighten-2"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="amber lighten-2">mdi-comment</v-icon>
         게시판</v-btn>
@@ -50,7 +50,7 @@
               <tbody>
                 <tr v-for="list of lists" :key="list.title">
                   <td style="color: gray">{{ list.newsNo }}</td>
-                  <td><a href="${list.address}">{{ list.title }}</a></td>
+                  <td><a :href="list.address" target="_blank">{{ list.title }}</a></td>
                 </tr>
               </tbody>
             </template>

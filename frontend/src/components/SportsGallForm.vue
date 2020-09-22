@@ -1,125 +1,115 @@
 <template>
-  <v-card>
-    <v-card-title>
-      Nutrition
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="desserts"
-      :search="search"
-    ></v-data-table>
-  </v-card>
+  <v-app id="inspire">
+    <div align="center">
+      <v-card width="1200" height="auto">
+        <v-img src="@/assets/skateboard.png" max-height="310"></v-img>
+        <v-card-title>
+          게시판
+          <v-spacer></v-spacer>
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="검색"
+            single-line
+            hide-details
+            append-outer-icon
+            outlined
+            rounded
+            color="#E65100"
+          ></v-text-field>
+        </v-card-title>
+        <v-data-table :headers="headers" :items="items" :search="search" @click:row="titleClick">
+          <template slot="items">
+            <tr v-if="!items || (Array.isArray(items) && items.length === 0)">
+              <td colspan="4">
+                List is empty
+              </td>
+            </tr>
+
+            <tr v-else v-for="board in items" :key="board.boardNo">
+              <td align="center" >{{ board.boardNo }}</td>
+              <td align="left">
+                <router-link :to="{ name: 'BoardReadPage',
+                        params: { boardNo: board.boardNo.toString() } }">
+                  {{ board.title }}
+                </router-link>
+              </td>
+              <td align="right">{{ board.writer }}</td>
+              <td align="center">{{ board.regDate }}</td>
+            </tr>
+          </template>
+        </v-data-table>
+        <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1"
+        class="mr-4" type="submit" :to="{ name: 'VueListPage' }">작성</v-btn>
+        <v-btn dark v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
+        :to="{ name: 'SportsBoard' }">Back</v-btn><br><br>
+      </v-card>
+    </div>
+  </v-app>
 </template>
 
 <script>
 export default {
+  name: 'SportsGallForm',
   data () {
     return {
       search: '',
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: '번호',
           align: 'start',
           sortable: false,
-          value: 'name',
+          value: 'boardNo',
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' },
+        { text: '제목', value: 'title' },
+        { text: '작성자', value: 'writer' },
+        { text: '작성일', value: 'regDate' }
       ],
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: '1%',
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: '1%',
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: '7%',
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: '8%',
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: '16%',
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: '0%',
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: '2%',
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: '45%',
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: '22%',
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: '6%',
-        },
-      ],
+      mystyle1: {
+        backgroundColor: 'white'
+      },
+      mystyle2: {
+        backgroundColor: 'black'
+      }
     }
   },
+  props: {
+    items: Array
+  },
+  methods: {
+    changebgcolor1: function () {
+      this.mystyle1.backgroundColor = '#81D4FA'
+    },
+    originalcolor1: function () {
+      this.mystyle1.backgroundColor = 'white'
+    },
+    changebgcolor2: function () {
+      this.mystyle2.backgroundColor = '#81D4FA'
+    },
+    originalcolor2: function () {
+      this.mystyle2.backgroundColor = 'black'
+    },
+    titleClick (item) {
+      this.$router.push({ name: 'VueReadPage', params: { boardNo: item.boardNo } })
+    }
+  }
 }
 </script>
+<style>
+  table {
+    border: 2px solid #FFC107;
+    border-radius: 3px;
+    background-color: #fff;
+  }
+  th {
+    background-color: #FFECB3;
+    color: rgba(255, 255, 255, 0.66);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -user-select: none;
+  }
+  td {
+    background-color: #FFF8E1;
+  }
+</style>

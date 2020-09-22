@@ -2,6 +2,7 @@ package com.example.Lecture.service;
 
 import com.example.Lecture.entity.Member;
 import com.example.Lecture.entity.MemberAuth;
+import com.example.Lecture.entity.PortTest;
 import com.example.Lecture.repository.MemberRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -111,4 +112,9 @@ public class MemberServiceImpl implements MemberService {
     public long countAll() throws Exception {
         return repository.count();
     }
+
+//    @Override
+//    public boolean idcheck(Member member) throws Exception {
+//        return repository.idcheck(member);
+//    }
 }

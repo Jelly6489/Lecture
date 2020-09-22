@@ -1,6 +1,6 @@
 <template>
-  <Layout>
-    <template #menubar>
+  <SportsRankForm>
+    <template #rankbar>
       <v-btn x-large rounded @click="start('epl')" text color="indigo darken-4"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="indigo darken-4">mdi-soccer</v-icon>
@@ -25,7 +25,7 @@
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="red">mdi-soccer</v-icon>
         에레디비시</v-btn>
-      <v-btn x-large rounded :to="{ name: 'VueGall' }" text color="amber lighten-2"
+      <v-btn x-large rounded :to="{ name: 'SportsGalleryView' }" text color="amber lighten-2"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="amber lighten-2">mdi-soccer</v-icon>
         게시판</v-btn>
@@ -64,15 +64,15 @@
           </template>
         </v-simple-table>
       </template>
-  </Layout>
+  </SportsRankForm>
 </template>
 
 <script>
-import Layout from '../components/Layout'
+import SportsRankForm from '../components/SportsRankForm'
 import { mapState } from 'vuex'
 
 export default {
-  components: { Layout },
+  components: { SportsRankForm },
   computed: {
     ...mapState({
       rlists: state => state.rlists

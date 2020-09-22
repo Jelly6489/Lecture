@@ -35,7 +35,8 @@ import VueReadPage from '../views/VueReadPage.vue'
 import VueModifyPage from '../views/VueModifyPage.vue'
 import SportsRank from '../views/SportsRank.vue'
 import SportsGallery from '../views/SportsGallery.vue'
-
+import SportsGallForm from '../components/SportsGallForm.vue'
+import SportsGalleryView from '../views/SportsGalleryView.vue'
 //
 // import Index from '../components/IndexPage.vue'
 // import Show from '../components/ShopPage.vue'
@@ -212,7 +213,21 @@ const routes = [
     components: {
       default: SportsGallery
     }
-  }
+  },
+  {
+    path: '/SportsGallForm',
+    name: 'SportsGallForm',
+    components: {
+      default: SportsGallForm
+    }
+  },
+   {
+     path: '/Gallery',
+     name: 'SportsGalleryView',
+     components: {
+       default: SportsGalleryView
+     }
+   }
 ]
 
 const router = new VueRouter({

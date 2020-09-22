@@ -24,5 +24,4 @@ export default {
   homeRank: [],
   savedRank: [],
   savedRankContents: [],
-  err: 0
 }

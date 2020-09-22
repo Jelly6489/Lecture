@@ -10,7 +10,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title><div @click="home"><p class="text-h4 font-weight-black">Sports Gall</p></div></v-toolbar-title>
       <v-spacer></v-spacer>
-      <slot name="menubar"></slot>
+      <slot name="rankbar"></slot>
     </v-app-bar>
 
     <v-navigation-drawer

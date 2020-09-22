@@ -47,3 +47,20 @@ export default {
   }
 }
 </script>
+------------------------------------------
+  data () {
+    return {
+      search: '',
+      headers: [
+        {
+          text: '번호',
+          align: 'start',
+          sortable: false,
+          value: 'boardNo',
+        },
+        { text: '제목', value: 'title', sortable: false },
+        { text: '작성자', value: 'writer', sortable: false },
+        { text: '작성일', value: 'regDate', sortable: false }
+      ]
+    }
+  },

@@ -58,7 +58,7 @@
 
         <div id = "btnex">
           <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1" class="mr-4" type="submit">작성</v-btn>
-          <v-btn dark v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2" :to="{ name: 'VueGall' }">취소</v-btn>
+          <v-btn dark v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2" :to="{ name: 'SportsGalleryView' }">취소</v-btn>
         </div>
       </form>
     </v-app>

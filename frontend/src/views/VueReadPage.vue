@@ -10,7 +10,7 @@
           <v-btn v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
           class="mr-4" @click="onDelete">삭제</v-btn>
           <v-btn dark v-bind:style = "mystyle3" v-on:mouseover = "changebgcolor3" v-on:mouseout = "originalcolor3"
-          :to="{ name: 'VueGall' }">Back</v-btn><br><br>
+          :to="{ name: 'SportsGalleryView' }">Back</v-btn><br><br>
         </v-card>
       </form>
     </v-app>
@@ -26,7 +26,6 @@ export default {
   name: 'VueReadPage',
   props: {
     boardNo: {
-      type: String,
       required: true
     }
   },
@@ -85,6 +84,7 @@ export default {
       const { boardNo } = this.board
       axios.delete(`http://localhost:7777/boards/${boardNo}`)
         .then(res => {
+          res.state=0
           alert('Delete Success')
           this.$router.push({ name: 'VueGall' })
         })

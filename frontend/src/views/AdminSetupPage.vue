@@ -33,7 +33,6 @@ export default {
           alert(err.response.data)
         })
     },
-
   }
 }
 </script>

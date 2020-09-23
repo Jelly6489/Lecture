@@ -1,9 +1,6 @@
 package com.example.Lecture.controller;
 
-import com.example.Lecture.entity.Member;
-import com.example.Lecture.entity.Rank;
-import com.example.Lecture.entity.RankHome;
-import com.example.Lecture.entity.RankNews;
+import com.example.Lecture.entity.*;
 import com.example.Lecture.service.RankCrawlService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +30,9 @@ public class RankController {
         return new ResponseEntity<>(rankCrawler.rankFindAll(), HttpStatus.OK);
     }
 
-
 //    @RequestMapping("rank")
 //    public List<RankHome> findRankHome() {
-    @GetMapping("rank")
+    @GetMapping("ranks")
     public ResponseEntity<List<RankHome>> findRankHome(@PathVariable String value) throws Exception {
         log.info("findRankHome()");
 
@@ -48,7 +44,7 @@ public class RankController {
 
 //    @RequestMapping("rank/{rankNo}")
 //    public RankNews crawlingRank(@PathVariable String rankNo) {
-    @GetMapping("rank/{rankNo}")
+    @GetMapping("ranks/{rankNo}")
     public ResponseEntity<RankNews> crawlingRank(@PathVariable String rankNo) throws Exception {
         log.info("crawlingRank(): " + rankNo);
 

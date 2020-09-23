@@ -29,26 +29,28 @@ import router from '../router'
 
 export default {
   async rankFind ({ commit }, value) {
-    axios.get('http://localhost:7777/' + `${value}`)
+    axios.get('http://localhost:7777/rank/' + `${value}`)
       .then(({ data }) => {
         commit('RANKSTART', data)
+        console.log('data:' + data)
         if (window.location.pathname !== '/SportsRank') {
           router.push('/SportsRank')
         }
       })
   },
   async rankFindOne ({ commit }, rankNo) {
-    axios.get('http://localhost:7777/rank/' + `${rankNo}`)
+    axios.get('http://localhost:7777/rank/ranks/' + `${rankNo}`)
       .then(({ data }) => {
-        console.log('/rank/rankNo res: ' + data)
+        console.log('rank/ranks/rankNo res: ' + data)
         commit('FINDRANK', data)
-        router.push('/SportsRank/rank')
+        router.push('ranks')
       })
   },
   async crawlFind ({ commit }, category) {
     axios.get('http://localhost:7777/' + `${category}`)
       .then(({ data }) => {
         commit('CRAWLSTART', data)
+        console.log('data:' + data)
         if (window.location.pathname !== '/') {
           router.push('/')
         }
@@ -59,7 +61,7 @@ export default {
       .then(({ data }) => {
         console.log('/news/newsNo res: ' + data)
         commit('FINDONE', data)
-        router.push('//news')
+        router.push('/news')
       })
   },
   fetchBoardList ({ commit }) {

@@ -134,8 +134,8 @@
     </v-navigation-drawer>
 
     <v-container>
-      <v-content id="content">
-        <slot name="content" class="font">
+      <v-content id="contents">
+        <slot name="contents" class="font">
         </slot>
       </v-content>
     </v-container>
@@ -185,15 +185,15 @@ export default {
       (window.location.pathname !== '/SportsRank') ? router.push('/SportsRank') : router.go(0)
     },
     suggest () {
-      (window.location.pathname !== '/suggestednews/list') ? router.push('/suggestednews/list') : router.go(0)
+      (window.location.pathname !== '/suggestedrank/list') ? router.push('/suggestedrank/list') : router.go(0)
     },
-    savednews () {
-      (window.location.pathname !== '/savednews/list') ? router.push('/savednews/list') : router.go(0)
+    savedrank () {
+      (window.location.pathname !== '/savedrank/list') ? router.push('/savedrank/list') : router.go(0)
     },
     onClickLogout () {
       this.logout()
       alert('Logout')
-      this.$router.push({ name: 'SportsBoard' }).catch(err => {
+      this.$router.push({ name: 'SportsRank' }).catch(err => {
         console.log('Logout Fail: ', err)
       })
     },

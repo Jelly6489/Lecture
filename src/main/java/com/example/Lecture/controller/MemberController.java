@@ -94,21 +94,21 @@ public class MemberController {
         log.info("setupAdmin: member.getUserName(): " + member.getUserName());
         log.info("setupAdmin: service.countAll(): " + service.countAll());
 
-        if (service.countAll() == 0) {
-            String inputPassword = member.getUserPw();
-            member.setUserPw(passwordEncoder.encode(inputPassword));
 
-            member.setJob("Admin");
+        String inputPassword = member.getUserPw();
+        member.setUserPw(passwordEncoder.encode(inputPassword));
 
-            service.setupAdmin(member);
+        member.setJob("Admin");
 
-            return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
-        }
+        service.setupAdmin(member);
 
-        String message = messageSource.getMessage("common.cannotSetupAdmin",
-                null, Locale.KOREAN);
+        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
 
-        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+
+//        String message = messageSource.getMessage("common.cannotSetupAdmin",
+//                null, Locale.KOREAN);
+//
+//        return new ResponseEntity<String>("Fail", HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/myinfo")

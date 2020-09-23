@@ -11,6 +11,7 @@ import lombok.extern.java.Log;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -92,26 +93,66 @@ public class RankCrawlService {
         rankRepository.deleteAll();
 
 
-        daumNews(document.select("div.inner_table>table.tbl_record>tbody>tr"), value);
-        daumNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_rank"), value);
-        daumNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_name"), value);
-        daumNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.selected_on"), value);
+        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr"), value);
+//        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_rank"), value);
+//        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_name"), value);
+//        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_name>a.link_thumb.#team_name"), value);
+//        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_name>a.link_thumb.#team_name"), value);
+//        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.selected_on"), value);
     }
 
-    public void daumNews(Elements elements, String value) {
-        log.info("daumNews(): elements - " + elements + ", value - " + value);
+    public void rankedNews(Elements elements, String value) {
+        log.info("RankNews(): elements - " + elements + ", value - " + value);
 
         Rank rank = null;
 
         for (int i = 0; i < elements.size(); i++) {
+
+            Element el = elements.get(i);
+
             rank = new Rank();
+
+            String rNum = el.select("td_rank").text();
+            String rName = el.select("td_name>a>span.txt_name").text();
+            String rGame = el.select("game").text();
+            String rWin = el.select("win").text();
+            String rDraw = el.select("draw").text();
+            String rLose = el.select("loss").text();
+            String rWp = el.select("gf").text();
+            String rLp = el.select("ga").text();
+            String rD = el.select("gd").text();
+            String rGp = el.select("td.selected_on").text();
+            el.select("").text();
+
+            rank.setRankNo(rNum);
+            rank.setTeam(rName);
+            rank.setGames(rGame);
+            rank.setWin(rWin);
+            rank.setDraw(rDraw);
+            rank.setLose(rLose);
+            rank.setWp(rWp);
+            rank.setLp(rLp);
+            rank.setDifference(rD);
+            rank.setGp(rGp);
+
+            rankRepository.save(rank);
+
+            /*rank = new Rank();
 
             rank.setRankNo(String.valueOf(rankRepository.findAll().size() + 1));
             rank.setAddress(elements.get(i).attr("href"));
-            rank.setValue(value);
+            rank.setDifference(elements.get(i).text());
+            rank.setDraw(elements.get(i).text());
+            rank.setGames(elements.get(i).text());
+            rank.setGp(elements.get(i).text());
+            rank.setLose(elements.get(i).text());
+            rank.setLp(elements.get(i).text());
             rank.setTeam(elements.get(i).text());
+            rank.setValue(value);
+            rank.setWin(elements.get(i).text());
+            rank.setWp(elements.get(i).text());*/
 
-            rankRepository.save(rank);
+//            rankRepository.save(rank);
         }
     }
 

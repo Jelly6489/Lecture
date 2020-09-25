@@ -22,7 +22,7 @@ export default {
           console.log(res)
           alert('작성 완료')
           this.$router.push({
-            name: 'VueReadPage',
+            name: 'SportsGalleryView',
             params: { boardNo: res.data.boardNo.toString() }
           })
         })

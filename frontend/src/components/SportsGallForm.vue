@@ -18,7 +18,7 @@
             color="#E65100"
           ></v-text-field>
         </v-card-title>
-        <v-data-table :headers="headers" :items="items" :search="search" @click:row="titleClick">
+        <v-data-table :headers="headers" :items="items" :search="search"  :items-per-page="10" @click:row="titleClick">
           <template slot="items">
             <tr v-if="!items || (Array.isArray(items) && items.length === 0)">
               <td colspan="4">
@@ -27,15 +27,15 @@
             </tr>
 
             <tr v-else v-for="board in items" :key="board.boardNo">
-              <td align="center" >{{ board.boardNo }}</td>
-              <td align="left">
+              <td>{{ board.boardNo }}</td>
+              <td>
                 <router-link :to="{ name: 'BoardReadPage',
                         params: { boardNo: board.boardNo.toString() } }">
                   {{ board.title }}
                 </router-link>
               </td>
-              <td align="right">{{ board.writer }}</td>
-              <td align="center">{{ board.regDate }}</td>
+              <td>{{ board.writer }}</td>
+              <td>{{ board.regDate }}</td>
             </tr>
           </template>
         </v-data-table>
@@ -57,13 +57,14 @@ export default {
       headers: [
         {
           text: '번호',
-          align: 'start',
+          align: 'center',
           sortable: false,
           value: 'boardNo',
+          width: '5%'
         },
-        { text: '제목', value: 'title' },
-        { text: '작성자', value: 'writer' },
-        { text: '작성일', value: 'regDate' }
+        { text: '제목', value: 'title', width: '30%'},
+        { text: '작성자', value: 'writer', width: '10%', align: 'center' },
+        { text: '작성일', value: 'regDate', width: '10%', align: 'center' }
       ],
       mystyle1: {
         backgroundColor: 'white'

@@ -29,7 +29,7 @@ import router from '../router'
 
 export default {
   async rankFind ({ commit }, value) {
-    axios.get('http://localhost:7777/rank/' + `${value}`)
+    axios.get('http://localhost:7777/ranked/' + `${value}`)
       .then(({ data }) => {
         commit('RANKSTART', data)
         console.log('data:' + data)
@@ -39,11 +39,11 @@ export default {
       })
   },
   async rankFindOne ({ commit }, rankNo) {
-    axios.get('http://localhost:7777/rank/ranks/' + `${rankNo}`)
+    axios.get('http://localhost:7777/rank/' + `${rankNo}`)
       .then(({ data }) => {
-        console.log('rank/ranks/rankNo res: ' + data)
+        console.log('/rank/rankNo res: ' + data)
         commit('FINDRANK', data)
-        router.push('ranks')
+        router.push('/rank')
       })
   },
   async crawlFind ({ commit }, category) {

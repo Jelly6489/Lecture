@@ -69,7 +69,7 @@ public class RankCrawlService {
         log.info("crawlingRankHome()");
 
         rankHomeRepository.deleteAll();
-        document = connectUrl("https://sports.daum.net/worldsoccer");
+        document = connectUrl("https://www.goal.com/kr/");
 
         Elements total = document.select("div.text_area>strong.title");
         Elements image = document.select("li.today_item>a.link_today>div.image.area");
@@ -89,11 +89,13 @@ public class RankCrawlService {
     public void mainRank(String value) {
         log.info("mainRank(): " + value);
 
-        document = connectUrl("https://sports.daum.net/record/" + value);
+        document = connectUrl("https://www.goal.com/kr/" + value);
+        //log.info("document:" + document);
         rankRepository.deleteAll();
 
 
-        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr"), value);
+        rankedNews(document.select("table.p0c-competition-tables__table>tbody>" +
+                "tr.p0c-competition-tables__row.p0c-competition-tables__row-rank-status p0c-competition-table__row--rank-status-1"), value);
 //        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_rank"), value);
 //        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_name"), value);
 //        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_name>a.link_thumb.#team_name"), value);
@@ -104,28 +106,27 @@ public class RankCrawlService {
     public void rankedNews(Elements elements, String value) {
         log.info("RankNews(): elements - " + elements + ", value - " + value);
 
-        Rank rank = null;
+//        Rank rank = null;
 
         for (int i = 0; i < elements.size(); i++) {
 
             Element el = elements.get(i);
 
-            rank = new Rank();
+            Rank rank = new Rank();
 
-            String rNum = el.select("td_rank").text();
-            String rName = el.select("td_name>a>span.txt_name").text();
-            String rGame = el.select("game").text();
-            String rWin = el.select("win").text();
-            String rDraw = el.select("draw").text();
-            String rLose = el.select("loss").text();
-            String rWp = el.select("gf").text();
-            String rLp = el.select("ga").text();
-            String rD = el.select("gd").text();
-            String rGp = el.select("td.selected_on").text();
-            el.select("").text();
+            String rNum = el.select("td").text();
+            String rTeam = el.select("td.p0c-competition-tables__team>a>abbr.p0c-competition-tables__team--short-name").text();
+            String rGame = el.select("td.p0c-competition-tables__matches-played").text();
+            String rWin = el.select("td.p0c-competition-tables__matches-won").text();
+            String rDraw = el.select("td.p0c-competition-tables__matches-drawn").text();
+            String rLose = el.select("td.p0c-competition-tables__matches-lost").text();
+            String rWp = el.select("td.p0c-competition-tables__goals-for").text();
+            String rLp = el.select("td.p0c-competition-tables__goals-against").text();
+            String rD = el.select("td.p0c-competition-tables__goals-diff").text();
+            String rGp = el.select("td.p0c-competition-tables__pts").text();
 
             rank.setRankNo(rNum);
-            rank.setTeam(rName);
+            rank.setTeam(rTeam);
             rank.setGames(rGame);
             rank.setWin(rWin);
             rank.setDraw(rDraw);
@@ -136,6 +137,11 @@ public class RankCrawlService {
             rank.setGp(rGp);
 
             rankRepository.save(rank);
+
+//            log.info("번호" + rank.getRankNo());
+//            log.info("팀" + rTeam);
+//            log.info("경기" + rGame);
+//            log.info("승" + rWin);
 
             /*rank = new Rank();
 

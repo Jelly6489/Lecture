@@ -2,7 +2,7 @@
   <div align="center">
     <v-app id="inspire">
       <form>
-        <v-card width="1000" color="#F0F4C3">
+        <v-card width="1000" color="#E0F2F1">
           <v-img src="@/assets/back1.png" max-height="310"></v-img>
           <vue-list-read-form v-if="board" :board="board"/>
           <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1"
@@ -84,9 +84,9 @@ export default {
       const { boardNo } = this.board
       axios.delete(`http://localhost:7777/boards/${boardNo}`)
         .then(res => {
-          res.state=0
+          res
           alert('Delete Success')
-          this.$router.push({ name: 'VueGall' })
+          this.$router.push({ name: 'SportsGalleryView' })
         })
         .catch(err => {
           alert(err.response.data.message)

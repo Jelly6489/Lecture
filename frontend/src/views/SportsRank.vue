@@ -1,30 +1,30 @@
 <template>
   <SportsRankForm>
     <template #rankbar>
-      <v-btn x-large rounded @click="starts('epl')" text color="indigo darken-4"
+      <v-btn x-large rounded @click="starts('프리미어리그')" text color="indigo darken-4"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="indigo darken-4">mdi-soccer</v-icon>
         프리미어리그</v-btn>
-      <v-btn x-large rounded @click="starts('primera')" text color="indigo darken-4"
+      <v-btn x-large rounded @click="starts('프리메라리가')" text color="indigo darken-4"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="indigo darken-4">mdi-soccer</v-icon>
         라리가</v-btn>
-      <v-btn x-large rounded @click="starts('bundesliga')" text color="cyan"
+      <v-btn x-large rounded @click="starts('분데스리가')" text color="cyan"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="cyan">mdi-soccer</v-icon>
         분데스리가</v-btn>
-      <v-btn x-large rounded @click="starts('seriea')" text color="cyan"
+      <v-btn x-large rounded @click="starts('세리에a')" text color="cyan"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="cyan">mdi-soccer</v-icon>
         세리에A</v-btn>
-      <v-btn x-large rounded @click="starts('ligue1')" text color="green accent-3"
+      <v-btn x-large rounded @click="starts('k리그1')" text color="green accent-3"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="green accent-3">mdi-soccer</v-icon>
-        리그1</v-btn>
-      <v-btn x-large rounded @click="starts('eredivisie')" text color="red"
+        k리그-1</v-btn>
+      <v-btn x-large rounded @click="starts('리게앙')" text color="red"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="red">mdi-soccer</v-icon>
-        에레디비시</v-btn>
+        리게-앙</v-btn>
       <v-btn x-large rounded :to="{ name: 'SportsGalleryView' }" text color="amber lighten-2"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="amber lighten-2">mdi-soccer</v-icon>

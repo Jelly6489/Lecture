@@ -11,7 +11,7 @@
           ></v-app-bar>
 
             <form @submit.prevent="submit">
-            <h1 class="font-weight-bold">회원가입</h1><br>
+            <h1 class="font-weight-bold text-decoration-underline">Create Account</h1><br>
               <v-col
                 cols="10"
                 md="4">
@@ -40,8 +40,6 @@
               </v-col>
               <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1"
               class="mr-4" @click="submit">oK</v-btn>
-              <v-btn v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
-              class="mr-4 btn_id1" @click="idCheck">ID 중복체크</v-btn>
               <v-btn dark v-bind:style = "mystyle3" v-on:mouseover = "changebgcolor3" v-on:mouseout = "originalcolor3"
               :to="{ name: 'SportsBoard' }">Back</v-btn>
             </form>

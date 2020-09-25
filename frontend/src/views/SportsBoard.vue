@@ -63,7 +63,6 @@
 <script>
 import Layout from '../components/Layout'
 import { mapState } from 'vuex'
-
 export default {
   components: { Layout },
   computed: {

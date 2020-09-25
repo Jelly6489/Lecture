@@ -2,7 +2,7 @@
   <div id="app" align="center" >
     <v-app id="inspire"><br>
       <form @submit.prevent="onSubmit">
-        <v-card width="1000" color="#F0F4C3"><br>
+        <v-card width="1000" color="#E0F2F1"><br>
         <h1>게시글 수정</h1><br>
           <v-col
             cols="10"

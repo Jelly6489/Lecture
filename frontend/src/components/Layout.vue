@@ -8,7 +8,11 @@
       src="@/assets/ball1.png"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title><div @click="home"><p class="text-h4 font-weight-black">Sports Gall</p></div></v-toolbar-title>
+      <v-toolbar-title>
+        <div @click="home">
+          <p class="text-h4 font-weight-black" >Daily Sports</p>
+        </div>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <slot name="menubar"></slot>
     </v-app-bar>
@@ -23,6 +27,7 @@
     <div id="header" v-if="isAuthorized">
 
       <div>
+        <v-img src="@/assets/HP4.png" aspect-ratio="3"></v-img>
         <br><span><v-icon x-large color="black">mdi-face</v-icon> {{ myinfo.auth }} 계정</span>
       </div>
         <v-icon x-large color="black">mdi-music-note</v-icon>
@@ -86,6 +91,7 @@
     </div>
 
       <div id="header" v-else>
+        <v-img src="@/assets/HP4.png" aspect-ratio="2.8"></v-img>
         <v-list dense color="lime lighten-5">
           <v-list-item @click.stop="left = !left">
             <v-list-item-action>

@@ -18,10 +18,11 @@ export default {
   homeNews: [],
   savedNews: [],
   savedNewsContents: [],
+  items: [],
   // Rank
   rlists: [],
   rank: [],
   homeRank: [],
   savedRank: [],
-  savedRankContents: []
+  savedRankContents: [],
 }

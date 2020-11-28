@@ -46,7 +46,7 @@ export default {
       console.log('VueModifyPage payload: ' + payload)
       axios.put(`http://localhost:7777/boards/${this.boardNo}`, { title, content })
         .then(res => {
-          alert('Modify Success')
+          alert('수정 완료!')
           console.log('res: ' + res.data)
           this.$router.push({
             name: 'VueReadPage',

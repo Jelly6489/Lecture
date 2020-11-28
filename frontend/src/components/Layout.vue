@@ -8,7 +8,11 @@
       src="@/assets/ball1.png"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title><div @click="home"><p class="text-h4 font-weight-black">Sports Gall</p></div></v-toolbar-title>
+      <v-toolbar-title>
+        <div @click="home">
+          <p class="text-h4 font-weight-black" >Daily Sports</p>
+        </div>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <slot name="menubar"></slot>
     </v-app-bar>
@@ -23,6 +27,7 @@
     <div id="header" v-if="isAuthorized">
 
       <div>
+        <v-img src="@/assets/HP4.png" aspect-ratio="3"></v-img>
         <br><span><v-icon x-large color="black">mdi-face</v-icon> {{ myinfo.auth }} 계정</span>
       </div>
         <v-icon x-large color="black">mdi-music-note</v-icon>
@@ -86,6 +91,7 @@
     </div>
 
       <div id="header" v-else>
+        <v-img src="@/assets/HP4.png" aspect-ratio="2.8"></v-img>
         <v-list dense color="lime lighten-5">
           <v-list-item @click.stop="left = !left">
             <v-list-item-action>
@@ -118,6 +124,17 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
+
+        <v-list dense color="orange lighten-5">
+          <v-list-item @click.stop="left = !left">
+            <v-list-item-action>
+              <v-icon x-large color="yellow darken-2">mdi-star</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title @click="rank">순위 보기</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
       </div>
 
     </v-navigation-drawer>
@@ -131,7 +148,7 @@
 
     <v-footer
       app
-      color="lime lighten-2"
+      color="amber"
       class="white--text"
       padless
     >
@@ -165,10 +182,10 @@ export default {
       (window.location.pathname !== '/VueLogin') ? router.push('/VueLogin') : router.go(0)
     },
     home () {
-      (window.location.pathname !== '/SportsBoard') ? router.push('/SportsBoard') : router.go(0)
+      (window.location.pathname !== '/') ? router.push('/') : router.go(0)
     },
     category () {
-      (window.location.pathname !== '/SportsBoard') ? router.push('/SportsBoard') : router.go(0)
+      (window.location.pathname !== '/') ? router.push('/') : router.go(0)
     },
     rank () {
       (window.location.pathname !== '/SportsRank') ? router.push('/SportsRank') : router.go(0)
@@ -181,12 +198,12 @@ export default {
     },
     onClickLogout () {
       this.logout()
-      alert('Success Logout')
+      alert('Logout')
       this.$router.push({ name: 'SportsBoard' }).catch(err => {
         console.log('Logout Fail: ', err)
       })
     },
-    onAudioSelected (e) {
+    onAudioSelected () {
       const uploadSound = event.target.files[0]
       const audioSrc = window.URL.createObjectURL(uploadSound)
       this.$refs.source.src = audioSrc

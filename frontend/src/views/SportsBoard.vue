@@ -29,28 +29,33 @@
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="grey lighten-5">mdi-mouse</v-icon>
         e스포츠</v-btn>
-      <v-btn x-large rounded :to="{ name: 'VueGall' }" text color="amber lighten-2"
+      <v-btn x-large rounded :to="{ name: 'SportsGalleryView' }" text color="amber lighten-2"
         style="padding: 10px; width: 150px;">
         <v-icon x-large color="amber lighten-2">mdi-comment</v-icon>
         게시판</v-btn>
     </template>
       <template #content>
-        <v-simple-table>
-          <template v-slot:default>
-            <thead>
-              <tr>
-                <th class="text-left">No.</th>
-                <th class="text-left">제목</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="list of lists" :key="list.title">
-                <td style="color: gray">{{ list.newsNo }}</td>
-                <td><a href="${list.address}">{{ list.title }}</a></td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
+        <v-card>
+          <v-card-title>
+            News
+          </v-card-title>
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">No.</th>
+                  <th class="text-left">제목</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="list of lists" :key="list.title">
+                  <td style="color: gray">{{ list.newsNo }}</td>
+                  <td><a :href="list.address" target="_blank">{{ list.title }}</a></td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-card>
       </template>
   </Layout>
 </template>
@@ -58,7 +63,6 @@
 <script>
 import Layout from '../components/Layout'
 import { mapState } from 'vuex'
-
 export default {
   components: { Layout },
   computed: {

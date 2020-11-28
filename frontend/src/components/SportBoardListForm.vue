@@ -1,45 +1,29 @@
 <template>
   <div id="app" align="center">
-    <v-card>
-      <v-responsive :max-height="680">
-        <v-app id="inspire"><br>
-          <v-app-bar
-            app
-            height="300px"
-            src="@/assets/skateboard.png">
-          <v-toolbar-title><p class="text-h1 font-weight-black">게시판</p></v-toolbar-title>
-          </v-app-bar><br>
+    <v-responsive :max-height="670">
+      <v-app id="inspire"><br>
+        <v-app-bar
+          app
+          height="280px"
+          src="@/assets/skateboard.png">
+        <v-toolbar-title><p class="text-h1 font-weight-black">Sports</p></v-toolbar-title>
+        </v-app-bar>
 
-          <form @submit.prevent="submit">
-          <v-toolbar
-            shaped
-            dark
-            dense
-            floating>
-
-            <select class="form-control"  style="font-size:12pt; background-color: white;">
-              <option disabled value="">검색 조건</option>
-              <option value="page.title == null? selected: ''">제목</option>
-              <option value="page.writer == null? selected: ''">작성자</option>
-            </select>
-            <span>{{ selected }}</span>
-
-            <input
-            style="font-size:15pt; color:black; font-weight-bold; border: red 1px solid; background-color: white;"
-            class="stage-search"
-            type="text"
-            placeholder="검색"
-            @input="searchbar"
-            @keydown.enter="KeydownEnter" />
-
-            <v-btn type="submit" icon>
-              <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-
-            <v-btn icon>
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
-          </v-toolbar><br><br>
+        <form @submit.prevent="submit">
+        <v-card width="1000" height="620" color="#F9FBE7">
+          <v-card-title>
+            게시판
+            <v-spacer></v-spacer>
+            <v-text-field
+              align="center"
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
+            <v-spacer></v-spacer>
+          </v-card-title>
             <table border="1">
               <tr height="50">
                 <th align="center" width="80" height="50">번호</th>
@@ -61,26 +45,28 @@
                   </router-link>
                 </td>
                 <td>{{ page.writer }}</td>
-                <td>{{ page.regDate | moment('YYYY-MM-DD HH:mm:ss') }}</td>
+                <td>{{ page.regDate | moment('YYYY-MM-DD') }}</td>
               </tr>
             </table>
             <div class="btn-cover">
               <button :disabled="pageNum === 0"
                 @click="prevPage" class="page-btn">
-                이전
+                ◀
               </button>
               <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
               <button :disabled="pageNum >= pageCount - 1"
                 @click="nextPage" class="page-btn">
-                다음
-              </button><br><br>
-              <v-btn class="mr-4" type="submit" :to="{ name: 'VueListPage' }">작성</v-btn>
-              <v-btn :to="{ name: 'SportsBoard' }">Back</v-btn>
+                ▶
+             </button><br><br>
+              <v-btn v-bind:style = "mystyle1" v-on:mouseover = "changebgcolor1" v-on:mouseout = "originalcolor1"
+              class="mr-4" type="submit" :to="{ name: 'VueListPage' }">작성</v-btn>
+              <v-btn dark v-bind:style = "mystyle2" v-on:mouseover = "changebgcolor2" v-on:mouseout = "originalcolor2"
+              :to="{ name: 'SportsBoard' }">Back</v-btn>
             </div>
-          </form>
-        </v-app>
-      </v-responsive>
-    </v-card>
+        </v-card><br>
+        </form>
+      </v-app>
+    </v-responsive>
   </div>
 </template>
 
@@ -93,7 +79,14 @@ export default {
   name: 'SportBoardListForm',
   data () {
     return {
-      pageNum: 0
+      search: '',
+      pageNum: 0,
+      mystyle1: {
+        backgroundColor: 'white'
+      },
+      mystyle2: {
+        backgroundColor: 'black'
+      }
     }
   },
   props: {
@@ -103,7 +96,6 @@ export default {
     },
     pageSize: {
       type: Number,
-      required: true,
       default: 5
     },
     boards: {
@@ -111,6 +103,18 @@ export default {
     }
   },
   methods: {
+    changebgcolor1: function () {
+      this.mystyle1.backgroundColor = '#81D4FA'
+    },
+    originalcolor1: function () {
+      this.mystyle1.backgroundColor = 'white'
+    },
+    changebgcolor2: function () {
+      this.mystyle2.backgroundColor = '#81D4FA'
+    },
+    originalcolor2: function () {
+      this.mystyle2.backgroundColor = 'black'
+    },
     nextPage () {
       this.pageNum += 1
     },

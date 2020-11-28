@@ -29,9 +29,10 @@ import router from '../router'
 
 export default {
   async rankFind ({ commit }, value) {
-    axios.get('http://localhost:7777/' + `${value}`)
+    axios.get('http://localhost:7777/ranked/' + `${value}`)
       .then(({ data }) => {
         commit('RANKSTART', data)
+        console.log('data:' + data)
         if (window.location.pathname !== '/SportsRank') {
           router.push('/SportsRank')
         }
@@ -42,15 +43,16 @@ export default {
       .then(({ data }) => {
         console.log('/rank/rankNo res: ' + data)
         commit('FINDRANK', data)
-        router.push('/SportsRank/rank')
+        router.push('/rank')
       })
   },
   async crawlFind ({ commit }, category) {
     axios.get('http://localhost:7777/' + `${category}`)
       .then(({ data }) => {
         commit('CRAWLSTART', data)
-        if (window.location.pathname !== '/SportsBoard') {
-          router.push('/SportsBoard')
+        console.log('data:' + data)
+        if (window.location.pathname !== '/') {
+          router.push('/')
         }
       })
   },
@@ -59,7 +61,7 @@ export default {
       .then(({ data }) => {
         console.log('/news/newsNo res: ' + data)
         commit('FINDONE', data)
-        router.push('/SportsBoard/news')
+        router.push('/news')
       })
   },
   fetchBoardList ({ commit }) {
@@ -123,6 +125,23 @@ export default {
     return axios.post(`http://localhost:7777/api/authenticate?username=${payload.userid}&password=${payload.password}`, {
       username: payload.userid,
       password: payload.password
+    }).then(res => {
+      console.log('actions after post')
+      const { authorization } = res.headers
+      const accessToken = authorization.substring(7)
+
+      commit(SET_ACCESS_TOKEN, accessToken)
+
+      return axios.get('http://localhost:7777/users/myinfo')
+    }).then(res => {
+      console.log('After Get Auth Info')
+      commit(SET_MY_INFO, res.data)
+    })
+  },
+  checkId ({ commit }, payload) {
+    console.log('actions checkId')
+    return axios.post(`http://localhost:7777/api/authenticate?username=${payload.userId}`, {
+      username: payload.userId
     }).then(res => {
       console.log('actions after post')
       const { authorization } = res.headers

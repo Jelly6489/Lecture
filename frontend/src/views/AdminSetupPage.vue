@@ -23,7 +23,8 @@ export default {
       axios.post('http://localhost:7777/users/setup',
         { userId, userName, userPw })
         .then(res => {
-          alert('Register Success')
+          res.status = 0
+          alert('oK')
           this.$router.push({
             name: 'Home'
           })
@@ -31,7 +32,7 @@ export default {
         .catch(err => {
           alert(err.response.data)
         })
-    }
+    },
   }
 }
 </script>

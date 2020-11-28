@@ -18,6 +18,7 @@ export default {
     onSubmit (payload) {
       console.log('loginPage onSubmit()')
       this.login(payload).then(res => {
+        res.status=0
         alert('Login Success')
         this.$router.push({ name: 'Home' })
       }).catch(err => {

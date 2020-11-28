@@ -47,6 +47,7 @@ export default {
       const { boardNo } = this.board
       axios.delete(`http://localhost:7777/boards/${boardNo}`)
         .then(res => {
+          res.status=0
           alert('Delete Success')
           this.$router.push({ name: 'BoardListPage' })
         })

@@ -26,6 +26,7 @@ public class CrawlController {
 
         newsCrawler.mainCrawler(category);
         return newsCrawler.newsFindAll();
+
     }
 
     @GetMapping("news")

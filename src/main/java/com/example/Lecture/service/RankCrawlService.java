@@ -96,11 +96,6 @@ public class RankCrawlService {
 
         rankedNews(document.select("table.p0c-competition-tables__table>tbody>" +
                 "tr.p0c-competition-tables__row.p0c-competition-tables__row-rank-status p0c-competition-table__row--rank-status-1"), value);
-//        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_rank"), value);
-//        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_name"), value);
-//        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_name>a.link_thumb.#team_name"), value);
-//        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.td_name>a.link_thumb.#team_name"), value);
-//        rankedNews(document.select("div.inner_table>table.tbl_record>tbody>tr>td.selected_on"), value);
     }
 
     public void rankedNews(Elements elements, String value) {

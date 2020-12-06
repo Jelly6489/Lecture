@@ -40,39 +40,72 @@ npm run lint
 # build.gradle 파일에 추가한 내용
 
 plugins {
+
     id 'org.springframework.boot' version '2.2.1.RELEASE'
+    
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    
     id 'java'
+    
 }
 
 configurations {
+
     compileOnly {
+    
         extendsFrom annotationProcessor
+        
     }
+    
 }
+
 
 dependencies {
+
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    
     compileOnly 'org.projectlombok:lombok'
+    
     annotationProcessor 'org.projectlombok:lombok'
+    
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    
     compile 'org.springframework:spring-orm'
+    
     compile 'org.apache.httpcomponents:httpclient:4.5.12'
+    
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    
 }
 
+
 # Gradle
+
 https://start.spring.io/ 로 이동한다.
+
 Project: Gradle Project
+
 Language: Java
+
 Spring Boot: 2.3.1 --> 이후 Upgrade
+
 Packaging: Jar
+
 Java: 11
+
 Dependency:
+
     Spring Boot DevTools
+    
     Lombok
+    
     Spring Configuration Processor
+    
     Spring Web
+    
     Thymeleaf
+    
     MySQL Driver
+    

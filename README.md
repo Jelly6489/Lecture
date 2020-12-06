@@ -16,6 +16,7 @@ Main Home, 회원가입, 로그인, 게시판, 페이지네이션, 뉴스 크롤
 config - DBConfig에서 본인 DB에 맞게 설정
 
 4. Npm 구동
+
 Project setup
 ```
 npm install

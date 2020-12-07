@@ -1,5 +1,5 @@
 # Lecture
-1. 개발환경 및 제작도구 
+<h3> 1. 개발환경 및 제작도구 </h3>
 
 Linux - Ubuntu 18.04
 
@@ -17,13 +17,13 @@ Gradle - Spring Boot DevTools, Lombok, Spring Configuration Processor, Spring We
 
 Thymeleaf, MySQL Driver
 
-2. 상세 기능
+<h3> 2. 상세 기능 </h3>
 Main Home, 회원가입, 로그인, 게시판, 페이지네이션, 뉴스 크롤링
 
-3. DB 환경설정
+<h3> 3. DB 환경설정 </h3>
 config - DBConfig에서 본인 DB에 맞게 설정
 
-4. Npm 구동
+<h3> 4. Npm 구동 </h3>
 
 Project setup
 ```

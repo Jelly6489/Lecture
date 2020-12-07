@@ -1,12 +1,20 @@
 # Lecture
 1. 개발환경 및 제작도구 
+
 Linux - Ubuntu 18.04
+
 Java - java 11
+
 Mysql - Mysql 5.7.31
+
 Vue-CLI - vue/cli 4.4.6
+
 Spring Boot - 2.3.3.RELEASE
+
 JPA - hibernate-core 5.4.17.Final, hibernate-validator 6.0.7.Final
+
 Gradle - Spring Boot DevTools, Lombok, Spring Configuration Processor, Spring Web,
+
 Thymeleaf, MySQL Driver
 
 2. 상세 기능

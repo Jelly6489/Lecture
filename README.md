@@ -119,3 +119,16 @@ Dependency:
     
 # Main Home
 # http://localhost:8080/
+
+# aws
+<h3>back</h3>
+
+경로: /Lecture/build/libs
+
+java -jar Lecture-0.0.1-SNAPSHOT.jar
+
+<h3>frontend</h3>
+
+경로: /Lecture/frontend
+
+npm run serve

@@ -133,4 +133,4 @@ java -jar Lecture-0.0.1-SNAPSHOT.jar
 
 npm run serve
 
-2020-12-10에 aws 마저 
+2020-12-10에 aws 마무리

@@ -133,6 +133,6 @@ java -jar Lecture-0.0.1-SNAPSHOT.jar
 
 npm run serve
 
-http://ec2-3-17-131-106.us-east-2.compute.amazonaws.com:8080/
+aws 완료
 
-aws 
+compute.amazonaws.com:8080/

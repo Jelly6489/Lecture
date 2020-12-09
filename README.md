@@ -133,4 +133,6 @@ java -jar Lecture-0.0.1-SNAPSHOT.jar
 
 npm run serve
 
-2020-12-10에 aws 마무리
+http://ec2-3-17-131-106.us-east-2.compute.amazonaws.com:8080/
+
+aws 

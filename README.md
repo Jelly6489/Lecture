@@ -132,3 +132,5 @@ java -jar Lecture-0.0.1-SNAPSHOT.jar
 경로: /Lecture/frontend
 
 npm run serve
+
+2020-12-10에 aws 마저 

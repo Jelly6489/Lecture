@@ -16,3 +16,8 @@ public class VueBoard {
     private String writer;
     private Date regDate;
 }
+
+//create table cafe_board(
+// board_no int primary key auto_increment, title varchar(32) not null,
+// content varchar(100) not null, writer varchar(16),
+// reg_date timestamp default current_timestamp on update current_timestamp);

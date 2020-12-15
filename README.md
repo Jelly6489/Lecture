@@ -135,4 +135,4 @@ npm run serve
 
 aws 완료
 
-compute.amazonaws.com:8080/
+www.zedstory.cf:8080
